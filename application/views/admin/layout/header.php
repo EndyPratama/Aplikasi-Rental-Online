@@ -57,10 +57,10 @@
                         <span class="menu-collapsed">Charts</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                        <span class="menu-collapsed">Reports</span>
+                        <span class="menu-collapsed">Pesan</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                        <span class="menu-collapsed">Tables</span>
+                        <span class="menu-collapsed">Member</span>
                     </a>
                 </div>
                 <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
@@ -81,13 +81,3 @@
 
             </ul>
         </div> <!-- End Sidebar -->
-
-        <!-- MAIN
-        <div class="col">
-
-            <h1>
-                DUMET School
-            </h1>
-
-        </div>
-    </div> -->
