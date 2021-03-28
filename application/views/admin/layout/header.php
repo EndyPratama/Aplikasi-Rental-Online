@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/sidebar.css') ?>">
-
-    <title>Document</title>
+    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <title><?= $title; ?></title>
 </head>
 
 <body>
@@ -29,6 +30,7 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                        <a class="dropdown-item" href="#">Home</a>
                         <a class="dropdown-item" href="#">Dashboard</a>
                         <a class="dropdown-item" href="#">Profile</a>
                     </div>
@@ -45,6 +47,12 @@
                 <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
                     <small>MAIN MENU</small>
                 </li>
+                <a href="<?= base_url('/'); ?>" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Home</span>
+                    </div>
+                </a>
                 <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-dashboard fa-fw mr-3"></span>
@@ -53,13 +61,13 @@
                     </div>
                 </a>
                 <div id='submenu1' class="collapse sidebar-submenu">
-                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="<?= base_url('chart/'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Charts</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="<?= base_url('pesan/'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Pesan</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="<?= base_url('member/'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Member</span>
                     </a>
                 </div>
