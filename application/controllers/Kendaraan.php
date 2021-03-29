@@ -13,7 +13,8 @@ class Kendaraan extends CI_Controller
         $kendaraan = $this->M_Kendaraan->getKendaraan();
         $data = array(
             'kendaraan' => $kendaraan,
-            'title' => 'List Kendaraan'
+            'title' => 'List Kendaraan',
+            'css' => 'kendaraan.css'
         );
         $this->load->view('/admin/layout/header');
         $this->load->view('/admin/kendaraan', $data);
