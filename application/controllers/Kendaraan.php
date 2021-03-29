@@ -16,7 +16,7 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/header');
+        $this->load->view('/admin/layout/header', $data);
         $this->load->view('/admin/kendaraan', $data);
         $this->load->view('/admin/layout/footer');
     }
