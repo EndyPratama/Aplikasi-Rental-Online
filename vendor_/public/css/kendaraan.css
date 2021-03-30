@@ -1,0 +1,16 @@
+content a{
+    color:#000;
+}
+a:hover{
+    color: #0066ff;
+    text-decoration: none;
+}
+.card{
+    margin: 0 10px;
+}
+.card:hover{
+    box-shadow: 10px 5px 5px rgb(235, 233, 233);
+}
+.content{
+    margin-top: 20px;
+}
