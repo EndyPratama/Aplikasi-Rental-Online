@@ -1,0 +1,12 @@
+content{
+    overflow: hidden;
+}
+.card{
+    max-height: 500px;
+}
+.card .card-img{
+    /* height:inherit; */
+    /* height: 100vh; */
+    max-height: 500px;
+    /* width: 10px; */
+}
