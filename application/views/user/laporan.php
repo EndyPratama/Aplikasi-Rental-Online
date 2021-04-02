@@ -17,7 +17,7 @@
                             <h5 class="card-title">Maaf anda belum berhasil</h5>
                             <p class="card-text">Pastikan bahwa anda telah terdaftar/login pada akun anda.</p>
                             <!-- <p class="card-text">Harap membawa menunjukkan kode booking ke pihak penyewa.</p> -->
-                            <a href="<?= base_url('/login'); ?>" class="btn btn-primary">Login</a>
+                            <a href="<?= base_url('/'); ?>" class="btn btn-primary">Login</a>
                         </div>
 
                     <?php } ?>
