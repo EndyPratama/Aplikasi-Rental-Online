@@ -9,7 +9,7 @@
                             <h5 class="card-title">Booking berhasil</h5>
                             <p class="card-text">Harap membawa menunjukkan kode booking ke pihak penyewa.</p>
                             <!-- <p class="card-text">Harap membawa menunjukkan kode booking ke pihak penyewa.</p> -->
-                            <a href="<?= base_url('/'); ?>" class="btn btn-primary">Cek Transaksi Anda</a>
+                            <a href="<?= base_url('/profile/history'); ?>" class="btn btn-primary">Cek Transaksi Anda</a>
                         </div>
                     <?php } else { ?>
                         <img src="<?= base_url('vendor/public/img/sad.png'); ?>" alt="">
