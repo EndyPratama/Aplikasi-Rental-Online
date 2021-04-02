@@ -1,5 +1,5 @@
 <!-- MAIN -->
-<div class="col">
+<div class="col content">
     <h1>Data Kendaraan : </h1>
     <hr>
     <div class="container">
@@ -8,8 +8,8 @@
             $row = 1;
             foreach ($kendaraan as $k) :
             ?>
-                <a href="<?= base_url('kendaraan/detail/' . $k->id_kendaraan); ?>">
-                    <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <a href="<?= base_url('kendaraan/detail/' . $k->id_kendaraan); ?>">
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="card-img" alt="<?= $k->nama; ?>" style="height: 150px;">
@@ -22,8 +22,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>

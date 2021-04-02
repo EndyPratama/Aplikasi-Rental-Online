@@ -25,4 +25,32 @@ class M_Kendaraan extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getIklan($merk)
+    {
+        $this->db->select("*");
+        $this->db->from("kendaraan");
+        $this->db->where('merk', $merk);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function cekData($id)
+    {
+        $this->db->select("merk");
+        $this->db->from("kendaraan");
+        $this->db->where('id_kendaraan', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function cekUser($id)
+    {
+        $this->db->select("id");
+        $this->db->from("akun");
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function bookingOrder($data)
+    {
+        $this->db->insert('booking', $data);
+    }
 }
