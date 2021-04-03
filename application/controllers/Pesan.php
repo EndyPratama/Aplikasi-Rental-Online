@@ -10,9 +10,11 @@ class Pesan extends CI_Controller
     }
     public function index()
     {
-        $pesan = $this->M_Pesan->getPesan();
+        // $pesan = $this->M_Pesan->getPesan();
+        $user = $this->session->userdata('id');
+        $history = $this->M_Pesan->getHistoryPesan($user);
         $data = array(
-            'pesan' => $pesan,
+            'pesan' => $history,
             'title' => 'Pesan Masuk',
             'css' => 'pesan.css'
         );

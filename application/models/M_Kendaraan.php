@@ -53,4 +53,105 @@ class M_Kendaraan extends CI_Model
     {
         $this->db->insert('booking', $data);
     }
+    // $model = $this->input->post('model');
+    //     // SELECT DISTINCT model, merk FROM `kendaraan` WHERE 1
+    //     $tahun = $this->input->post('tahun');
+    //     // SELECT DISTINCT tahun FROM `kendaraan` WHERE 1
+    //     $mesin = $this->input->post('mesin');
+    //     // SELECT DISTINCT mesin FROM `kendaraan` WHERE 1
+    //     $warna = $this->input->post('warna');
+    //     // SELECT DISTINCT warna FROM `kendaraan` WHERE 1
+    public function getMerk()
+    {
+        $this->db->select("DISTINCT(merk)");
+        $this->db->from("kendaraan");
+        // $this->db->where('pesan.user_id=akun.id');
+        $this->db->order_by("merk", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getModel()
+    {
+        $this->db->select("DISTINCT(model),merk");
+        $this->db->from("kendaraan");
+        // $this->db->where('pesan.user_id=akun.id');
+        $this->db->order_by("model", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getTahun()
+    {
+        $this->db->select("DISTINCT(tahun)");
+        $this->db->from("kendaraan");
+        // $this->db->where('pesan.user_id=akun.id');
+        $this->db->order_by("tahun", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getMesin()
+    {
+        $this->db->select("DISTINCT(mesin)");
+        $this->db->from("kendaraan");
+        // $this->db->where('pesan.user_id=akun.id');
+        $this->db->order_by("mesin", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getWarna()
+    {
+        $this->db->select("DISTINCT(warna)");
+        $this->db->from("kendaraan");
+        // $this->db->where('pesan.user_id=akun.id');
+        $this->db->order_by("warna", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getKendaraanByFilter($model = '', $tahun = '', $mesin = '', $warna = '')
+    {
+        $this->db->select("*");
+        $this->db->from("kendaraan");
+        if ($model != NULL) {
+            $this->db->where('model', $model);
+        }
+        if ($tahun != NULL) {
+            $this->db->where('tahun', $tahun);
+        }
+        if ($mesin != NULL) {
+            $this->db->where('mesin', $mesin);
+        }
+        if ($warna != NULL) {
+            $this->db->where('warna', $warna);
+        }
+        // $this->db->where($array);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getWhislist($user, $kendaraan)
+    {
+        $this->db->select("*");
+        $this->db->from("whislist");
+        $this->db->where('id_user', $user);
+        $this->db->where('id_kendaraan', $kendaraan);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function saveWhislist($data)
+    {
+        $this->db->insert('whislist', $data);
+    }
+    public function deleteWhislist($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('whislist');
+    }
+    public function search($keyword)
+    {
+        $this->db->select("*");
+        $this->db->from("kendaraan");
+        $this->db->like('merk', $keyword);
+        $this->db->or_like('model', $keyword);
+        $query = $this->db->get();
+        return $query->result();
+        // return $this->table('komik')->like('judul', $keyword);
+    }
 }

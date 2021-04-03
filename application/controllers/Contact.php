@@ -11,12 +11,22 @@ class Contact extends CI_Controller
     public function index()
     {
         // $kendaraan = $this->M_Kendaraan->getKendaraan();
+        $user = $this->session->userdata('id');
+        $history = $this->M_Contact->getHistoryPesan($user);
+        // $history = json_decode(json_encode($history), true);
+        // $history = $history["0"];
+        // $history = $history['id'];
+
         $data = array(
             // 'kendaraan' => $kendaraan,
             'title' => 'List Kendaraan',
             'css' => 'contact.css',
+            'history' => $history,
             'notif' => ''
         );
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/contact', $data);
         $this->load->view('/user/layout/footer');
@@ -47,8 +57,6 @@ class Contact extends CI_Controller
         // echo "</pre>";
         $this->M_Contact->insertPesan($data);
 
-        $this->load->view('/user/layout/header', $page);
-        $this->load->view('/user/contact');
-        $this->load->view('/user/layout/footer');
+        redirect(base_url('/contact'));
     }
 }

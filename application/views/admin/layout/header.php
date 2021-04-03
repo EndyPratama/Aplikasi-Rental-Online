@@ -47,7 +47,7 @@
                 <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
                     <small>MAIN MENU</small>
                 </li>
-                <a href="<?= base_url('/'); ?>" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <a href="<?= base_url('/kendaraan'); ?>" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <span class="fa fa-home fa-fw mr-3"></span>
                         <span class="menu-collapsed">Home</span>

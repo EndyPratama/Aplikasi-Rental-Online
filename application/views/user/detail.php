@@ -13,9 +13,18 @@
                         </div>
                         <div class="col">
                             <div class="card-header rounded">
+                                <!-- <div class="row"> -->
+                                <!-- <div class="col"> -->
+                                <a href="<?= base_url('/kendaraan/whislist/' . $d->id_kendaraan); ?>">
+                                    <img src="<?php echo base_url('vendor/public/img/' . $whislist) ?>" style="width: 50px; height:50px; float:right">
+                                </a>
                                 <h2>Rp <?= $d->harga; ?>/hr</h2>
                                 <h6><small><?= $d->tahun; ?></small></h6>
                                 <h6><?= $d->nama; ?></h6>
+                                <!-- </div> -->
+                                <!-- <div class="col-1">
+                                    </div> -->
+                                <!-- </div> -->
                             </div>
                             <div class="card-body">
                                 <button class="btn btn-success btn-block" onclick="formOpen()" id="order">Order now</button>

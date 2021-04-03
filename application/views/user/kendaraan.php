@@ -11,43 +11,43 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-2" id="sidebar">
-            <form action="">
-                <input class="form-control" id="formSearch" type="search" placeholder="Search" width="50px">
-                <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
-                <!-- <a href="/" class="reset"><i class="fa fa-filters"></i> Reset Filter</a> -->
+            <form action="<?= base_url('/kendaraan/list'); ?>" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" name="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <form action="<?= base_url('/kendaraan/filter'); ?>" method="post">
                 <button type="reset" class="reset btn btn-outline-dark">Reset Filter</button>
                 <!-- <a type="reset">Reset Filter</a> -->
                 <a href="#submenu1" class="sub" data-toggle="collapse">
                     Kategori
                 </a>
                 <div id='submenu1' class="collapse">
-                    <?php
-                    // $merk = ['Toyota, Suzuki, Mitshubishi'];
-                    $merk = array("Toyota", "Suzuki", "Mitsubishi");
-                    $Toyota = array("Avansa", "Agya");
-                    $Suzuki = array("Swift", "Ertiga");
-                    // echo $merk[0];
-                    ?>
-                    <?php for ($i = 0; $i < 2; $i++) : ?>
-                        <a href="#<?= $merk[$i]; ?>" class="sub" data-toggle="collapse"><?= $merk[$i]; ?></a>
-                        <div id='<?= $merk[$i]; ?>' class="collapse">
+                    <?php foreach ($merk as $m) : ?>
+                        <a href="#<?= $m->merk; ?>" class="sub" data-toggle="collapse"><?= $m->merk; ?></a>
+                        <div id='<?= $m->merk; ?>' class="collapse">
                             <?php
-                            for ($j = 0; $j < 2; $j++) :
-                                $model = $merk[$i];
+                            foreach ($model as $md) :
+                                if ($md->merk == $m->merk) {
                             ?>
 
-                                <div class="form-group row">
-                                    <div class="col-2"></div>
-                                    <div class="col-sm-8"><?= $$model[$j]; ?></div>
-                                    <div class="col-sm-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="model" type="radio" id="option1">
+                                    <div class="form-group row">
+                                        <div class="col-2"></div>
+                                        <div class="col-sm-8"><?= $md->model; ?></div>
+                                        <div class="col-sm-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="model" value="<?= $md->model; ?>" type="radio" id="option1">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endfor; ?>
+                            <?php
+                                }
+                            endforeach; ?>
                         </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
                 <hr>
                 <a href="#submenu2" class="sub" data-toggle="collapse">
@@ -56,17 +56,20 @@
                 <div id='submenu2' class="collapse">
                     <p>Pilih dari pilihan di bawah</p>
                     <div class="scroll">
-                        <?php for ($i = 2000; $i <= 2010; $i++) : ?>
+                        <?php
+                        $i = 0;
+                        foreach ($tahun as $t) :
+                        ?>
                             <div class="form-group row">
                                 <div class="col-1"></div>
-                                <div class="col-sm-8"><?= $i; ?></div>
+                                <div class="col-sm-8"><?= $t->tahun; ?></div>
                                 <div class="col-sm-2">
                                     <div class="form-check">
-                                        <input class="form-check-input" name="tahun" type="radio" id="option1">
+                                        <input class="form-check-input" name="tahun" value="<?= $t->tahun; ?>" type="radio" id="option1">
                                     </div>
                                 </div>
                             </div>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <hr>
@@ -75,45 +78,41 @@
                 </a>
                 <div id='submenu3' class="collapse">
                     <p>Pilih dari pilihan di bawah</p>
-                    <?php for ($i = 1000; $i <= 3000; $i += 500) : ?>
+                    <?php foreach ($mesin as $m) : ?>
                         <div class="form-group row">
                             <div class="col-1"></div>
-                            <div class="col-sm-8"><?= $i; ?></div>
+                            <div class="col-sm-8"><?= $m->mesin; ?></div>
                             <div class="col-sm-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="mesin" type="radio" id="option1">
+                                    <input class="form-check-input" name="mesin" value="<?= $m->mesin; ?>" type="radio" id="option1">
                                 </div>
                             </div>
                         </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
                 <hr>
                 <a href="#submenu4" class="sub" data-toggle="collapse">
                     Warna
                 </a>
                 <div id='submenu4' class="collapse">
-                    <?php
-                    $warna = array("Merah", "Hitam", "Silver", "Putih", "Biru");
-                    $count = count($warna);
-                    ?>
                     <p>Pilih dari pilihan di bawah</p>
-                    <?php for ($i = 0; $i < $count; $i++) : ?>
+                    <?php foreach ($warna as $w) : ?>
                         <div class="form-group row">
                             <div class="col-1"></div>
-                            <div class="col-sm-8"><?= $warna[$i]; ?></div>
+                            <div class="col-sm-8"><?= $w->warna; ?></div>
                             <div class="col-sm-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="warna" type="radio" id="option1">
+                                    <input class="form-check-input" name="warna" value="<?= $w->warna; ?>" type="radio" id="option1">
                                 </div>
                             </div>
                         </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
 
                 <br>
                 <div class="row">
                     <div class="col">
-                        <button type="button" class="btn btn-primary btn-block">Cari</button>
+                        <button type="submit" class="btn btn-primary btn-block">Cari</button>
                     </div>
                 </div>
             </form>
@@ -135,23 +134,6 @@
                             </div>
                         </a>
                     </div>
-                <?php endforeach; ?>
-                <?php
-                $row = 1;
-                foreach ($kendaraan as $k) :
-                ?>
-                    <div class="card" style="width: 15rem;">
-                        <a href="<?= base_url('kendaraan/mobil/' . $k->id_kendaraan); ?>">
-                            <!-- <img src="..." class="img-fluid" alt="Responsive image"> -->
-                            <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="img-fluid" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $k->nama; ?></h5>
-                                <p class="card-text"><?= $k->tahun; ?>.</p>
-                                <a href="<?= base_url('/kendaraan/mobil' . $k->id_kendaraan); ?>" class="btn btn-primary">Rp <?= $k->harga; ?>/hari</a>
-                            </div>
-                        </a>
-                    </div>
-                    <!--  -->
                 <?php endforeach; ?>
             </div>
         </div>
