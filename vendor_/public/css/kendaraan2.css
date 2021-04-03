@@ -1,24 +1,11 @@
-content{
-    overflow: hidden;
+body{
+    position: relative;
 }
-.card{
-    max-height: 500px;
-}
-.card .card-img{
-    /* height:inherit; */
-    /* height: 100vh; */
-    max-height: 500px;
-    /* width: 10px; */
-}
-/* #whislist{
-    background-color: khaki;
-    width: 10px;
-    height: 10px;
-} */
 /* #formOrder{
     visibility: hidden;
 } */
 .kendaraan{
+    position: static;
     /* background-color: red; */
     display: grid;
     list-style-type:none;
@@ -34,34 +21,62 @@ content{
     /* background-color: red; */
 }
 .card #deskripsi{
+    clear: both;
     margin-left: 30px;
 }
 .card .row .col .center{
+    clear: both;
     margin-bottom: 50px;
 }
 .container{
+    clear: both;
     margin-bottom: 100px;
 }
 .center{
+    clear: both;
     width: 90%;
+    height: inherit;
     /* background-color: red; */
     margin: 20px auto;
 }
 .lainnya{
+    /* clear: both; */
     margin-top: 25px;
 }
 .lainnya .card{
+    /* clear: both; */
     float: left;
 }
 content a{
+    clear: both;
     color:#000;
 }
 a:hover{
+    clear: both;
     color: #0066ff;
     text-decoration: none;
 }
-.card{
-    margin: 0 10px;
+.card#gambarMobil .row{
+    position: relative;
+    height: 500px;
+    /* margin: 0 10px; */
+}
+.card#gambarMobil .image-show{
+    width: 100%;
+    /* border-radius: 5px; */
+    border-radius: 5px 0 0 5px ;
+    height: inherit;
+    position: relative;
+    background-color: black;
+}
+.card#gambarMobil .row .image-show img#imgmbl{
+    position: relative;
+    display: block;
+    margin: auto;
+    height: inherit;
+    width: auto;
+    /* height: 50px; */
+    background-size: contain;
 }
 .card:hover{
     box-shadow: 10px 5px 5px rgb(235, 233, 233);
