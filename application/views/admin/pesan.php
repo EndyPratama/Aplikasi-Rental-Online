@@ -93,7 +93,6 @@
                         document.getElementById("answer-text").value = jawaban;
                     }
                 </script>
-                <?php $row++ ?>
             <?php endforeach; ?>
         </tbody>
     </table>
