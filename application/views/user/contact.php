@@ -40,16 +40,21 @@
                 <tbody>
                     <?php
                     foreach ($history as $h) :
+                        if ($h->jawaban == null) {
                     ?>
-                        <tr>
-                            <th scope="row">U</th>
-                            <td colspan="2"><?= $h->pesan; ?></td>
-                            <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
-                        </tr>
-                        <?php if ($h->jawaban == null) {
-                        } else {
+                            <tr>
+                                <th scope="row">U</th>
+                                <td colspan="2"><?= $h->pesan; ?></td>
+                                <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
+                            </tr>
+                        <?php } else {
 
                         ?>
+                            <tr>
+                                <th scope="row">U</th>
+                                <td colspan="2"><?= $h->pesan; ?></td>
+                                <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
+                            </tr>
                             <tr>
                                 <th scope="row">A</th>
                                 <td colspan="2"><?= $h->jawaban; ?></td>

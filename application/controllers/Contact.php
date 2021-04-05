@@ -24,9 +24,9 @@ class Contact extends CI_Controller
             'history' => $history,
             'notif' => ''
         );
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/contact', $data);
         $this->load->view('/user/layout/footer');

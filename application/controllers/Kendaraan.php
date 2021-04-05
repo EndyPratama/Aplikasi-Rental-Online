@@ -30,7 +30,7 @@ class Kendaraan extends CI_Controller
             $kendaraan = $this->M_Kendaraan;
         }
         // session
-        $this->session->set_userdata('id', '6');
+        $this->session->set_userdata('id', '7');
 
         $kendaraan = $kendaraan->search($keyword);
         $merk = $this->M_Kendaraan->getMerk();
