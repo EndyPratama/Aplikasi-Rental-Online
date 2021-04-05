@@ -123,18 +123,22 @@
                 <?php
                 $row = 1;
                 foreach ($kendaraan as $k) :
+                    if ($k->ketersediaan == 1) :
                 ?>
-                    <div class="card" style="width: 15rem;">
-                        <a href="<?= base_url('kendaraan/mobil/' . $k->id_kendaraan); ?>">
-                            <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="img-fluid" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $k->nama; ?></h5>
-                                <p class="card-text"><?= $k->tahun; ?>.</p>
-                                <a href="<?= base_url('kendaraan/mobil/' . $k->id_kendaraan); ?>" class="btn btn-primary">Rp <?= $k->harga; ?>/hari</a>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
+                        <div class="card" style="width: 15rem;">
+                            <a href="<?= base_url('kendaraan/mobil/' . $k->id_kendaraan); ?>">
+                                <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="img-fluid" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $k->nama; ?></h5>
+                                    <p class="card-text"><?= $k->tahun; ?>.</p>
+                                    <a href="<?= base_url('kendaraan/mobil/' . $k->id_kendaraan); ?>" class="btn btn-primary">Rp <?= $k->harga; ?>/hari</a>
+                                </div>
+                            </a>
+                        </div>
+                <?php
+                    endif;
+                endforeach;
+                ?>
             </div>
         </div>
         <div class="col-1"></div>
