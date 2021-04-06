@@ -1,5 +1,5 @@
 <!-- MAIN -->
-<div class="col-9">
+<div class="col">
     <h1>Data Pesan : </h1>
     <hr>
     <table class="table">
