@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/sidebar.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <script src="<?php echo base_url('vendor/public/assets/Chart.js') ?>"></script>
     <title><?= $title; ?></title>
 </head>
 
@@ -19,8 +20,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span class="menu-collapsed">DMT</span>
+            <img src="<?php echo base_url('vendor/public/img/logo.png') ?>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            R<small>ental</small> O<small>nline</small> <small>and</small> S<small>afety</small>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
