@@ -198,6 +198,10 @@ class Kendaraan extends CI_Controller
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
 
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
         $action = '1';
 
         $this->db->set('action', $action);
@@ -206,6 +210,10 @@ class Kendaraan extends CI_Controller
 
         // Update Ketersediaan
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
+
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
         $ketersediaan = '0';
         $id_kendaraan = $this->M_Kendaraan->getIdKendaraan($id_user);
@@ -217,23 +225,33 @@ class Kendaraan extends CI_Controller
         // Insert Transaksi
         $data['booking'] = $this->db->get('booking')->result_array();
 
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+
         $status = 'Tersewakan';
         $harga = $this->M_Kendaraan->getHarga($id_user);
         $id = $this->M_Kendaraan->getIdUser($id_user);
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal = date("Y-m-d H:i:s");
 
         $databaru = [
             'user_id' => $id,
             'kendaraan_id' => $id_kendaraan,
-            'tanggal' => $this->db->set('tanggal', 'NOW()', true),
+            'tanggal' => $tanggal,
             'status' => $status,
             'harga' => $harga,
         ];
+        // echo "<pre>";
+        // print_r($databaru);
+        // echo "</pre>";
         $this->db->insert('transaksi', $databaru);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect('Kendaraan/booking2');
+        // redirect('Kendaraan/booking2');
+        redirect(base_url('/kendaraan/booking2'));
     }
 
 
