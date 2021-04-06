@@ -80,12 +80,12 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="list-group">
-                                        <a href="<?= base_url('kendaraan/edit'); ?>" class="btn btn-warning"><i class="fa fa-clipboard"> Edit</i></a>
+                                        <a href="<?= base_url('kendaraan/ubah/' . $d->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-clipboard"> Edit</i></a>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="list-group">
-                                        <a href="<?= base_url('kendaraan/delete'); ?>" class="btn btn-danger"><i class="fa fa-times"> Delete</i></a>
+                                        <a href="<?= base_url('kendaraan/hapus/' . $d->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-trash"> Delete</i></a>
                                     </div>
                                 </div>
                             </div>

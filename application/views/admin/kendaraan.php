@@ -1,6 +1,13 @@
 <!-- MAIN -->
 <div class="col content">
     <h1>Data Kendaraan : </h1>
+    <div class="row">
+        <div class="col-3">
+            <div class="list-group">
+                <a href="<?= base_url('kendaraan/tambah'); ?>" class="btn btn-success"><i class="fa fa-plus"> Tambah Kendaraan</i></a>
+            </div>
+        </div>
+    </div>
     <hr>
     <div class="container">
         <div class="row">

@@ -8,6 +8,8 @@ class Kendaraan extends CI_Controller
         parent::__construct();
         $this->load->model('M_Kendaraan');
         $this->load->library('session');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
     }
     public function index()
     {
@@ -21,6 +23,229 @@ class Kendaraan extends CI_Controller
         $this->load->view('/admin/kendaraan', $data);
         $this->load->view('/admin/layout/footer');
     }
+
+    public function do_upload()
+    {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('upload_form', $error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            $this->load->view('upload_success', $data);
+        }
+    }
+
+    public function insert()
+    {
+        // insert data barang
+
+
+        $data = [
+            'nama' => htmlspecialchars($this->input->post('nama', true)),
+            'mesin' => htmlspecialchars($this->input->post('mesin', true)),
+            'bahan_bakar' => htmlspecialchars($this->input->post('bahan_bakar', true)),
+            'model' => htmlspecialchars($this->input->post('model', true)),
+            'warna' => htmlspecialchars($this->input->post('warna', true)),
+            'merk' => htmlspecialchars($this->input->post('merk', true)),
+            'tahun' => htmlspecialchars($this->input->post('tahun', true)),
+            'deskripsi' => htmlspecialchars($this->input->post('deskripsi', true)),
+            'harga' => htmlspecialchars($this->input->post('harga', true)),
+            'ketersediaan' => htmlspecialchars($this->input->post('ketersediaan', true)),
+            'gambar' => htmlspecialchars($this->input->post('gambar', true))
+        ];
+        $this->db->insert('kendaraan', $data);
+        redirect(base_url() . 'Kendaraan');
+    }
+
+    public function tambah()
+    {
+        // insert data kendaraan
+        $data = array(
+            'title' => 'List Kendaraan',
+            'css' => 'kendaraan.css'
+        );
+        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/tambah', $data);
+        $this->load->view('/admin/layout/footer');
+    }
+
+    public function edit()
+    {
+        $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
+
+        // edit data kendaraan
+        $id = $this->input->post('id_kendaraan');
+        $nama = $this->input->post('nama');
+        $mesin = $this->input->post('mesin');
+        $bahan_bakar = $this->input->post('bahan_bakar');
+        $model = $this->input->post('model');
+        $warna = $this->input->post('warna');
+        $merk = $this->input->post('merk');
+        $tahun = $this->input->post('tahun');
+        $deskripsi = $this->input->post('deskripsi');
+        $harga = $this->input->post('harga');
+        $ketersediaan = $this->input->post('ketersediaan');
+
+
+        $this->db->set('nama', $nama);
+        $this->db->set('mesin', $mesin);
+        $this->db->set('bahan_bakar', $bahan_bakar);
+        $this->db->set('model', $model);
+        $this->db->set('warna', $warna);
+        $this->db->set('merk', $merk);
+        $this->db->set('tahun', $tahun);
+        $this->db->set('deskripsi', $deskripsi);
+        $this->db->set('harga', $harga);
+        $this->db->set('ketersediaan', $ketersediaan);
+        $this->db->where('id_kendaraan', $id);
+        $this->db->update('kendaraan');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect('Kendaraan');
+    }
+
+    public function ubah($id)
+    {
+        // insert data kendaraan
+        $kendaraan = $this->M_Kendaraan->getKendaraanbyid($id);
+        $data = array(
+            'id_kendaraan' => $id,
+            'kendaraan' => $kendaraan,
+            'title' => 'List Kendaraan',
+            'css' => 'kendaraan.css'
+        );
+
+        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/ubah', $data);
+        $this->load->view('/admin/layout/footer');
+    }
+
+    public function hapus($id_kendaraan)
+    {
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Hapus data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button></div>');
+        $this->db->delete("kendaraan", array("id_kendaraan" => $id_kendaraan));
+        redirect('Kendaraan');
+    }
+
+    public function transaksi()
+    {
+        $transaksi = $this->M_Kendaraan->getTransaksi();
+        $data = array(
+            'transaksi' => $transaksi,
+            'title' => 'Histori Transaksi',
+            'css' => 'kendaraan.css'
+        );
+        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/transaksi', $data);
+        $this->load->view('/admin/layout/footer');
+    }
+
+    public function sukses($kendaraan_id)
+    {
+        $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
+
+        // edit data kendaraan
+
+        $ketersediaan = '1';
+
+        $this->db->set('ketersediaan', $ketersediaan);
+        $this->db->where('id_kendaraan', $kendaraan_id);
+        $this->db->update('kendaraan');
+
+        $data['trans'] = $this->db->get('transaksi')->result_array();
+
+        // edit data kendaraan
+
+        $status = 'Selesai';
+
+        $this->db->set('status', $status);
+        $this->db->where('kendaraan_id', $kendaraan_id);
+        $this->db->update('transaksi');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect('Kendaraan/transaksi');
+    }
+
+    public function booking2()
+    {
+        $book = $this->M_Kendaraan->getBooking();
+        $data = array(
+            'booking' => $book,
+            'title' => 'Daftar Booking',
+            'css' => 'kendaraan.css'
+        );
+        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/booking', $data);
+        $this->load->view('/admin/layout/footer');
+    }
+
+    public function terima($id_user)
+    {
+        // Update Action
+        $data['booking'] = $this->db->get('booking')->result_array();
+
+        $action = '1';
+
+        $this->db->set('action', $action);
+        $this->db->where('id_user', $id_user);
+        $this->db->update('booking');
+
+        // Update Ketersediaan
+        $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
+
+        $ketersediaan = '0';
+        $id_kendaraan = $this->M_Kendaraan->getIdKendaraan($id_user);
+
+        $this->db->set('ketersediaan', $ketersediaan);
+        $this->db->where('id_kendaraan', $id_kendaraan);
+        $this->db->update('kendaraan');
+
+        // Insert Transaksi
+        $data['booking'] = $this->db->get('booking')->result_array();
+
+        $status = 'Tersewakan';
+        $harga = $this->M_Kendaraan->getHarga($id_user);
+        $id = $this->M_Kendaraan->getIdUser($id_user);
+
+        $databaru = [
+            'user_id' => $id,
+            'kendaraan_id' => $id_kendaraan,
+            'tanggal' => $this->db->set('tanggal', 'NOW()', true),
+            'status' => $status,
+            'harga' => $harga,
+        ];
+        $this->db->insert('transaksi', $databaru);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect('Kendaraan/booking2');
+    }
+
+
+    public function tolak($id)
+    {
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Hapus data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button></div>');
+        $this->db->delete("booking", array("id" => $id));
+        redirect('Kendaraan/booking2');
+    }
+
     public function list()
     {
         $keyword = $this->input->post('keyword');
@@ -30,7 +255,7 @@ class Kendaraan extends CI_Controller
             $kendaraan = $this->M_Kendaraan;
         }
         // session
-        $this->session->set_userdata('id', '7');
+        $this->session->set_userdata('id', '6');
 
         $kendaraan = $kendaraan->search($keyword);
         $merk = $this->M_Kendaraan->getMerk();

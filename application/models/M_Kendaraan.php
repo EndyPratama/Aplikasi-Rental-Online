@@ -17,6 +17,23 @@ class M_Kendaraan extends CI_Model
     // SELECT akun.nama, pesan.pesan, pesan.tanggal
     //         FROM pesan, akun
     //         WHERE pesan.user_id=akun.id 
+    public function getKendaraanbyid($id)
+    {
+        $this->db->select("*");
+        $this->db->from("kendaraan");
+        $this->db->where('id_kendaraan', $id);
+        // $this->db->where('pesan.user_id=akun.id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function deleteKendaraanbyid($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('kendaraan');
+        // $this->db->where('pesan.user_id=akun.id');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getDetailById($id)
     {
         $this->db->select("*");
@@ -24,6 +41,51 @@ class M_Kendaraan extends CI_Model
         $this->db->where('id_kendaraan', $id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function getTransaksi()
+    {
+        $this->db->select("*");
+        $this->db->from("transaksi");
+        // $this->db->where('pesan.user_id=akun.id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getBooking()
+    {
+
+        $this->db->select("*");
+        $this->db->from("booking");
+        $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getIdKendaraan($id_user)
+    {
+
+        $this->db->select("id_kendaraan");
+        $this->db->from("kendaraan");
+        $this->db->join('booking', 'kendaraan.nama = booking.kendaraan', 'right');
+        $this->db->where('id_user', $id_user);
+        $query = $this->db->get();
+        return $query->row()->id_kendaraan;
+    }
+    public function getHarga($id_user)
+    {
+        $this->db->select("harga");
+        $this->db->from("booking");
+        $this->db->where("id_user", $id_user);
+        // select * from pesan JOIN akun on pesan.user_id=akun.id join jawaban on pesan.id_pesan = jawaban.id_pesan where pesan.user_id='6' 
+        $query = $this->db->get();
+        return $query->row()->harga;
+    }
+    public function getIdUser($id_user)
+    {
+        $this->db->select("id_user");
+        $this->db->from("booking");
+        $this->db->where("id_user", $id_user);
+        // select * from pesan JOIN akun on pesan.user_id=akun.id join jawaban on pesan.id_pesan = jawaban.id_pesan where pesan.user_id='6' 
+        $query = $this->db->get();
+        return $query->row()->id_user;
     }
     public function getIklan($merk)
     {

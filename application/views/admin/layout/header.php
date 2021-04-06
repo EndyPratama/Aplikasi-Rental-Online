@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/sidebar.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
-    <script src="<?php echo base_url('vendor/public/assets/Chart.js') ?>"></script>
     <title><?= $title; ?></title>
 </head>
 
@@ -21,8 +19,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="<?php echo base_url('vendor/public/img/logo.png') ?>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            R<small>ental</small> O<small>nline</small> <small>and</small> S<small>afety</small>
+            <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="menu-collapsed">DMT</span>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -63,6 +61,12 @@
                     </div>
                 </a>
                 <div id='submenu1' class="collapse sidebar-submenu">
+                    <a href="<?= base_url('kendaraan/booking2'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">Booking</span>
+                    </a>
+                    <a href="<?= base_url('kendaraan/transaksi'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">Transaction</span>
+                    </a>
                     <a href="<?= base_url('chart/'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Charts</span>
                     </a>
@@ -72,6 +76,7 @@
                     <a href="<?= base_url('member/'); ?>" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">Member</span>
                     </a>
+
                 </div>
                 <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-start align-items-center">
