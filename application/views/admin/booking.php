@@ -26,23 +26,26 @@
             <?php
             $row = 1;
             foreach ($booking as $b) :
+                if ($b->ketersediaan == 0) :
             ?>
-                <tr>
-                    <th scope="row"><?= $row++; ?></th>
-                    <td><?= $b->id; ?></td>
-                    <td><?= $b->id_user; ?></td>
-                    <td><?= $b->peminjam; ?></td>
-                    <td><?= $b->alamat; ?></td>
-                    <td><?= $b->id_kendaraan; ?></td>
-                    <td><?= $b->kendaraan; ?></td>
-                    <td><?= $b->durasi; ?></td>
-                    <td><?= $b->harga; ?></td>
-                    <td class="align-middle">
-                        <a href="<?= base_url('kendaraan/terima/' . $b->id_user); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
-                        <a href="<?= base_url('kendaraan/tolak/' . $b->id); ?>" class="btn btn-danger"><i class="fa fa-remove"> Tolak</i></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+                    <tr>
+                        <th scope="row"><?= $row++; ?></th>
+                        <td><?= $b->id; ?></td>
+                        <td><?= $b->id_user; ?></td>
+                        <td><?= $b->peminjam; ?></td>
+                        <td><?= $b->alamat; ?></td>
+                        <td><?= $b->id_kendaraan; ?></td>
+                        <td><?= $b->kendaraan; ?></td>
+                        <td><?= $b->durasi; ?></td>
+                        <td><?= $b->harga; ?></td>
+                        <td class="align-middle">
+                            <a href="<?= base_url('kendaraan/terima/' . $b->id_user); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                            <a href="<?= base_url('kendaraan/tolak/' . $b->id); ?>" class="btn btn-danger"><i class="fa fa-remove"> Tolak</i></a>
+                        </td>
+                    </tr>
+            <?php
+                endif;
+            endforeach; ?>
         </tbody>
     </table>
 </div>
