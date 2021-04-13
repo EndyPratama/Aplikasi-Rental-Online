@@ -152,7 +152,7 @@ class Kendaraan extends CI_Controller
         $this->load->view('/admin/layout/footer');
     }
 
-    public function sukses($kendaraan_id)
+    public function selesai($kendaraan_id)
     {
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
 
@@ -180,6 +180,7 @@ class Kendaraan extends CI_Controller
         redirect('Kendaraan/transaksi');
     }
 
+
     public function booking2()
     {
         $book = $this->M_Kendaraan->getBooking();
@@ -193,7 +194,7 @@ class Kendaraan extends CI_Controller
         $this->load->view('/admin/layout/footer');
     }
 
-    public function terima($id_user)
+    public function terima($id)
     {
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
@@ -205,7 +206,7 @@ class Kendaraan extends CI_Controller
         $action = '1';
 
         $this->db->set('action', $action);
-        $this->db->where('id_user', $id_user);
+        $this->db->where('id', $id);
         $this->db->update('booking');
 
         // Update Ketersediaan
@@ -216,7 +217,7 @@ class Kendaraan extends CI_Controller
         // echo "</pre>";
 
         $ketersediaan = '0';
-        $id_kendaraan = $this->M_Kendaraan->getIdKendaraan($id_user);
+        $id_kendaraan = $this->M_Kendaraan->getIdKendaraan($id);
 
         $this->db->set('ketersediaan', $ketersediaan);
         $this->db->where('id_kendaraan', $id_kendaraan);
@@ -230,8 +231,8 @@ class Kendaraan extends CI_Controller
         // echo "</pre>";
 
         $status = 'Tersewakan';
-        $harga = $this->M_Kendaraan->getHarga($id_user);
-        $id = $this->M_Kendaraan->getIdUser($id_user);
+        $harga = $this->M_Kendaraan->getHarga($id);
+        $id = $this->M_Kendaraan->getIdUser($id);
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date("Y-m-d H:i:s");
 
@@ -257,10 +258,13 @@ class Kendaraan extends CI_Controller
 
     public function tolak($id)
     {
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Hapus data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button></div>');
-        $this->db->delete("booking", array("id" => $id));
+        $data['booking'] = $this->db->get('booking')->result_array();
+
+        $action = '2';
+
+        $this->db->set('action', $action);
+        $this->db->where('id', $id);
+        $this->db->update('booking');
         redirect('Kendaraan/booking2');
     }
 
