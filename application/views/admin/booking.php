@@ -23,7 +23,7 @@
             -->
             <?php
             $row = 1;
-            foreach ($transaksi as $t) :
+            foreach ($booking as $b) :
             ?>
                 <tr>
                 <th scope="row"><?= $row++; ?></th>
