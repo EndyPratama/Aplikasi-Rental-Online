@@ -2,7 +2,6 @@
     <div class="col-1"></div>
     <div class="container col-10">
         <div class="" id="content">
-            <h1>welcome <?= $this->session->userdata('id'); ?></h1>
             <h1 class="mt-5">Detail Kendaraan : </h1>
             <hr>
             <?php foreach ($detail as $d) : ?>
