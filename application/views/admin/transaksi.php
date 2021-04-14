@@ -32,9 +32,11 @@
                     <td><?= $t->status; ?></td>
                     <td><?= $t->harga; ?></td>
                     <td class="align-middle">
-                        <a href="<?= base_url('kendaraan/sukses/' . $t->kendaraan_id); ?>" class="btn btn-success"><i class="fa fa-check"> Sukses</i></a>
+                    <a href="<?= base_url('kendaraan/selesai/' . $t->kendaraan_id); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+                    
                     </td>
                 </tr>
+
             <?php endforeach; ?>
         </tbody>
     </table>
