@@ -1,5 +1,5 @@
 <!-- MAIN -->
-<div class="col-9">
+<div class="col">
     <h1>Data Transaksi : </h1>
     <hr>
     <table class="table">
@@ -32,8 +32,8 @@
                     <td><?= $t->status; ?></td>
                     <td><?= $t->harga; ?></td>
                     <td class="align-middle">
-                    <a href="<?= base_url('kendaraan/selesai/' . $t->kendaraan_id); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
-                    
+                        <a href="<?= base_url('kendaraan/selesai/' . $t->kendaraan_id); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+
                     </td>
                 </tr>
 
