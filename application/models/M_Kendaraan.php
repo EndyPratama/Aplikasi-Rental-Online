@@ -45,7 +45,7 @@ class M_Kendaraan extends CI_Model
     public function getTransaksi()
     {
         $this->db->select("*");
-        $this->db->from("transaksi");
+        $this->db->from("transaction");
 
         // $this->db->where('pesan.user_id=akun.id');
         $query = $this->db->get();
@@ -108,7 +108,7 @@ class M_Kendaraan extends CI_Model
     public function cekUser($id)
     {
         $this->db->select("id");
-        $this->db->from("akun");
+        $this->db->from("user");
         $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
