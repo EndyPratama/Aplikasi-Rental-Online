@@ -21,7 +21,7 @@ class Chart extends CI_Controller
 
         // $this->load->view('chart', $data);
 
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/chart', $data);
         $this->load->view('/admin/layout/footer');
     }

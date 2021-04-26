@@ -19,7 +19,7 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/kendaraan', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -72,7 +72,7 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/tambah', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -125,7 +125,7 @@ class Kendaraan extends CI_Controller
             'css' => 'kendaraan.css'
         );
 
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/ubah', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -147,7 +147,7 @@ class Kendaraan extends CI_Controller
             'title' => 'Histori Transaksi',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/transaksi', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -164,7 +164,7 @@ class Kendaraan extends CI_Controller
         $this->db->where('id_kendaraan', $kendaraan_id);
         $this->db->update('kendaraan');
 
-        $data['trans'] = $this->db->get('transaksi')->result_array();
+        $data['trans'] = $this->db->get('transaction')->result_array();
 
         // edit data kendaraan
 
@@ -172,7 +172,7 @@ class Kendaraan extends CI_Controller
 
         $this->db->set('status', $status);
         $this->db->where('kendaraan_id', $kendaraan_id);
-        $this->db->update('transaksi');
+        $this->db->update('transaction');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -189,7 +189,7 @@ class Kendaraan extends CI_Controller
             'title' => 'Daftar Booking',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/booking', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -246,7 +246,7 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($databaru);
         // echo "</pre>";
-        $this->db->insert('transaksi', $databaru);
+        $this->db->insert('transaction', $databaru);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -277,7 +277,7 @@ class Kendaraan extends CI_Controller
             $kendaraan = $this->M_Kendaraan;
         }
         // session
-        $this->session->set_userdata('id', '6');
+        $this->session->set_userdata('id', '2');
 
         $kendaraan = $kendaraan->search($keyword);
         $merk = $this->M_Kendaraan->getMerk();
@@ -317,7 +317,7 @@ class Kendaraan extends CI_Controller
         // print_r($data);
         // echo "</pre>";
 
-        $this->load->view('/admin/layout/header', $data);
+        $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/detail', $data);
         $this->load->view('/admin/layout/footer');
     }
@@ -352,7 +352,7 @@ class Kendaraan extends CI_Controller
             'iklan' => $iklan,
             'title' => 'List Kendaraan',
             'whislist' => $love,
-            'css' => 'kendaraan2.css'
+            'css' => 'kendaraan3.css'
         );
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/detail', $data);
@@ -363,6 +363,12 @@ class Kendaraan extends CI_Controller
         $id = $this->input->post('idUser');
         $cekUser = $this->M_Kendaraan->cekUser($id);
         $user = json_decode(json_encode($cekUser), true);
+        // echo $id;
+        // echo $cekUser;
+        // $test = array('user' => $user);
+        // echo "<pre>";
+        // print_r($test);
+        // echo "</pre>";
         if ($user == NULL) {
             $data = array(
                 'status' => 'Gagal',
@@ -375,7 +381,7 @@ class Kendaraan extends CI_Controller
         } else {
             $user = $user["0"];
             $user = $user['id'];
-
+            echo "Masuk kok";
             $peminjam = $this->input->post('peminjam');
             $alamat = $this->input->post('alamat');
             $kendaraan = $this->input->post('kendaraan');
@@ -391,16 +397,15 @@ class Kendaraan extends CI_Controller
                 'harga' => $total,
                 'action' => 0
             );
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
             $this->M_Kendaraan->bookingOrder($data);
             $data = array(
                 'status' => 'Berhasil',
                 'title' => 'Laporan Booking',
                 'css' => 'laporan.css'
             );
-            // echo "<pre>";
-            // print_r($user);
-            // print_r($data);
-            // echo "</pre>";
             $this->load->view('/user/layout/header', $data);
             $this->load->view('/user/laporan', $data);
             $this->load->view('/user/layout/footer');
