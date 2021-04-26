@@ -9,7 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
+    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="<?= base_url('vendor/public/js/order.js'); ?>"></script>
     <title><?= $title; ?></title>
@@ -44,9 +46,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('/contact'); ?>">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profil</a>
-                </li>
+                <?php
+                $user = $this->session->userdata('id');
+                if ($user != 0) {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('profile'); ?>">Profile</a>
+                    </li>
+                <?php
+                } else {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('auth'); ?>">Login</a>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
         <!-- </nav> -->
