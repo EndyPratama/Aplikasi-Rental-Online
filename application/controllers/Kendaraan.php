@@ -381,7 +381,6 @@ class Kendaraan extends CI_Controller
         } else {
             $user = $user["0"];
             $user = $user['id'];
-            echo "Masuk kok";
             $peminjam = $this->input->post('peminjam');
             $alamat = $this->input->post('alamat');
             $kendaraan = $this->input->post('kendaraan');
