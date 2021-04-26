@@ -1,5 +1,5 @@
 <!-- MAIN -->
-<div class="col-9">
+<div class="col">
     <h1>Data Booking : </h1>
     <hr>
     <table class="table">
@@ -26,7 +26,7 @@
             foreach ($booking as $b) :
             ?>
                 <tr>
-                <th scope="row"><?= $row++; ?></th>
+                    <th scope="row"><?= $row++; ?></th>
                     <td><?= $b->id; ?></td>
                     <td><?= $b->peminjam; ?></td>
                     <td><?= $b->alamat; ?></td>
@@ -36,12 +36,11 @@
                     <td class="align-middle">
                         <a href="<?= base_url('kendaraan/terima/' . $b->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
                         <a href="<?= base_url('kendaraan/tolak/' . $b->id); ?>" class="btn btn-danger"><i class="fa fa-remove"> Tolak</i></a>
-                    
+
                     </td>
                 </tr>
-                
+
             <?php endforeach; ?>
         </tbody>
     </table>
-</div>
 </div>
