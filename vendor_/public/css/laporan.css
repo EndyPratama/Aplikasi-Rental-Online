@@ -1,0 +1,10 @@
+.card{
+    width: 50%;
+    position: relative;
+    margin: 10% auto;
+    /* align-items: center; */
+}
+.card img{
+    width: 50%;
+    margin: auto;
+}

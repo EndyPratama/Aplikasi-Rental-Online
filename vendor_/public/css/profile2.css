@@ -1,0 +1,120 @@
+.container{
+    /* background-color: blanchedalmond; */
+    /* height: 200px; */
+    height: 100vh;
+    margin: 2% auto;
+}
+.container .menu_profile{
+    margin-bottom: 2%;
+}
+.container .profile{
+    width: 100%;
+    height: 200px;
+}
+.container .profile .profile_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: blue; */
+    width: 100%;
+    height: 100%;
+}
+.profile .profile_image img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-right: 50px;
+}
+.profile_image .user_role .role{
+    background-color: #000;
+    color: #fff;
+    border-radius: 50px;
+    width: 100px;
+    text-align: center;
+}
+hr.vertical{
+    box-sizing: content-box;
+    height: 150px;
+    overflow: visible;
+    border: 0;
+    width: 1px;
+    background-color: gray;
+}
+.menu{
+    /* position: relative; */
+    width: 100%;
+    height: 200px;
+    /* margin: 100% 0; */
+    /* background-color: rosybrown; */
+}
+.menu .submenu{
+    text-align: center;
+    margin: 15px 0;
+}
+.menu .submenu i{
+    color: #000;
+    font-size: 38px;
+}
+.logout_icon{
+    text-align: center;
+    width: 100%;
+    justify-items: center;
+    vertical-align: middle;
+    margin: 100% 0;
+}
+.logout_icon i{
+    color: #000;
+    font-size: 42px;
+    margin: auto 0;
+}
+.pesanan_user{
+    margin-bottom: 5%;
+}
+.pesanan_user .pesanan tbody img{
+    width: 100px;
+    height: 100px;
+}
+.table td{
+    vertical-align: middle;
+    text-align: center;
+}
+.favorite .favorite_user{
+    display: grid;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(1, auto);
+    margin-bottom: 5%;
+}
+.favorite .favorite_user img{
+    width: 150px;
+}
+footer .jaminan{
+    display: flex;
+    margin-bottom: 5%;
+}
+footer .jaminan .box{
+    width: 200px;
+    height: 200px;
+    background-color: gainsboro;
+    margin: auto;
+}
+footer .jaminan i{
+    display: block;
+    font-size: 42px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+footer .jaminan .deskripsi{
+    text-align: center;
+}
+.copyright{
+    /* position:absolute; */
+    text-align: center;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Contoh tinggi footer 60px */
+ }

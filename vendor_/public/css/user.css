@@ -1,0 +1,61 @@
+.detail_user{
+    /* position: relative; */
+    /* display: flex; */
+    float: left;
+    align-items: center;
+    height: 400px;
+    /* background-color: aqua; */
+}
+.content .detail_user .gambar{
+    position: relative;
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    /* background-color: bisque; */
+    margin-right: 15px;
+}
+.detail_user .gambar img{
+    position: relative;
+    display: block;
+    margin: auto;
+    height: inherit;
+    width: auto;
+    background-size: contain;
+    border-radius: 10px;
+}
+.keterangan{
+    height: 400px;
+    padding:25px;
+}
+.keterangan .card{
+    /* border: none; */
+    margin: 10px 15px;
+}
+.keterangan .card .card_head{
+    padding: 5px 10px;
+    color: #fff;
+}
+.keterangan .card .card_head i{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    margin: auto;
+}
+.keterangan .card .card_body{
+    display: flex;
+    align-items: center;
+    margin: auto 5px;
+}
+.keterangan .card .card_body p{
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    display: inline-block;
+    margin: auto auto auto 0;
+}
+.card .card_head .detail{
+    text-align: right;
+}
+.keterangan a:hover{
+    text-decoration: none;
+}
