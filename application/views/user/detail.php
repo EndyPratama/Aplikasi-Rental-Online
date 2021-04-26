@@ -4,6 +4,7 @@
         <div class="" id="content">
             <h1 class="mt-5">Detail Kendaraan : </h1>
             <hr>
+
             <?php foreach ($detail as $d) : ?>
                 <div class="card mb-3" id="gambarMobil">
                     <div class="row">
@@ -14,9 +15,15 @@
                             <div class="card-header rounded">
                                 <!-- <div class="row"> -->
                                 <!-- <div class="col"> -->
-                                <a href="<?= base_url('/kendaraan/whislist/' . $d->id_kendaraan); ?>">
-                                    <img src="<?php echo base_url('vendor/public/img/' . $whislist) ?>" style="width: 50px; height:50px; float:right">
-                                </a>
+                                <?php
+                                $user = $this->session->userdata('id');
+                                // echo $user;
+                                if ($user != 0) :
+                                ?>
+                                    <a href="<?= base_url('/kendaraan/whislist/' . $d->id_kendaraan); ?>">
+                                        <img src="<?php echo base_url('vendor/public/img/' . $whislist) ?>" style="width: 50px; height:50px; float:right">
+                                    </a>
+                                <?php endif ?>
                                 <h2>Rp <?= $d->harga; ?>/hr</h2>
                                 <h6><small><?= $d->tahun; ?></small></h6>
                                 <h6><?= $d->nama; ?></h6>
