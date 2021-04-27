@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <!-- link CSS Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- link JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- CDN boxicons.com -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- CDN Fontawasome -->
@@ -36,26 +38,27 @@
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="<?= base_url('/kendaraan'); ?>">
+                <a href="<?= base_url('/Dashboard'); ?>">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bxs-user-detail'></i>
+                <a href="<?= base_url('/Member'); ?>">
+                    <i class='bx bxs-user-detail '></i>
                     <span class="links_name">Member</span>
                 </a>
                 <span class="tooltip">Member</span>
             </li>
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
+            <li>
+                <a href="<?= base_url('/Kendaraan'); ?>">
+                    <!-- saat active tambah bx-flashing -->
+                    <i class='bx bx-car'></i>
+                    <span class="links_name">Kendaraan</span>
                 </a>
-                <span class="tooltip">Setting</span>
-            </li> -->
+                <span class="tooltip">Kendaraan</span>
+            </li>
             <li>
                 <a href="<?= base_url('pesan/'); ?>">
                     <i class='bx bx-message-dots'></i>
@@ -71,14 +74,14 @@
                 <span class="tooltip">Analytics</span>
             </li>
             <li>
-                <a href="<?= base_url('kendaraan/transaksi'); ?>">
+                <a href="<?= base_url('transaksi'); ?>">
                     <i class='bx bx-cart'></i>
                     <span class="links_name">Transaction</span>
                 </a>
                 <span class="tooltip">Transaction</span>
             </li>
             <li>
-                <a href="<?= base_url('kendaraan/booking2'); ?>">
+                <a href="<?= base_url('booking'); ?>">
                     <i class='bx bx-book-add'></i>
                     <span class="links_name">Booking</span>
                 </a>

@@ -13,7 +13,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nama">Nama : </label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nama" value="<?= $nama; ?>" name="nama" readonly>
                     </div>
                 </div>
                 <div class="form-row">
@@ -34,7 +34,7 @@
                     <tr>
                         <th scope="col">Role</th>
                         <th scope="col" colspan="2">Pesan</th>
-                        <th scope="col">Action</th>
+                        <!-- <th scope="col">Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                             <tr>
                                 <th scope="row">U</th>
                                 <td colspan="2"><?= $h->pesan; ?></td>
-                                <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
+                                <!-- <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td> -->
                             </tr>
                         <?php } else {
 
@@ -53,12 +53,12 @@
                             <tr>
                                 <th scope="row">U</th>
                                 <td colspan="2"><?= $h->pesan; ?></td>
-                                <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
+                                <!-- <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td> -->
                             </tr>
                             <tr>
                                 <th scope="row">A</th>
                                 <td colspan="2"><?= $h->jawaban; ?></td>
-                                <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td>
+                                <!-- <td><button class="btn btn-success"><i class="fa fa-eye"></i></button></td> -->
                             </tr>
                     <?php
                         }
