@@ -13,11 +13,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- 
-            SELECT akun.nama, pesan.pesan, pesan.tanggal
-            FROM pesan, akun
-            WHERE pesan.user_id=akun.id 
-            -->
             <?php
             $row = 1;
             $data = 0;
@@ -31,8 +26,8 @@
                             <th scope="row"><?= $row++; ?></th>
                             <input type="hidden" id="id<?= $data; ?>" value="<?= $p->id_pesan; ?>">
 
-                            <td><?= $p->nama; ?></td>
-                            <input type="hidden" id="nama<?= $data; ?>" value="<?= $p->nama; ?>">
+                            <td><?= $p->name; ?></td>
+                            <input type="hidden" id="nama<?= $data; ?>" value="<?= $p->name; ?>">
 
                             <td><?= $p->pesan; ?></td>
                             <input type="hidden" id="pesan<?= $data; ?>" value="<?= $p->pesan; ?>">
@@ -41,8 +36,8 @@
                             <input type="hidden" id="status<?= $data; ?>" value="<?= $p->status; ?>">
                             <td><?= date('D-m-y [H:m:s]', strtotime($p->tanggal)); ?></td>
                             <td>
-                                <a href="pesan/detail" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                <a href="pesan/delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <a href="" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
+                                <a href="<?= base_url('pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                 <?php
@@ -54,8 +49,8 @@
                         <th scope="row"><?= $row++; ?></th>
                         <input type="hidden" id="id<?= $data; ?>" value="<?= $p->id_pesan; ?>">
 
-                        <td><?= $p->nama; ?></td>
-                        <input type="hidden" id="nama<?= $data; ?>" value="<?= $p->nama; ?>">
+                        <td><?= $p->name; ?></td>
+                        <input type="hidden" id="nama<?= $data; ?>" value="<?= $p->name; ?>">
 
                         <td><?= $p->pesan; ?></td>
                         <input type="hidden" id="pesan<?= $data; ?>" value="<?= $p->pesan; ?>">
@@ -63,11 +58,10 @@
                         <input type="hidden" id="status<?= $data; ?>" value="<?= $p->status; ?>">
                         <td><?= date('D-m-y [H:m:s]', strtotime($p->tanggal)); ?></td>
                         <td>
-                            <a href="pesan/detail" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                            <a href="pesan/delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                            <a href="" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
+                            <a href="<?= base_url('pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                         </td>
-                    <?php endif;
-                    ?>
+                    <?php endif; ?>
 
                 </tr>
                 <?php $data++ ?>
@@ -79,8 +73,8 @@
                         var pesan = document.getElementById("pesan" + data).value;
                         if (document.getElementById("status" + data).value == 1) {
                             var jawaban = document.getElementById("jawaban" + data).value;
-                            console.log(jawaban);
                             $('#answer-text').prop('readonly', true);
+                            document.getElementById('sendBtn').style.display = 'none';
                         } else {
                             var jawaban = "";
                             document.getElementById("answer-text").removeAttribute("readonly", 0);
@@ -123,7 +117,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Send message</button>
+                            <button type="submit" class="btn btn-primary" id="sendBtn">Send message</button>
                         </div>
                     </form>
                 </div>
