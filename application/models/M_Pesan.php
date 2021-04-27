@@ -11,7 +11,7 @@ class M_Pesan extends CI_Model
         $this->db->select("*");
         $this->db->from("pesan");
         // $this->db->join('jawaban', 'pesan.id_pesan = jawaban.id_pesan', 'left');
-        $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
+        $this->db->join('user', 'pesan.user_id = user.id', 'left');
         $query = $this->db->get();
         return $query->result();
     }

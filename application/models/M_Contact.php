@@ -3,14 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_Contact extends CI_Model
 {
-    // protected $komik = 'komik';
-    // protected $member = 'member';
-
+    public function getNama($id)
+    {
+        $this->db->select("name");
+        $this->db->from("user");
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function cekData($nama)
     {
         $this->db->select("id");
-        $this->db->from("akun");
-        $this->db->where('nama', $nama);
+        $this->db->from("user");
+        $this->db->where('name', $nama);
         $query = $this->db->get();
         return $query->result();
     }

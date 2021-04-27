@@ -24,6 +24,7 @@ class M_Admin extends CI_Model
     {
         $this->db->select("SUM(harga)");
         $this->db->from("transaction");
+        $this->db->where('status', 'Selesai');
         $query = $this->db->get();
         return $query->result();
     }
