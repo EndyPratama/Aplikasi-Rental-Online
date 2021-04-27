@@ -1,4 +1,3 @@
-<!-- MAIN -->
 <div class="col">
     <h1>Data Transaksi : </h1>
     <hr>
@@ -6,7 +5,7 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col">ID Transaksi</th>
-                <th scope="col">ID User</th>
+                <th scope="col">User</th>
                 <th scope="col">kendaraan</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Status</th>
@@ -15,24 +14,20 @@
             </tr>
         </thead>
         <tbody>
-            <!-- 
-            SELECT akun.nama, pesan.pesan, pesan.tanggal
-            FROM pesan, akun
-            WHERE pesan.user_id=akun.id 
-            -->
             <?php
             $row = 1;
             foreach ($transaksi as $t) :
+                $harga = number_format($t->harga, 0, ',', '.');
             ?>
                 <tr>
                     <th scope="row"><?= $row++; ?></th>
-                    <td><?= $t->user_id; ?></td>
-                    <td><?= $t->kendaraan_id; ?></td>
+                    <td><?= $t->name; ?></td>
+                    <td><?= $t->nama; ?></td>
                     <td><?= date('D-m-y [H:m:s]', strtotime($t->tanggal)); ?></td>
+                    <td>Rp <?= $harga; ?></td>
                     <td><?= $t->status; ?></td>
-                    <td><?= $t->harga; ?></td>
                     <td class="align-middle">
-                        <a href="<?= base_url('kendaraan/selesai/' . $t->kendaraan_id); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+                        <a href="<?= base_url('transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
 
                     </td>
                 </tr>
