@@ -13,13 +13,15 @@ class Contact extends CI_Controller
         // $kendaraan = $this->M_Kendaraan->getKendaraan();
         $user = $this->session->userdata('id');
         $history = $this->M_Contact->getHistoryPesan($user);
-        // $history = json_decode(json_encode($history), true);
-        // $history = $history["0"];
-        // $history = $history['id'];
+        $nama = $this->M_Contact->getNama($user);
+        $nama = json_decode(json_encode($nama), true);
+        $nama = $nama["0"];
+        $nama = $nama['name'];
 
         $data = array(
             // 'kendaraan' => $kendaraan,
-            'title' => 'List Kendaraan',
+            'nama' => $nama,
+            'title' => 'Contact Us',
             'css' => 'contact.css',
             'history' => $history,
             'notif' => ''

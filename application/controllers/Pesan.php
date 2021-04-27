@@ -10,12 +10,11 @@ class Pesan extends CI_Controller
     }
     public function index()
     {
-        // $pesan = $this->M_Pesan->getPesan();
-        // $user = $this->session->userdata('id');
-        // $history = $this->M_Pesan->getHistoryPesan($user);
+        $user = $this->session->userdata('id');
         $pesan = $this->M_Pesan->getPesan();
         $jawaban = $this->M_Pesan->getJawaban();
         $data = array(
+            'nama' => $user,
             'pesan' => $pesan,
             'jawaban' => $jawaban,
             'title' => 'Pesan Masuk',
@@ -49,5 +48,12 @@ class Pesan extends CI_Controller
         $this->M_Pesan->updatePesan($id);
 
         redirect(base_url('/pesan'));
+    }
+    public function delete($id)
+    {
+        // echo $id;
+        $this->db->delete("jawaban", array("id_pesan" => $id));
+        $this->db->delete("pesan", array("id_pesan" => $id));
+        redirect('pesan');
     }
 }
