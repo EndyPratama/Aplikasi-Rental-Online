@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 01:42 PM
+-- Generation Time: May 02, 2021 at 07:43 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -73,7 +73,9 @@ INSERT INTO `booking` (`id`, `id_user`, `peminjam`, `alamat`, `kendaraan`, `dura
 (2, 2, 'Endy', 'pare', 'Suzuki Swift', '2', 300000, 1),
 (4, 2, 'Endy', 'Surabaya', 'TOYOTA YARIS S 2011 A/T CBU', '3', 450000, 1),
 (5, 2, 'Endy', 'Pare', 'Suzuki Ertiga GX AT 2013', '2', 200000, 2),
-(6, 2, 'Endy', 'Pare', 'Suzuki Ertiga GX AT 2013', '2', 200000, 1);
+(6, 2, 'Endy', 'Pare', 'Suzuki Ertiga GX AT 2013', '2', 200000, 1),
+(7, 2, 'Endy', 'pare', 'TOYOTA YARIS S 2011 A/T CBU', '2', 300000, 1),
+(8, 2, 'Tian', 'Jombang', 'Innova V Matic', '2', 600000, 0);
 
 -- --------------------------------------------------------
 
@@ -93,14 +95,8 @@ CREATE TABLE `jawaban` (
 --
 
 INSERT INTO `jawaban` (`id`, `id_pesan`, `jawaban`, `tanggal`) VALUES
-(1, 1, 'Untuk saat ini masih dipinjam orang lain pak, mungkin 2 hari lagi baru ready.', '2021-04-03 07:07:50'),
-(2, 27, 'Halo juga', '2021-04-03 21:17:17'),
-(3, 28, 'Masuk pak', '2021-04-03 21:24:26'),
-(4, 29, 'Hai erik', '2021-04-03 21:30:02'),
-(8, 26, 'Bisa bapak cek di website kami', '2021-04-05 21:21:13'),
-(10, 25, 'banyak pak', '2021-04-05 21:34:36'),
-(11, 30, 'Halo user', '2021-04-06 10:18:16'),
-(12, 31, 'oke masuk', '2021-04-06 14:58:39');
+(3, 3, 'ada', '2021-04-27 11:14:33'),
+(4, 4, 'Peminjaman sesuai dengan transaksi, jika lebih dari transaksi maka akan dikenakan biaya tambahan...', '2021-04-27 11:25:06');
 
 -- --------------------------------------------------------
 
@@ -120,6 +116,7 @@ CREATE TABLE `kendaraan` (
   `deskripsi` text NOT NULL,
   `harga` int(20) NOT NULL,
   `ketersediaan` int(11) NOT NULL,
+  `terpinjam` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -127,16 +124,16 @@ CREATE TABLE `kendaraan` (
 -- Dumping data for table `kendaraan`
 --
 
-INSERT INTO `kendaraan` (`id_kendaraan`, `nama`, `mesin`, `bahan_bakar`, `model`, `warna`, `merk`, `tahun`, `deskripsi`, `harga`, `ketersediaan`, `gambar`) VALUES
-(1, 'Innova V Matic', '1500 cc', 'Bensin', 'Inova', 'Silver', 'Toyota', '2015', 'Tipe V, Silver Metalik, NoPol: GANJIL, Dokumen lengkap BPKB, Stoplamp LED, Double Din, Sensor Parkir, Mesin dijamin sehat dan normal, Kaki2 suspensi senyap gak ada bunyi, Tool kit: Dongkrak, Kunci roda, Segitiga', 300000, 1, 'innova_v_matic.jpeg'),
-(2, 'Suzuki Baleno', '1000 cc', 'Bensin', 'Baleno', 'Merah', 'Suzuki', '2017', 'Mobil masih bagus dan mulus, Mobil masih baru, Jarak tempuh masih 50.000 - 55.000 km, Mesin oke, Pas banget untuk jalan2 sama keluarga atau teman', 250000, 1, 'suzuki_baleno.jpeg'),
-(3, 'Kijang Toyota', '1500 cc', 'Bensin', 'Kijang', 'Biru', 'Toyota', '1995', 'Double blower, Ac dingin, Power window, Kaki kaki senyap', 150000, 1, 'kijang_toyota.jpeg'),
-(4, 'Suzuki Ertiga', '1500 cc', 'Bensin', 'Ertiga', 'Putih', 'Suzuki', '2015', 'Servis record, Mesin terawat,halus dan kering, Kaki\" senyap, Understel Ok, Transmisi responsif, Kelistrikan normal, Ac dingin, Interior bersih dan rapi', 130000, 1, 'ertiga.jpeg'),
-(5, 'Suzuki Swift', '1000 cc', 'Bensin', 'Swift', 'Silver', 'Suzuki', '2012', 'Service record bengkel resmi, Transmisi manual, Kondisi sangat terawat', 150000, 1, 'swift-gl-mt-silver-2012.jpeg'),
-(6, 'Suzuki Ertiga 2014 manual', '1000 cc', 'Bensin', 'Ertiga', 'Abu-abu', 'Suzuki', '2014', 'kaca flm anti panas, tv layar, camera mundur, jok kulit, sensor mundur, oli baru, ban tebal, alas dasar', 130000, 1, 'Suzuki-Ertiga-2014-manual.jpeg'),
-(7, 'Suzuki Ertiga GX AT 2013', '1000 cc', 'Bensin', 'Ertiga', 'Merah', 'Suzuki', '2013', 'Servis Record Suzuki, Transmisi Automatic sangat responsif, bertenaga dan irit bahan bakar, kilometer 105 rb an, Audio Steering Switch, Dual Airbags, Rem ABS EBD, interior full orisinil rapih dan bersih, Head unit dengan Duble Din sudah Support USB, dll, Eksterior sangat mulus dan kinclong, Power steering EPS yang kinerjanya tidak membebani mesin sehingga kerja mesin lebih efisien., Side impact beam, electric mirror, Ban ke empat roda nya masih sangat tebal, AC dingin sudah Double Blower', 100000, 0, 'Suzuki-Ertiga-GX-AT-2013.jpeg'),
-(8, 'Avanza 2016 Manual', '1000 cc', 'Bensin', 'Avansa', 'Silver', 'Toyota', '2016', 'Orisinil Luar Dalam, Interior Bersih Dan Wangi, Mesin Halus Dan Terawat, nyaman dipakai berpergian.', 120000, 1, 'Avanza-2016-Manual.jpeg'),
-(9, 'TOYOTA YARIS S 2011 A/T CBU', '1000 cc', 'BEnsin', 'Yaris', 'Abu-abu', 'Toyota', '2011', 'Kondisi mobil terawat, mesin oke, interior ori, kamera parkir.', 150000, 0, 'TOYOTA-YARIS-S-2011.jpeg');
+INSERT INTO `kendaraan` (`id_kendaraan`, `nama`, `mesin`, `bahan_bakar`, `model`, `warna`, `merk`, `tahun`, `deskripsi`, `harga`, `ketersediaan`, `terpinjam`, `gambar`) VALUES
+(1, 'Innova V Matic', '1500 cc', 'Bensin', 'Inova', 'Silver', 'Toyota', '2015', 'Tipe V, Silver Metalik, NoPol: GANJIL, Dokumen lengkap BPKB, Stoplamp LED, Double Din, Sensor Parkir, Mesin dijamin sehat dan normal, Kaki2 suspensi senyap gak ada bunyi, Tool kit: Dongkrak, Kunci roda, Segitiga', 300000, 1, 0, 'innova_v_matic.jpeg'),
+(2, 'Suzuki Baleno', '1000 cc', 'Bensin', 'Baleno', 'Merah', 'Suzuki', '2017', 'Mobil masih bagus dan mulus, Mobil masih baru, Jarak tempuh masih 50.000 - 55.000 km, Mesin oke, Pas banget untuk jalan2 sama keluarga atau teman', 250000, 1, 0, 'suzuki_baleno.jpeg'),
+(3, 'Kijang Toyota', '1500 cc', 'Bensin', 'Kijang', 'Biru', 'Toyota', '1995', 'Double blower, Ac dingin, Power window, Kaki kaki senyap', 150000, 1, 0, 'kijang_toyota.jpeg'),
+(4, 'Suzuki Ertiga', '1500 cc', 'Bensin', 'Ertiga', 'Putih', 'Suzuki', '2015', 'Servis record, Mesin terawat,halus dan kering, Kaki\" senyap, Understel Ok, Transmisi responsif, Kelistrikan normal, Ac dingin, Interior bersih dan rapi', 130000, 1, 0, 'ertiga.jpeg'),
+(5, 'Suzuki Swift', '1000 cc', 'Bensin', 'Swift', 'Silver', 'Suzuki', '2012', 'Service record bengkel resmi, Transmisi manual, Kondisi sangat terawat', 150000, 1, 1, 'swift-gl-mt-silver-2012.jpeg'),
+(6, 'Suzuki Ertiga 2014 manual', '1000 cc', 'Bensin', 'Ertiga', 'Abu-abu', 'Suzuki', '2014', 'kaca flm anti panas, tv layar, camera mundur, jok kulit, sensor mundur, oli baru, ban tebal, alas dasar', 130000, 1, 0, 'Suzuki-Ertiga-2014-manual.jpeg'),
+(7, 'Suzuki Ertiga GX AT 2013', '1000 cc', 'Bensin', 'Ertiga', 'Merah', 'Suzuki', '2013', 'Servis Record Suzuki, Transmisi Automatic sangat responsif, bertenaga dan irit bahan bakar, kilometer 105 rb an, Audio Steering Switch, Dual Airbags, Rem ABS EBD, interior full orisinil rapih dan bersih, Head unit dengan Duble Din sudah Support USB, dll, Eksterior sangat mulus dan kinclong, Power steering EPS yang kinerjanya tidak membebani mesin sehingga kerja mesin lebih efisien., Side impact beam, electric mirror, Ban ke empat roda nya masih sangat tebal, AC dingin sudah Double Blower', 100000, 1, 1, 'Suzuki-Ertiga-GX-AT-2013.jpeg'),
+(8, 'Avanza 2016 Manual', '1000 cc', 'Bensin', 'Avansa', 'Silver', 'Toyota', '2016', 'Orisinil Luar Dalam, Interior Bersih Dan Wangi, Mesin Halus Dan Terawat, nyaman dipakai berpergian.', 120000, 1, 0, 'Avanza-2016-Manual.jpeg'),
+(9, 'TOYOTA YARIS S 2011 A/T CBU', '1000 cc', 'BEnsin', 'Yaris', 'Abu-abu', 'Toyota', '2011', 'Kondisi mobil terawat, mesin oke, interior ori, kamera parkir.', 150000, 1, 2, 'TOYOTA-YARIS-S-2011.jpeg');
 
 -- --------------------------------------------------------
 
@@ -179,14 +176,8 @@ CREATE TABLE `pesan` (
 --
 
 INSERT INTO `pesan` (`id_pesan`, `user_id`, `pesan`, `tanggal`, `status`, `jawaban_id`) VALUES
-(1, 6, 'Apakah mobil Suzuki Baleno dengan nopol D xxxx Afx tersedia??', '2021-03-21 09:59:21', 1, 1),
-(25, 6, 'untuk sekarang yang ready apa saja ya??', '2021-04-03 07:43:33', 1, 25),
-(26, 6, 'adakah yang bisa dipinjam 3hari??', '2021-04-03 07:44:27', 1, 26),
-(27, 6, 'hallo', '2021-04-03 17:33:31', 1, 27),
-(28, 6, 'test', '2021-04-03 17:34:04', 1, 28),
-(29, 7, 'Hai saya erik', '2021-04-03 21:29:43', 1, 29),
-(30, 7, 'Halo admin', '2021-04-06 10:17:10', 1, 30),
-(31, 6, 'Test pesan masuk', '2021-04-06 14:58:01', 1, 31);
+(3, 2, 'apakah ada mobil honda brio??', '2021-04-27 10:56:02', 1, 3),
+(4, 2, 'Adakah batas waktu peminjaman??', '2021-04-27 11:24:23', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -200,17 +191,20 @@ CREATE TABLE `transaction` (
   `kendaraan_id` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `harga` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL
+  `tanggal` datetime NOT NULL,
+  `invoice` varchar(255) NOT NULL,
+  `metode_pembayaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaksi`, `user_id`, `kendaraan_id`, `status`, `harga`, `tanggal`) VALUES
-(1, 2, 5, 'Selesai', 300000, '2021-04-21 11:28:43'),
-(2, 2, 9, 'Tersewakan', 450000, '2021-04-21 12:24:51'),
-(3, 2, 7, 'Tersewakan', 200000, '2021-04-26 18:37:37');
+INSERT INTO `transaction` (`id_transaksi`, `user_id`, `kendaraan_id`, `status`, `harga`, `tanggal`, `invoice`, `metode_pembayaran`) VALUES
+(1, 2, 5, 'Selesai', 300000, '2021-04-21 11:28:43', 'INV/20210421/MBL/1193982278', 'BNI'),
+(2, 2, 9, 'Selesai', 450000, '2021-04-21 12:24:51', 'INV/20210421/MBL/1193982865', 'MANDIRI'),
+(3, 2, 7, 'Selesai', 200000, '2021-04-26 18:37:37', 'INV/20210421/MBL/1193467278', 'BCA'),
+(8, 2, 9, 'Berlangsung', 300000, '2021-04-27 13:14:26', 'INV/20210421/MBL/1119572278', 'BRI');
 
 -- --------------------------------------------------------
 
@@ -226,6 +220,10 @@ CREATE TABLE `user` (
   `password` varchar(256) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
+  `ttl` datetime NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `jk` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
   `is_active` int(1) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -234,10 +232,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `gambar`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$JbJmppTayKxmMyzDxvRNheBK7cEZO9DkQ/k0L9pNeNglikFUVi4AW', 'logo.png', 1, 1, 1617171614),
-(2, 'Endy Gigih Pratama', 'Endy', 'egp12345678@gmail.com', '$2y$10$ALM6vY/fC215Gi9h4UqiJeOkiqHY6iWsrHJ5iAx./q8pikBn5frW2', 'Endy.jpeg', 1, 1, 1617694620),
-(3, 'Eka Restu Justitian', 'Titan', 'tian@gmail.com', '$2y$10$5LWUmr46f0rzZeTCt0/GwegIx16kNiqUAnMbTiRvsJhTrtYaJKSyK', '', 2, 1, 1618373350);
+INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `gambar`, `role_id`, `ttl`, `alamat`, `jk`, `phone`, `is_active`, `date_created`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$JbJmppTayKxmMyzDxvRNheBK7cEZO9DkQ/k0L9pNeNglikFUVi4AW', 'logo.png', 1, '0000-00-00 00:00:00', '', '', '', 1, 1617171614),
+(2, 'Endy Gigih Pratama', 'Endy', 'egp12345678@gmail.com', '$2y$10$ALM6vY/fC215Gi9h4UqiJeOkiqHY6iWsrHJ5iAx./q8pikBn5frW2', 'Endy.jpeg', 1, '0000-00-00 00:00:00', 'Pare', 'pria', '085749754070', 1, 1617694620),
+(3, 'Eka Restu Justitian', 'Titan', 'tian@gmail.com', '$2y$10$5LWUmr46f0rzZeTCt0/GwegIx16kNiqUAnMbTiRvsJhTrtYaJKSyK', 'default.jpg', 2, '0000-00-00 00:00:00', 'Jombang', 'pria', '081542348894', 1, 1618373350);
 
 -- --------------------------------------------------------
 
@@ -279,8 +277,8 @@ INSERT INTO `whislist` (`id`, `id_user`, `id_kendaraan`) VALUES
 (15, 2, 8),
 (16, 2, 4),
 (18, 2, 2),
-(19, 2, 1),
-(20, 2, 6);
+(20, 2, 6),
+(21, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -362,13 +360,13 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kendaraan`
@@ -386,19 +384,19 @@ ALTER TABLE `pendapatan`
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `whislist`
 --
 ALTER TABLE `whislist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
@@ -427,7 +425,7 @@ ALTER TABLE `pendapatan`
 -- Constraints for table `pesan`
 --
 ALTER TABLE `pesan`
-  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `akun` (`id`);
+  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `transaction`
