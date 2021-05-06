@@ -50,4 +50,31 @@ class Transaksi extends CI_Controller
         </button></div>');
         redirect(base_url('transaksi'));
     }
+    public function tolak($kendaraan_id)
+    {
+        $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
+
+        // edit data kendaraan
+
+        $ketersediaan = '1';
+
+        $this->db->set('ketersediaan', $ketersediaan);
+        $this->db->where('id_kendaraan', $kendaraan_id);
+        $this->db->update('kendaraan');
+
+        $data['trans'] = $this->db->get('transaction')->result_array();
+
+
+        $data['booking'] = $this->db->get('kendaraan')->result_array();
+
+        $status = 'Dibatalakan';
+
+        $this->db->set('status', $status);
+        $this->db->where('kendaraan_id', $kendaraan_id);
+        $this->db->update('transaction');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect(base_url('transaksi'));
+    }
 }
