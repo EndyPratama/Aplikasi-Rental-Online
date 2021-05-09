@@ -3,9 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_Booking extends CI_Model
 {
-    // protected $komik = 'komik';
-    // protected $member = 'member';
-
     public function getBooking()
     {
         $this->db->select("*");
@@ -13,9 +10,22 @@ class M_Booking extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    // SELECT akun.nama, pesan.pesan, pesan.tanggal
-    //         FROM pesan, akun
-    //         WHERE pesan.user_id=akun.id 
+    public function getBookingTerima()
+    {
+        $this->db->select("COUNT(id)");
+        $this->db->from("booking");
+        $this->db->where("action", 1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getBookingTolak()
+    {
+        $this->db->select("COUNT(id)");
+        $this->db->from("booking");
+        $this->db->where("action", 2);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getHistoryBooking($id)
     {
         $this->db->select("*");
