@@ -27,7 +27,7 @@
                     <td>Rp <?= $harga; ?></td>
                     <td><?= $t->status; ?></td>
                     <td class="align-middle">
-                        <a href="<?= base_url('transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+                        <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
 
                     </td>
                 </tr>
