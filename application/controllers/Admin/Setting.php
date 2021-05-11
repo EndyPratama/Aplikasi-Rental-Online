@@ -1,18 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-<<<<<<< HEAD
-class Admin extends CI_Controller
-=======
 class Setting extends CI_Controller
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('M_Admin');
         $this->load->model('M_Profile');
-<<<<<<< HEAD
     }
     public function index()
     {
@@ -76,7 +71,6 @@ class Setting extends CI_Controller
         $user = $this->session->userdata('id');
         $profile = $this->M_Profile->getProfileUser($user);
         $data = array(
-=======
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
     }
@@ -92,7 +86,6 @@ class Setting extends CI_Controller
         $gambar = $gambar['gambar'];
         $data = array(
             'foto_profile' => $gambar,
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
             'profile' => $profile,
             'title' => 'Setting',
             'css' => 'setting.css'

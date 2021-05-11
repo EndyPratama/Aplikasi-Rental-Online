@@ -30,11 +30,10 @@ class Contact extends CI_Controller
             'title' => 'Contact Us',
             'css' => 'contact.css',
             'history' => $history,
-<<<<<<< HEAD
             'profile' => $profile,
-=======
             'foto_profile' => $profile,
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
+            'foto_profile' => $profile,
+            'profile' => $profile,
             'notif' => ''
         );
         // echo "<pre>";

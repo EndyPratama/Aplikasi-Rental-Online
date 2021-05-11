@@ -9,19 +9,16 @@ class Profile extends CI_Controller
         $this->load->model('M_Profile');
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
-<<<<<<< HEAD
         $this->load->model('M_Profile');
     }
     public function index()
     {
         $this->session->set_userdata('id', '2');
-=======
         // $this->load->model('M_Profile');
     }
     public function index()
     {
         // $this->session->set_userdata('id', '2');
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
         $user = $this->session->userdata('id');
 
         $profile = $this->M_Profile->getGambar($user);
@@ -54,11 +51,8 @@ class Profile extends CI_Controller
             'user' => $nama,
             'role' => $role,
             'pesanan' => $pesanan,
-<<<<<<< HEAD
             'profile' => $profile,
-=======
             'foto_profile' => $profile,
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
             'whislist' => $favorite,
             'css' => 'profile3.css'
         );
@@ -71,11 +65,7 @@ class Profile extends CI_Controller
     }
     public function history($data = NULL)
     {
-<<<<<<< HEAD
         $this->session->set_userdata('id', '2');
-=======
-        // $this->session->set_userdata('id', '2');
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
         $user = $this->session->userdata('id');
         // echo $user;
         $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
@@ -87,11 +77,7 @@ class Profile extends CI_Controller
         $data = array(
             'kendaraan' => $kendaraan,
             'merk' => $merk,
-<<<<<<< HEAD
-            'profile' => $profile,
-=======
             'foto_profile' => $profile,
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
             'title' => 'Daftar Transaksi',
             'css' => 'transaksi_user.css'
         );
@@ -102,28 +88,23 @@ class Profile extends CI_Controller
         $this->load->view('/user/history', $data);
         $this->load->view('/user/layout/footer');
     }
-<<<<<<< HEAD
     public function ulasan_user()
     {
         $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
-=======
     public function menunggu_ulasan()
     {
         // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
         $menunggu_ulasan = $this->M_Kendaraan->menungguUlasan($user);
 
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
         $profile = $this->M_Profile->getGambar($user);
         $profile = json_decode(json_encode($profile), true);
         $profile = $profile["0"];
         $profile = $profile['gambar'];
         $data = array(
-<<<<<<< HEAD
             'title' => 'Ulasan Anda',
             'profile' => $profile,
-=======
             'ulasan' => $menunggu_ulasan,
             // 'ulasan' => "menunggu_ulasan",
             'title' => 'Menunggu Ulasan',
@@ -151,18 +132,16 @@ class Profile extends CI_Controller
             // 'ulasan' => "ulasan_saya",
             'title' => 'Ulasan Anda',
             'foto_profile' => $profile,
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
             'css' => 'ulasan.css'
         );
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
         $this->load->view('/user/layout/header', $data);
-<<<<<<< HEAD
         $this->load->view('/user/ulasan', $data);
         $this->load->view('/user/layout/footer');
     }
-=======
+
         $this->load->view('/user/ulasan_saya', $data);
         $this->load->view('/user/layout/footer');
     }
@@ -187,7 +166,6 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/ulasan', $data);
         $this->load->view('/user/layout/footer');
@@ -292,5 +270,4 @@ class Profile extends CI_Controller
 
         redirect(base_url('/user/profile/setting'));
     }
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
 }

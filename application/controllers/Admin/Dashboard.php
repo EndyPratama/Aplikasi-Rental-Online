@@ -15,11 +15,9 @@ class Dashboard extends CI_Controller
     }
     public function index()
     {
-<<<<<<< HEAD
         $this->session->set_userdata('id', '1');
-=======
         // $this->session->set_userdata('id', '1');
->>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
+        // $this->session->set_userdata('id', '1');
         $user = $this->session->userdata('id');
         $nama = $this->M_Profile->cekNama($user);
         $nama = json_decode(json_encode($nama), true);
