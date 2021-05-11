@@ -28,6 +28,14 @@ class M_Profile extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function cekIdByEmail($email)
+    {
+        $this->db->select("id");
+        $this->db->from("user");
+        $this->db->where('email', $email);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function cekNama($user)
     {
         $this->db->select("name");

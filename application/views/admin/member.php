@@ -9,6 +9,7 @@
                 <th scope="col">Nama</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
+                <th scope="col">Status</th>
                 <th scope="col">Active</th>
                 <th scope="col">Aksi</th>
             </tr>
@@ -31,6 +32,24 @@
                     <td><?= $m->email; ?></td>
                     <input type="hidden" id="email<?= $row; ?>" value="<?= $m->email; ?>">
 
+                    <?php
+                    if ($m->role_id == 1) {
+                    ?>
+                        <td>Admin</td>
+                        <input type="hidden" id="role_id<?= $row; ?>" value="Admin">
+                    <?php
+                    } elseif ($m->role_id == 2) {
+                    ?>
+                        <td>Member</td>
+                        <input type="hidden" id="role_id<?= $row; ?>" value="Member">
+                    <?php
+                    } else {
+                    ?>
+                        <td>Unknown</td>
+                    <?php
+                    }
+                    ?>
+
                     <td>
                         <?php if ($m->is_active == 0) { ?>
                             <p>Not Active</p>
@@ -41,18 +60,8 @@
                         <?php
                         } ?>
                     </td>
-                    <?php if ($m->role_id == 1) { ?>
-                        <input type="hidden" id="role_id<?= $row; ?>" value="Admin">
-
-                    <?php
-                    } else if ($m->role_id == 2) {
-                    ?>
-                        <input type="hidden" id="role_id<?= $row; ?>" value="Member">
-                    <?php
-                    }
-                    ?>
                     <input type="hidden" id="ttl<?= $row; ?>" value="<?= $m->ttl; ?>">
-                    <input type="hidden" id="jk<?= $row; ?>" value="<?= $m->jk; ?>">
+                    <input type="hidden" id="jk<?= $row; ?>" value="<?= $m->jenis_kelamin; ?>">
                     <input type="hidden" id="phone<?= $row; ?>" value="<?= $m->phone; ?>">
 
                     <td class="align-middle">

@@ -2,14 +2,9 @@
     <div class="row">
         <!-- <div class="col-1"></div> -->
         <div class="col-6">
-            <?php if ($notif != null) : ?>
-                <div class="alert alert-success" role="alert">
-                    <?= $notif; ?>
-                </div>
-            <?php endif; ?>
             <h1>Contact Us : </h1>
             <hr>
-            <form action="<?= base_url('contact/save'); ?>" method="POST">
+            <form action="<?= base_url('user/contact/save'); ?>" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nama">Nama : </label>
