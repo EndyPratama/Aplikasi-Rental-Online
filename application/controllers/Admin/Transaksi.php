@@ -23,11 +23,16 @@ class Transaksi extends CI_Controller
         $this->load->view('/admin/transaksi', $data);
         $this->load->view('/admin/layout/footer');
     }
+<<<<<<< HEAD
     public function selesai($kendaraan_id, $user_id, $transaksi_id)
     {
         echo $kendaraan_id;
         echo $user_id;
         echo $transaksi_id;
+=======
+    public function selesai($kendaraan_id)
+    {
+>>>>>>> 181a83630296c21c7f2f4e62a7c8f079652d106d
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
 
         // edit data kendaraan
@@ -40,6 +45,7 @@ class Transaksi extends CI_Controller
 
         $data['trans'] = $this->db->get('transaction')->result_array();
 
+<<<<<<< HEAD
         // Masukkan data ke review
         // id user, id kendaraan, transaksi, ulasan = null, rating = null, tanggal = null
         // date_default_timezone_set('Asia/Jakarta');
@@ -58,6 +64,8 @@ class Transaksi extends CI_Controller
         // echo "</pre>";
         $this->db->insert('review', $data);
 
+=======
+>>>>>>> 181a83630296c21c7f2f4e62a7c8f079652d106d
         // edit data kendaraan
 
         $status = 'Selesai';

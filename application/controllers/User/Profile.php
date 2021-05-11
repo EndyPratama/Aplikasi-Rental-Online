@@ -150,7 +150,6 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/ulasan', $data);
         $this->load->view('/user/layout/footer');

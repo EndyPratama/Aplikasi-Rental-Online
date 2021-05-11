@@ -28,7 +28,11 @@ class Member extends CI_Controller
         $profile = $this->M_Member->getMember($id);
         $data = array(
             'title' => 'Profile member',
+<<<<<<< HEAD
             'foto_profile' => $profile,
+=======
+            'profile' => $profile,
+>>>>>>> 181a83630296c21c7f2f4e62a7c8f079652d106d
             'css' => 'user.css'
         );
         $this->load->view('/admin/layout/sidebar', $data);

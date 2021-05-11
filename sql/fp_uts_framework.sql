@@ -1,14 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
+-- Generation Time: May 05, 2021 at 09:12 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
+=======
 -- Generation Time: May 02, 2021 at 07:43 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
+>>>>>>> 16cc5794bbd736833d00b21a047207a0238533ee
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -232,10 +237,18 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
+<<<<<<< HEAD
+INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `gambar`, `role_id`, `is_active`, `date_created`) VALUES
+(0, 'Aghil Sahputro', '', 'aghilsyahputro@gmail.com', '$2y$10$CMdjQ6261QjXIgDAzT8xi.GOcZ/EO8BGNreyQFMlg4EE/1aERnqsm', '', 2, 1, 1620240474),
+(1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$JbJmppTayKxmMyzDxvRNheBK7cEZO9DkQ/k0L9pNeNglikFUVi4AW', 'logo.png', 1, 1, 1617171614),
+(2, 'Endy Gigih Pratama', 'Endy', 'egp12345678@gmail.com', '$2y$10$ALM6vY/fC215Gi9h4UqiJeOkiqHY6iWsrHJ5iAx./q8pikBn5frW2', 'Endy.jpeg', 1, 1, 1617694620),
+(3, 'Eka Restu Justitian', 'Titan', 'tian@gmail.com', '$2y$10$5LWUmr46f0rzZeTCt0/GwegIx16kNiqUAnMbTiRvsJhTrtYaJKSyK', '', 2, 1, 1618373350);
+=======
 INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `gambar`, `role_id`, `ttl`, `alamat`, `jk`, `phone`, `is_active`, `date_created`) VALUES
 (1, 'admin', 'admin', 'admin@gmail.com', '$2y$10$JbJmppTayKxmMyzDxvRNheBK7cEZO9DkQ/k0L9pNeNglikFUVi4AW', 'logo.png', 1, '0000-00-00 00:00:00', '', '', '', 1, 1617171614),
 (2, 'Endy Gigih Pratama', 'Endy', 'egp12345678@gmail.com', '$2y$10$ALM6vY/fC215Gi9h4UqiJeOkiqHY6iWsrHJ5iAx./q8pikBn5frW2', 'Endy.jpeg', 1, '0000-00-00 00:00:00', 'Pare', 'pria', '085749754070', 1, 1617694620),
 (3, 'Eka Restu Justitian', 'Titan', 'tian@gmail.com', '$2y$10$5LWUmr46f0rzZeTCt0/GwegIx16kNiqUAnMbTiRvsJhTrtYaJKSyK', 'default.jpg', 2, '0000-00-00 00:00:00', 'Jombang', 'pria', '081542348894', 1, 1618373350);
+>>>>>>> 16cc5794bbd736833d00b21a047207a0238533ee
 
 -- --------------------------------------------------------
 
@@ -255,6 +268,19 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Admin'),
 (2, 'Member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `token` varchar(128) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -341,6 +367,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `whislist`
 --
 ALTER TABLE `whislist`
@@ -393,6 +425,12 @@ ALTER TABLE `transaction`
   MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `whislist`
 --
 ALTER TABLE `whislist`
@@ -413,13 +451,6 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `jawaban`
   ADD CONSTRAINT `pesan_id` FOREIGN KEY (`id_pesan`) REFERENCES `pesan` (`id_pesan`);
-
---
--- Constraints for table `pendapatan`
---
-ALTER TABLE `pendapatan`
-  ADD CONSTRAINT `admin` FOREIGN KEY (`admin_id`) REFERENCES `akun` (`id`),
-  ADD CONSTRAINT `harga` FOREIGN KEY (`harga`) REFERENCES `transaksi` (`harga`);
 
 --
 -- Constraints for table `pesan`

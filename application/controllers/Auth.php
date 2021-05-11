@@ -81,12 +81,21 @@ class Auth extends CI_Controller
 			$this->load->view('auth/registration');
 			$this->load->view('templates/auth_footer');
 		} else {
+			$email = $this->input->post('email', true);
 			$data = [
 				'name' => htmlspecialchars($this->input->post('name', true)),
-				'email' => htmlspecialchars($this->input->post('email', true)),
+				'email' => htmlspecialchars($email),
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'role_id' => 2,
-				'is_active' => 1,
+				'is_active' => 0,
+				'date_created' => time()
+			];
+
+			// Menyiapkan Token
+			$token = base64_encode(random_bytes(32));
+			$user_token = [
+				'email' => $email,
+				'token' => $token,
 				'date_created' => time()
 			];
 
