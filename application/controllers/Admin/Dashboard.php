@@ -15,7 +15,7 @@ class Dashboard extends CI_Controller
     }
     public function index()
     {
-        $this->session->set_userdata('id', '1');
+        // $this->session->set_userdata('id', '1');
         // $this->session->set_userdata('id', '1');
         // $this->session->set_userdata('id', '1');
         $user = $this->session->userdata('id');

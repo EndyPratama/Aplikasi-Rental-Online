@@ -11,7 +11,7 @@ class Setting extends CI_Controller
     }
     public function index()
     {
-        $this->session->set_userdata('id', '1');
+        // $this->session->set_userdata('id', '1');
         $user = $this->session->userdata('id');
         $nama = $this->M_Profile->cekNama($user);
         $nama = json_decode(json_encode($nama), true);
@@ -58,12 +58,12 @@ class Setting extends CI_Controller
             'ditolak' => $ditolak,
             'css' => 'user.css'
         );
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        // $this->load->view('/admin/layout/sidebar', $data);
-        // $this->load->view('/admin/admin', $data);
-        // $this->load->view('/admin/layout/footer');
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        $this->load->view('/admin/layout/sidebar', $data);
+        $this->load->view('/admin/admin', $data);
+        $this->load->view('/admin/layout/footer');
     }
     public function setting()
     {
