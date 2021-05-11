@@ -13,10 +13,23 @@
 <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
+    let badgeNotif = document.querySelector("#notification_message");
+    let badgeNotif2 = document.querySelector("#notification_message2");
     let searchBTN = document.querySelector(".bx-search");
-
+    let x = 0;
     btn.onclick = function() {
         sidebar.classList.toggle("active");
+        badgeNotif.classList.toggle("hide");
+        badgeNotif2.classList.toggle("active");
+        // if (x = 0) {
+        //     document.getElementById("#notification_message2").style.display = "none";
+        //     x = 1;
+        // } else {
+        //     document.getElementById("#notification_message").style.display = "none";
+        //     x = 0;
+        // }
+        console.log("Hai");
+
     }
     searchBTN.onclick = function() {
         sidebar.classList.toggle("active");

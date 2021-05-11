@@ -25,9 +25,15 @@ class Booking extends CI_Controller
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
 
+<<<<<<< HEAD
         echo "<pre>";
         print_r($data);
         echo "</pre>";
+=======
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+>>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
 
         $action = '1';
 
@@ -68,6 +74,10 @@ class Booking extends CI_Controller
             'tanggal' => $tanggal,
             'status' => $status,
             'harga' => $harga,
+<<<<<<< HEAD
+=======
+            'ulasan' => 0,
+>>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
         ];
         // echo "<pre>";
         // print_r($databaru);

@@ -4,6 +4,7 @@
         <hr>
         <?php
         foreach ($detail as $d) :
+            $harga = number_format($d->harga, 0, ',', '.');
         ?>
             <div class="card mb-3">
                 <div class="row">
@@ -12,9 +13,9 @@
                     </div>
                     <div class="col">
                         <div class="card-header rounded">
-                            <h2>Rp <?= $d->harga; ?>/hr</h2>
-                            <h6><small><?= $d->tahun; ?></small></h6>
+                            <h2>Rp <?= $harga; ?>/hari</h2>
                             <h6><?= $d->nama; ?></h6>
+                            <h6><small><?= $d->tahun; ?></small> <small><em>[<?= $d->name; ?>]</em></small></h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -80,12 +81,12 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="list-group">
-                                        <a href="<?= base_url('kendaraan/ubah/' . $d->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-clipboard"> Edit</i></a>
+                                        <a href="<?= base_url('admin/kendaraan/ubah/' . $d->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-clipboard"> Edit</i></a>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="list-group">
-                                        <a href="<?= base_url('kendaraan/hapus/' . $d->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-trash"> Delete</i></a>
+                                        <a href="<?= base_url('admin/kendaraan/hapus/' . $d->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-trash"> Delete</i></a>
                                     </div>
                                 </div>
                             </div>

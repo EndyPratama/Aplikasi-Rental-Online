@@ -6,6 +6,7 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('M_Profile');
 		$this->load->library('form_validation');
 	}
 
@@ -41,10 +42,15 @@ class Auth extends CI_Controller
 						'role_id' => $user['role_id']
 					];
 					$this->session->set_userdata($data);
+					$id = $this->M_Profile->cekIdByEmail($email);
+					$id = json_decode(json_encode($id), true);
+					$id = $id["0"];
+					$id = $id['id'];
+					$this->session->set_userdata('id', $id);
 					if ($user['role_id'] == 1) {
 						redirect('kendaraan');
 					} else {
-						redirect('kendaraan/list');
+						redirect(base_url('/user/kendaraan/'));
 					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');

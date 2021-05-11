@@ -8,7 +8,7 @@ class M_Transaksi extends CI_Model
 
     public function getTransaksi()
     {
-        $this->db->select("user.name, kendaraan.id_kendaraan, kendaraan.nama, transaction.tanggal, transaction.harga, transaction.status");
+        $this->db->select("user.id, user.name, kendaraan.id_kendaraan, kendaraan.nama,transaction.id_transaksi, transaction.tanggal, transaction.harga, transaction.status");
         $this->db->from("transaction,user,kendaraan");
         $where = ("transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan");
         $this->db->where($where);
@@ -34,10 +34,11 @@ class M_Transaksi extends CI_Model
     {
         $this->db->distinct();
         // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
-        $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
+        $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.id_kendaraan, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi, transaction.ulasan");
         $this->db->from("transaction");
         $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
         $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
+        // $this->db->join('review', 'transaction.id_transaksi = review.transaksi', 'left');
         if ($filter != NULL) {
             $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi) AND transaction.status='$filter'");
         } else {

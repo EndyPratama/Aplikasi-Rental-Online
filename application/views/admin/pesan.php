@@ -12,7 +12,7 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="target_ajax">
             <?php
             $row = 1;
             $data = 0;
@@ -37,7 +37,7 @@
                             <td><?= date('D-m-y [H:m:s]', strtotime($p->tanggal)); ?></td>
                             <td>
                                 <a href="" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                <a href="<?= base_url('pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                <a href="<?= base_url('admin/pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                 <?php
@@ -59,7 +59,7 @@
                         <td><?= date('D-m-y [H:m:s]', strtotime($p->tanggal)); ?></td>
                         <td>
                             <a href="" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                            <a href="<?= base_url('pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                            <a href="<?= base_url('admin/pesan/delete/' . $p->id_pesan); ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                         </td>
                     <?php endif; ?>
 
@@ -101,7 +101,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('pesan/tanggapan'); ?>" method="post">
+                    <form action="<?= base_url('admin/pesan/tanggapan'); ?>" method="post">
                         <input type="hidden" name="id_pesan" id="id-pesan">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pengirim:</label>

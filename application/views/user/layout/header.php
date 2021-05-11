@@ -35,6 +35,7 @@
     </script>
     <!-- <div class="fixed-top"> -->
     <header>
+<<<<<<< HEAD
         <nav>
             <div class="row">
                 <a class="logo" href="/">
@@ -71,6 +72,82 @@
                 <a class="dropdown-item" href="<?= base_url('user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
                 <a class="dropdown-item" href="#"><i class='bx bx-wrench'>Setting</i></a>
                 <a class="dropdown-item" href="#"><i class='bx bx-log-out'>Logout</i></a>
+=======
+        <div class="col">
+            <nav>
+                <div class="row">
+                    <a class="logo" href="/">
+                        <div class="logo_name mr-3" style=" color:#fff;font-size:32px;"><i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i></div>
+                    </a>
+                    <ul class="nav__links">
+                        <li><a href="<?= base_url('/home'); ?>">Home</a></li>
+                        <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
+                        <?php
+                        $user = $this->session->userdata('id');
+                        if ($user != 0) {
+                        ?>
+                            <li><a href="<?= base_url('user/contact'); ?>">Contact</a></li>
+                            <!-- <li><a href="<?= base_url('profile'); ?>">Profile</a></li> -->
+                        <?php
+                        } else {
+                        ?>
+                            <a class="cta" href="<?= base_url('auth'); ?>">
+                                <i class='bx bxs-log-out' style="color:#fff;font-size:32px;"></i>
+                            </a>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-1">
+            <div class="dropdown">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" style="font-size: 32px;color:#fff;">
+                    <i class='bx bxs-bell'></i>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 300px;">
+                    <a class="dropdown-item text-wrap" href="<?= base_url('user/profile'); ?>">
+                        <i class='bx bx-money' style='color:#0bff00'></i>
+                        Pembayaran Selesai
+                        <hr>
+                    </a>
+                    <a class="dropdown-item text-wrap" href="#">
+                        <i class='bx bxs-message-square-detail' style='color:#f6ff00'></i>
+                        Anda memiliki pesan baru
+                        <hr>
+                    </a>
+                    <a class="dropdown-item text-wrap" href="#">
+                        <i class='bx bxs-message-square-edit' style='color:#07bcf4'></i>
+                        Bagaimana perjalanan anda? Yuk beri penilaian untuk kami.
+                        <hr>
+                    </a>
+                </div>
+            </div>
+            <!-- 
+                notifikasi yang dibutuhkan :
+                1. id notif
+                2. id user
+                3. pesan
+                4. jenis
+                5. tanggal/waktu
+                6. direct ke mana
+
+             -->
+        </div>
+        <div class="col-1">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<?= base_url('vendor/public/img/' . $foto_profile); ?>" alt="" style="width: 50px;height:50px;border-radius:50px;">
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
+                    <a class="dropdown-item" href="<?= base_url('/user/profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
+                    <a class="dropdown-item" href="#"><i class='bx bx-log-out'>Logout</i></a>
+                </div>
+>>>>>>> aabdc87f02435e7ff25dc265fcb2a53470efe998
             </div>
         </div>
         <!-- logout taruh di kanan -->

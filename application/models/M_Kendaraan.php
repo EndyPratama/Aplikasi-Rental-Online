@@ -75,7 +75,8 @@ class M_Kendaraan extends CI_Model
     {
         $this->db->select("avg(rating)");
         $this->db->from("review");
-        $this->db->where("kendaraanid", $id);
+        $where = "kendaraanid = $id AND rating !=0";
+        $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
     }
@@ -230,19 +231,72 @@ class M_Kendaraan extends CI_Model
     }
     public function getKendaraanUser($id)
     {
-        $this->db->distinct();
-        // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
-        $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
-        $this->db->from("transaction");
-        $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
-        $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
-        // if ($filter != NULL) {
-        //     $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi) AND transaction.status='$filter'");
-        // } else {
-        $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi)");
-        // }
+        // // $this->db->distinct();
+        // // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
+        // $this->db->select("transaction.id_transaksi, transaction.user_id, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar");
+        // $this->db->from("transaction");
+        // $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
+        // // if ($filter != NULL) {
+        // //     $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi) AND transaction.status='$filter'");
+        // // } else {
+        // // $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi)");
+        // $where = ("transaction.user_id='$id' AND kendaraan.userid = transaction.user_id");
+        // // }
+        // $this->db->where($where);
+        // $query = $this->db->get();
+
+        $this->db->select("user.id, kendaraan.id_kendaraan, kendaraan.nama, kendaraan.gambar, kendaraan.harga");
+        $this->db->from("user,kendaraan");
+        $where = ("user.id = kendaraan.userid AND user.id = $id");
+        $this->db->where($where);
+        $query = $this->db->get();
+        // $sql = "SELECT user.id, kendaraan.id_kendaraan, kendaraan.nama\n"
+
+        //     . "FROM user, kendaraan\n"
+
+        //     . "WHERE user.id = kendaraan.userid AND user.id = 2";
+        return $query->result();
+    }
+    public function menungguUlasan($id)
+    {
+        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, transaction.tanggal");
+        $this->db->from("transaction,user, kendaraan");
+        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = $id AND transaction.ulasan = 0";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
+        /*
+        SELECT user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, transaction.tanggal 
+        FROM transaction,user, kendaraan 
+        WHERE transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = 2 AND transaction.ulasan = 0
+        */
+    }
+    public function ulasanSaya($id)
+    {
+        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, review.rating, transaction.tanggal, review.ulasan");
+        $this->db->from("transaction,user, kendaraan, review");
+        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = $id AND transaction.ulasan = 1 AND transaction.id_transaksi = review.transaksi";
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->result();
+        /*
+        SELECT user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, review.rating, transaction.tanggal
+        FROM transaction,user, kendaraan, review
+        WHERE transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = 2 AND transaction.ulasan = 1 AND transaction.id_transaksi = review.transaksi
+        */
+    }
+    public function ulasan_kendaraan($transaksiID)
+    {
+        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, TRANSACTION.invoice, kendaraan.nama, kendaraan.gambar, transaction.tanggal");
+        $this->db->from("kendaraan,user,transaction");
+        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = $transaksiID";
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->result();
+        /*
+        SELECT user.id, transaction.id_transaksi, kendaraan.nama, kendaraan.gambar, transaction.tanggal 
+        FROM transaction,user, kendaraan 
+        WHERE transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = 2
+        */
     }
 }
