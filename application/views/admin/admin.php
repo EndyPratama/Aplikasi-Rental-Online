@@ -10,7 +10,7 @@
 	$pendapatan = number_format($pendapatan, 0, ',', '.');
 	$keterangan = array("$role", "Rp $pendapatan", "Edit Account", "$kendaraan", "$member", "$diterima Diterima | $ditolak Ditolak");
 	$background = array("f39c11", "00a65a", "dd4c39", "0073b6", "00c0ef", "ce5adc");
-	$link = array("user/view", "kendaraan/transaksi", "user/setting", "kendaraan", "member", "kendaraan/booking2");
+	$link = array("user/view", "transaksi", "user/setting", "kendaraan", "member", "booking");
 	$j = 0;
 	?>
 	<?php for ($i = 0; $i < 3; $i++) : ?>

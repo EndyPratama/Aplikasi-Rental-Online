@@ -11,7 +11,7 @@ class M_Pesan extends CI_Model
         $this->db->select("*");
         $this->db->from("pesan");
         // $this->db->join('jawaban', 'pesan.id_pesan = jawaban.id_pesan', 'left');
-        $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
+        $this->db->join('user', 'pesan.user_id = user.id', 'left');
         $query = $this->db->get();
         return $query->result();
     }
@@ -20,6 +20,40 @@ class M_Pesan extends CI_Model
         $this->db->select("*");
         $this->db->from("pesan");
         $this->db->join('jawaban', 'pesan.id_pesan = jawaban.id_pesan', 'left');
+        // $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getJmlhPesan()
+    {
+        $this->db->select("count(id_pesan)");
+        $this->db->from("pesan");
+        // $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getJmlhPesanBaru()
+    {
+        $this->db->select("count(id_pesan)");
+        $this->db->from("pesan");
+        $this->db->where("notif", "1");
+        // $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function pesanDiBaca()
+    {
+        $this->db->set('notif', 0);
+        $this->db->update('pesan');
+        $query = $this->db->get();
+        return $query->result();
+        //         UPDATE pesan
+        //         SET notif = 0
+    }
+    public function getJmlhJawaban()
+    {
+        $this->db->select("count(id)");
+        $this->db->from("jawaban");
         // $this->db->join('akun', 'pesan.user_id = akun.id', 'left');
         $query = $this->db->get();
         return $query->result();

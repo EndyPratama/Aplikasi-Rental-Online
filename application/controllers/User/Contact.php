@@ -7,21 +7,30 @@ class Contact extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Contact');
+        $this->load->model('M_Profile');
     }
     public function index()
     {
         // $kendaraan = $this->M_Kendaraan->getKendaraan();
         $user = $this->session->userdata('id');
         $history = $this->M_Contact->getHistoryPesan($user);
-        // $history = json_decode(json_encode($history), true);
-        // $history = $history["0"];
-        // $history = $history['id'];
+        $profile = $this->M_Profile->getGambar($user);
+        $profile = json_decode(json_encode($profile), true);
+        $profile = $profile["0"];
+        $profile = $profile['gambar'];
+
+        $nama = $this->M_Profile->cekNama($user);
+        $nama = json_decode(json_encode($nama), true);
+        $nama = $nama["0"];
+        $nama = $nama['name'];
 
         $data = array(
             // 'kendaraan' => $kendaraan,
-            'title' => 'List Kendaraan',
+            'nama' => $nama,
+            'title' => 'Contact Us',
             'css' => 'contact.css',
             'history' => $history,
+            'profile' => $profile,
             'notif' => ''
         );
         // echo "<pre>";
@@ -35,7 +44,7 @@ class Contact extends CI_Controller
     {
         $nama = $this->input->post('nama');
         $pesan = $this->input->post('pesan');
-        $id = $this->M_Contact->cekData($nama);
+        $id = $this->M_Profile->cekId($nama);
         $id = json_decode(json_encode($id), true);
         $id = $id["0"];
         $id = $id['id'];
@@ -44,7 +53,8 @@ class Contact extends CI_Controller
         $data = array(
             'user_id' => $id,
             'pesan' => $pesan,
-            'tanggal' => date("Y-m-d H:i:s")
+            'tanggal' => date("Y-m-d H:i:s"),
+            'notif' => 1
         );
         $page = array(
             'title' => 'Contact Us',
@@ -57,6 +67,6 @@ class Contact extends CI_Controller
         // echo "</pre>";
         $this->M_Contact->insertPesan($data);
 
-        redirect(base_url('/contact'));
+        redirect(base_url('user/contact'));
     }
 }
