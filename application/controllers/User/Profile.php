@@ -13,11 +13,6 @@ class Profile extends CI_Controller
     }
     public function index()
     {
-        $this->session->set_userdata('id', '2');
-        // $this->load->model('M_Profile');
-    }
-    public function index()
-    {
         // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
 
@@ -65,7 +60,7 @@ class Profile extends CI_Controller
     }
     public function history($data = NULL)
     {
-        $this->session->set_userdata('id', '2');
+        // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
         // echo $user;
         $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
@@ -88,10 +83,7 @@ class Profile extends CI_Controller
         $this->load->view('/user/history', $data);
         $this->load->view('/user/layout/footer');
     }
-    public function ulasan_user()
-    {
-        $this->session->set_userdata('id', '2');
-        $user = $this->session->userdata('id');
+
     public function menunggu_ulasan()
     {
         // $this->session->set_userdata('id', '2');
@@ -139,10 +131,6 @@ class Profile extends CI_Controller
         // echo "</pre>";
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/ulasan', $data);
-        $this->load->view('/user/layout/footer');
-    }
-
-        $this->load->view('/user/ulasan_saya', $data);
         $this->load->view('/user/layout/footer');
     }
     public function ulasan_kendaraan($transaksiID)

@@ -23,14 +23,7 @@ class Transaksi extends CI_Controller
         $this->load->view('/admin/transaksi', $data);
         $this->load->view('/admin/layout/footer');
     }
-    public function selesai($kendaraan_id)
-    {
     public function selesai($kendaraan_id, $user_id, $transaksi_id)
-    {
-        echo $kendaraan_id;
-        echo $user_id;
-        echo $transaksi_id;
-    public function selesai($kendaraan_id)
     {
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
 
