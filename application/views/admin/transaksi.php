@@ -2,8 +2,8 @@
     <h1>Data Transaksi : </h1>
     <hr>
     <?php
-    $title = array("Menunggu Pembayaran", "Diterima", "Berlangsung", "Selesai", "Dibatalkan");
-    $status = array("Menunggu Pembayaran", "Diterima", "Berlangsung", "Selesai", "Dibatalkan");
+    $title = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai", "Dibatalkan");
+    $status = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai", "Dibatalkan");
     ?>
     <?php
     for ($i = 0; $i < 5; $i++) :
@@ -37,17 +37,17 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-search"> Cek</i></a>
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a>
+                                    <a href="<?= base_url('admin/transaksi/cek/' . $t->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-search"> Cek</i></a>
+                                    <a href="<?= base_url('admin/transaksi/lunas/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Lunas</i></a>
+                                    <a href="<?= base_url('admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a>
 
                                 </td>
                             </tr>
                         <?php
                         endif;
                     endif;
-                    if ($title[$i] == "Diterima") :
-                        if ($t->status == "Diterima") :
+                    if ($title[$i] == "Lunas") :
+                        if ($t->status == "Lunas") :
                             $harga = number_format($t->harga, 0, ',', '.');
                         ?>
                             <tr>
@@ -58,7 +58,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan . '/' . $t->id); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+                                    <a href="<?= base_url('admin/transaksi/diterima/' . $t->id_kendaraan . '/' . $t->id); ?>" class="btn btn-success"><i class="fa fa-check"> Kendaraan Diterima</i></a>
 
                                 </td>
                             </tr>
@@ -115,7 +115,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Cek</i></a>
+                                Transaksi dibatalkan
 
                                 </td>
                             </tr>
