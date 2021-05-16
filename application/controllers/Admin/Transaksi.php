@@ -42,18 +42,18 @@ class Transaksi extends CI_Controller
         // date_default_timezone_set('Asia/Jakarta');
         // $tanggal = date("Y-m-d H:i:s");
 
-        $data = [
-            'transaksi' => $transaksi_id,
-            'userid' => $user_id,
-            'kendaraanid' => $kendaraan_id,
-            'ulasan' => "",
-            'rating' => "",
-            'tanggal' => "",
-        ];
+//        $data = [
+  //          'transaksi' => $transaksi_id,
+    //        'userid' => $user_id,
+      //      'kendaraanid' => $kendaraan_id,
+       //     'ulasan' => "",
+       //     'rating' => "",
+       //     'tanggal' => "",
+       // ];
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->db->insert('review', $data);
+        //$this->db->insert('review', $data);
 
         // edit data kendaraan
 
@@ -68,4 +68,60 @@ class Transaksi extends CI_Controller
         </button></div>');
         redirect(base_url('admin/transaksi'));
     }
+
+    public function cek($kendaraan_id)
+    {
+
+    }
+
+    public function lunas($kendaraan_id)
+    {
+        $data['trans'] = $this->db->get('transaction')->result_array();
+
+        $status = 'Lunas';
+
+        $this->db->set('status', $status);
+        $this->db->where('kendaraan_id', $kendaraan_id);
+        $this->db->update('transaction');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect(base_url('admin/transaksi'));
+    }
+
+    public function batal($kendaraan_id)
+    {
+        $data['trans'] = $this->db->get('transaction')->result_array();
+
+        $status = 'Dibatalkan';
+
+        $this->db->set('status', $status);
+        $this->db->where('kendaraan_id', $kendaraan_id);
+        $this->db->update('transaction');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect(base_url('admin/transaksi'));
+    }
+
+
+    public function diterima($kendaraan_id)
+    {
+        $data['trans'] = $this->db->get('transaction')->result_array();
+
+        $status = 'Berlangsung';
+
+        $this->db->set('status', $status);
+        $this->db->where('kendaraan_id', $kendaraan_id);
+        $this->db->update('transaction');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+        redirect(base_url('admin/transaksi'));
+    }
+
+
 }
