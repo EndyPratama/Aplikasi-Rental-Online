@@ -42,20 +42,20 @@ class Transaksi extends CI_Controller
         // date_default_timezone_set('Asia/Jakarta');
         // $tanggal = date("Y-m-d H:i:s");
 
-//        $data = [
-  //          'transaksi' => $transaksi_id,
-    //        'userid' => $user_id,
-      //      'kendaraanid' => $kendaraan_id,
-       //     'ulasan' => "",
-       //     'rating' => "",
-       //     'tanggal' => "",
-       // ];
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-        //$this->db->insert('review', $data);
+        $data = [
+            'transaksi' => $transaksi_id,
+            'userid' => $user_id,
+            'kendaraanid' => $kendaraan_id,
+            'ulasan' => "",
+            'rating' => "",
+            'tanggal' => "",
+        ];
+         echo "<pre>";
+         print_r($data);
+         echo "</pre>";
+        $this->db->insert('review', $data);
 
-        // edit data kendaraan
+        edit data kendaraan
 
         $status = 'Selesai';
 
@@ -123,5 +123,30 @@ class Transaksi extends CI_Controller
         redirect(base_url('admin/transaksi'));
     }
 
+    public function review($kendaraan_id, $user_id, $transaksi_id)
+    {
+
+        $data['trans'] = $this->db->get('transaction')->result_array();
+
+        // Masukkan data ke review
+        // id user, id kendaraan, transaksi, ulasan = null, rating = null, tanggal = null
+        // date_default_timezone_set('Asia/Jakarta');
+        // $tanggal = date("Y-m-d H:i:s");
+
+        $data = [
+            'transaksi' => $transaksi_id,
+            'userid' => $user_id,
+            'kendaraanid' => $kendaraan_id,
+            'ulasan' => "",
+            'rating' => "",
+            'tanggal' => "",
+        ];
+         echo "<pre>";
+         print_r($data);
+         echo "</pre>";
+        $this->db->insert('review', $data);
+
+        redirect(base_url('admin/transaksi'));
+    }
 
 }
