@@ -19,7 +19,7 @@
                                 // echo $user;
                                 if ($user != 0) :
                                 ?>
-                                    <a href="<?= base_url('/kendaraan/whislist/' . $d->id_kendaraan); ?>">
+                                    <a href="<?= base_url('/user/kendaraan/whislist/' . $d->id_kendaraan); ?>">
                                         <img src="<?php echo base_url('vendor/public/img/' . $whislist) ?>" style="width: 50px; height:50px; float:right">
                                     </a>
                                 <?php endif ?>
@@ -259,9 +259,8 @@
                         $i = 0;
                         foreach ($review as $r) :
                             if ($r->rating == 0) {
-                                break;
                             } else {
-                                if ($i < 5) :
+                                if ($i < 10) :
                         ?>
                                     <div class="row">
                                         <div class="col-1">
@@ -291,9 +290,9 @@
                                     </div>
                                     <hr>
                         <?php
+                                    $i++;
                                 endif;
                             }
-                            $i++;
                         endforeach;
                         ?>
                     </div>

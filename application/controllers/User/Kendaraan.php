@@ -25,9 +25,6 @@ class Kendaraan extends CI_Controller
         }
         // session
         // $this->session->set_userdata('id', '2');
-        // $this->session->set_userdata('id', '2');
-        // $this->session->set_userdata('id', '2');
-        // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
 
         $kendaraan = $kendaraan->search($keyword);
@@ -42,6 +39,12 @@ class Kendaraan extends CI_Controller
         $profile = json_decode(json_encode($profile), true);
         $profile = $profile["0"];
         $profile = $profile['gambar'];
+
+        // $rating = $this->M_Kendaraan->getReviewRating($id);
+        // $rating = json_decode(json_encode($rating), true);
+        // $rating = $rating["0"];
+        // $rating = $rating['avg(rating)'];
+
         $data = array(
             'kendaraan' => $kendaraan,
             'title' => 'List Kendaraan',
@@ -53,9 +56,6 @@ class Kendaraan extends CI_Controller
             'profile' => $profile,
             'user' => $user,
             'foto_profile' => $profile,
-            'user' => $user,
-            'foto_profile' => $profile,
-            'profile' => $profile,
             'css' => 'list.css'
         );
         // echo "<pre>";
@@ -108,8 +108,6 @@ class Kendaraan extends CI_Controller
             'rating' => $rating,
             'profile' => $profile,
             'foto_profile' => $profile,
-            'foto_profile' => $profile,
-            'profile' => $profile,
             'title' => 'List Kendaraan',
             'whislist' => $love,
             'css' => 'kendaraan6.css'
@@ -127,6 +125,7 @@ class Kendaraan extends CI_Controller
         $id = $this->input->post('idUser');
         $cekUser = $this->M_Kendaraan->cekUser($id);
         $user = json_decode(json_encode($cekUser), true);
+
 
         if ($user == NULL) {
             $data = array(
@@ -168,7 +167,6 @@ class Kendaraan extends CI_Controller
                 'status' => 'Berhasil',
                 'title' => 'Laporan Booking',
                 'profile' => $profile,
-                'foto_profile' => $profile,
                 'foto_profile' => $profile,
                 'profile' => $profile,
                 'css' => 'laporan.css'
@@ -236,17 +234,10 @@ class Kendaraan extends CI_Controller
             // echo "</pre>";
             $this->M_Kendaraan->deleteWhislist($whislist);
         }
-        redirect(base_url('/kendaraan/mobil/' . $id));
+        redirect(base_url('/user/kendaraan/mobil/' . $id));
     }
     public function kendaraan_user($id)
     {
-        $kendaraan_user = $this->M_Kendaraan->getKendaraanUser($id);
-        $data = array(
-            'kendaraan' => $kendaraan_user,
-            'title' => 'Kendaraan anda',
-            'css' => 'transaksi_user.css'
-        );
-        $this->session->userdata('id', '2');
         $user = $this->session->userdata('id');
         $kendaraan_user = $this->M_Kendaraan->getKendaraanUser($id);
         $profile = $this->M_Profile->getGambar($user);
@@ -262,12 +253,6 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $kendaraan_user = $this->M_Kendaraan->getKendaraanUser($id);
-        $data = array(
-            'kendaraan' => $kendaraan_user,
-            'title' => 'Kendaraan anda',
-            'css' => 'transaksi_user.css'
-        );
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/kendaraan_user', $data);
         $this->load->view('/user/layout/footer');

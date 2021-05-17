@@ -122,16 +122,33 @@
             <div class="container">
                 <?php
                 $row = 1;
+                $i = 0;
                 foreach ($kendaraan as $k) :
                     if ($k->ketersediaan == 1) :
+                        $i++;
                 ?>
-                        <div class="card" style="width: 15rem;">
+                        <div class="card" style="width: 15rem; display:flex;">
                             <a href="<?= base_url('user/kendaraan/mobil/' . $k->id_kendaraan); ?>">
                                 <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $k->nama; ?></h5>
-                                    <p class="card-text"><?= $k->tahun; ?>.</p>
-                                    <a href="<?= base_url('user/kendaraan/mobil/' . $k->id_kendaraan); ?>" class="btn btn-primary">Rp <?= $k->harga; ?>/hari</a>
+                                <div class="card-body" style="flex-grow:1;">
+                                    <h5 class="card-title" style="margin-bottom: .75rem;max-height: 25px;overflow: hidden;"><?= $k->nama; ?></h5>
+                                    <?php
+                                    $harga = number_format($k->harga, '0', ',', '.');
+                                    ?>
+                                    <p class="card-text">Rp <?= $harga; ?>/hari</p>
+                                    <!-- <p class="card-text"><?= $k->tahun; ?>.</p> -->
+                                    <div class="row" style="margin:0; align-items: center;">
+                                        <?php for ($j = 0; $j < 5; $j++) : ?>
+                                            <i id="star<?= $i; ?><?= $j; ?>" class='bx bx-star' style='color:#3fff2a; font-size:18px;'></i>
+                                        <?php endfor; ?>
+                                        <div>(<?= $k->review; ?>)</div>
+                                    </div>
+                                    <script>
+                                        <?php for ($j = 0; $j < $k->rating; $j++) : ?>
+                                            $("#star<?= $i; ?><?= $j; ?>").removeClass("bx-star");
+                                            $("#star<?= $i; ?><?= $j; ?>").addClass("bxs-star");
+                                        <?php endfor; ?>
+                                    </script>
                                 </div>
                             </a>
                         </div>

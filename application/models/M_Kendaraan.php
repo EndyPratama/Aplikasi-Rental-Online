@@ -67,7 +67,8 @@ class M_Kendaraan extends CI_Model
     {
         $this->db->select("Count(id)");
         $this->db->from("review");
-        $this->db->where("kendaraanid", $id);
+        $where = "kendaraanid = $id AND rating!=0";
+        $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
     }
@@ -219,15 +220,27 @@ class M_Kendaraan extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('whislist');
     }
-    public function search($keyword)
+    public function search($keyword = NULL)
     {
-        $this->db->select("*");
+        $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
         $this->db->from("kendaraan");
-        $this->db->like('merk', $keyword);
-        $this->db->or_like('model', $keyword);
+        $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
+        $where = "kendaraan.nama LIKE '%$keyword%' OR kendaraan.merk LIKE '%$keyword%'";
+        // $this->db->like('merk', $keyword);
+        // $this->db->or_like('model', $keyword);
+        $this->db->where($where);
+        $this->db->group_by("kendaraan.nama");
+        $this->db->order_by('review', 'DESC');
         $query = $this->db->get();
         return $query->result();
-        // return $this->table('komik')->like('judul', $keyword);
+        /*
+        SELECT kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review 
+        FROM kendaraan 
+        LEFT JOIN review ON kendaraan.id_kendaraan = review.kendaraanid 
+        WHERE kendaraan.nama LIKE '%a%' 
+        GROUP BY kendaraan.nama
+        ORDER BY review DESC
+        */
     }
     public function getKendaraanUser($id)
     {
