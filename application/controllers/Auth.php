@@ -92,7 +92,8 @@ class Auth extends CI_Controller
 			];
 
 			// Menyiapkan Token
-			$token = base64_encode(random_bytes(32));
+			// $token = base64_encode(random_bytes(32));
+			$token = rand();
 			$user_token = [
 				'email' => $email,
 				'token' => $token,
@@ -148,13 +149,32 @@ class Auth extends CI_Controller
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
 
-		$user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-		if ($user) {
-			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-
-			if ($user_token) {
+		// $user = $this->db->get_where('user', ['email' => $email])->row_array();
+		// $user = $this->db->get_where('user', ['email' => $email]);
+		$this->db->select("*");
+		$this->db->from("user");
+		$this->db->where("email", $email);
+		$user = $this->db->get()->result();
+		echo $email;
+		echo $token;
+		// print_r($user);
+		if ($user != null) {
+			// $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+			echo "Masuk User";
+			$this->db->select("*");
+			$this->db->from("user_token");
+			// $this->db->where("token", $token);
+			$user_token = $this->db->get()->result();
+			$user_token = json_decode(json_encode($user_token), true);
+			$user_token = $user_token["0"];
+			echo "<pre>";
+			print_r($user_token);
+			echo "</pre>";
+			if ($user_token != NULL) {
+				echo "Masuk user_token";
+				echo time();
 				if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+					echo "Masuk sini bang";
 					$this->db->set('is_active', 1);
 					$this->db->where('email', $email);
 					$this->db->update('user');
@@ -162,26 +182,53 @@ class Auth extends CI_Controller
 					$this->db->delete('user_token', ['email' => $email]);
 
 					$this->session->set_flashdata('message', '<div class="alert alert-success"
-					role="alert">' . $email . ' has been activated! Please Login!.</div>');
-					redirect('auth');
+								role="alert">' . $email . ' has been activated! Please Login!.</div>');
+
+					$id = $this->M_Profile->cekIdByEmail($email);
+					$id = json_decode(json_encode($id), true);
+					$id = $id["0"];
+					$id_user = $id['id'];
+					$nama = $id['name'];
+					// echo "<pre>";
+					// print_r($id_user);
+					// print_r($nama);
+					// echo "</pre>";
+					$data = [
+						'userid' => $id_user,
+						'nama' => $nama,
+						'gambar' => "default.jpg",
+						'ttl' => "",
+						'provinsi' => "",
+						'kota' => "",
+						'alamat' => "",
+						'kode_pos' => "",
+						'jenis_kelamin' => "",
+						'phone' => "",
+					];
+					echo "<pre>";
+					print_r($data);
+					echo "</pre>";
+
+					$this->db->insert('profile', $data);
+					redirect(base_url('auth'));
 				} else {
 
 					$this->db->delete('user', ['email' => $email]);
 					$this->db->delete('user_token', ['email' => $email]);
 
 					$this->session->set_flashdata('message', '<div class="alert alert-danger"
-					role="alert">Account activation failed! Token Expired.</div>');
+								role="alert">Account activation failed! Token Expired.</div>');
 					redirect('auth');
 				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"
-				role="alert">Account activation failed! Wrong Token.</div>');
-				redirect('auth');
+						role="alert">Account activation failed! Wrong Token. Hmmm....</div>');
+				redirect(base_url('auth'));
 			}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"
 			role="alert">Account activation failed! Wrong Email.</div>');
-			redirect('auth');
+			redirect(base_url('auth'));
 		}
 	}
 
