@@ -130,7 +130,7 @@ class Profile extends CI_Controller
         // print_r($data);
         // echo "</pre>";
         $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/ulasan', $data);
+        $this->load->view('/user/ulasan_saya', $data);
         $this->load->view('/user/layout/footer');
     }
     public function ulasan_kendaraan($transaksiID)
@@ -240,8 +240,13 @@ class Profile extends CI_Controller
         ];
         $this->db->where('id', $user);
         $this->db->update('user', $data);
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
         // update profile
         $data = [
+            'nama' => $nama,
             'phone' => $phone,
             'ttl' => $ttl,
             'alamat' => $alamat,
@@ -249,11 +254,11 @@ class Profile extends CI_Controller
             'provinsi' => $provinsi,
             'kode_pos' => $zip_code,
         ];
-        $this->db->where('id', $user);
+        $this->db->where('userid', $user);
         $this->db->update('profile', $data);
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
 
 
         redirect(base_url('/user/profile/setting'));

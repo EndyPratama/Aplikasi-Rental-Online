@@ -30,7 +30,7 @@ class M_Profile extends CI_Model
     }
     public function cekIdByEmail($email)
     {
-        $this->db->select("id");
+        $this->db->select("*");
         $this->db->from("user");
         $this->db->where('email', $email);
         $query = $this->db->get();
