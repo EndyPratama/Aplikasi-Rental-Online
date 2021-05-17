@@ -96,7 +96,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    Kendaraan telah kembali
+                                <a href="<?= base_url('admin/transaksi/review/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-warning"><i class="fa fa-star"> Review</i></a>
 
                                 </td>
                             </tr>
