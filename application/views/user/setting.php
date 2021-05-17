@@ -41,7 +41,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form action="<?= base_url('/user/profile/update/' . $p->id); ?>" method="POST">
+                        <form action="<?= base_url('/user/profile/update/' . $p->userid); ?>" method="POST">
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-2 text-primary">Personal Details</h6>
@@ -79,7 +79,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="ttl">Tanggal lahir</label>
-                                        <input type="text" class="form-control" name="ttl" id="ttl" value="<?= $p->ttl; ?>">
+                                        <input type="date" class="form-control" name="ttl" id="ttl" value="<?= $p->ttl; ?>">
                                     </div>
                                 </div>
                             </div>

@@ -8,6 +8,8 @@ class Setting extends CI_Controller
         parent::__construct();
         $this->load->model('M_Admin');
         $this->load->model('M_Profile');
+        $this->load->model('M_Transaksi');
+        $this->load->model('M_Kendaraan');
     }
     public function index()
     {
@@ -67,16 +69,6 @@ class Setting extends CI_Controller
     }
     public function setting()
     {
-        $this->session->set_userdata('id', '1');
-        $user = $this->session->userdata('id');
-        $profile = $this->M_Profile->getProfileUser($user);
-        $data = array(
-        $this->load->model('M_Transaksi');
-        $this->load->model('M_Kendaraan');
-    }
-    public function index()
-    {
-        // $this->session->set_userdata('id', '1');
         $user = $this->session->userdata('id');
         $profile = $this->M_Profile->getProfileUser($user);
 

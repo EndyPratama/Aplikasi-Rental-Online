@@ -50,12 +50,12 @@ class Transaksi extends CI_Controller
             'rating' => "",
             'tanggal' => "",
         ];
-         echo "<pre>";
-         print_r($data);
-         echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->db->insert('review', $data);
 
-        edit data kendaraan
+        //edit data kendaraan
 
         $status = 'Selesai';
 
@@ -71,7 +71,6 @@ class Transaksi extends CI_Controller
 
     public function cek($kendaraan_id)
     {
-
     }
 
     public function lunas($kendaraan_id)
@@ -141,12 +140,11 @@ class Transaksi extends CI_Controller
             'rating' => "",
             'tanggal' => "",
         ];
-         echo "<pre>";
-         print_r($data);
-         echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->db->insert('review', $data);
 
         redirect(base_url('admin/transaksi'));
     }
-
 }

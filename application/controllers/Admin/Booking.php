@@ -24,18 +24,18 @@ class Booking extends CI_Controller
     {
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
         $action = '1';
 
         $this->db->set('action', $action);
