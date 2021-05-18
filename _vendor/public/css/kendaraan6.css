@@ -1,0 +1,114 @@
+body{
+    position: relative;
+}
+.row{
+    margin: auto 0;
+}
+/* container */
+.container{
+    clear: both;
+    margin-bottom: 100px;
+}
+/* content (Gambar mobil) */
+.content{
+    margin-top: 20px;
+}
+.card#gambarMobil .row{
+    position: relative;
+    height: 500px;
+}
+.card#gambarMobil .image-show{
+    width: 100%;
+    border-radius: 5px 0 0 5px ;
+    height: inherit;
+    position: relative;
+    background-color: black;
+}
+.card#gambarMobil .row .image-show img#imgmbl{
+    position: relative;
+    display: block;
+    margin: auto;
+    height: inherit;
+    /* width: 100%; */
+    background-size: contain;
+}
+.card:hover{
+    box-shadow: 10px 5px 5px rgb(235, 233, 233);
+}
+/* deskripsi kendaraan */
+.card header{
+    font-size: 32px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.kendaraan{
+    position: static;
+    display: grid;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);   
+}
+.card .center .kendaraan{
+    clear: both;
+    width: 90%;
+    height: inherit;
+    margin: 20px auto;
+}
+.card #deskripsi{
+    clear: both;
+    margin-left: 30px;
+}
+.card .deskripsi p{
+    margin: 30px;
+}
+/* Review */
+.review .nama_kendaraan hr{
+    box-sizing: content-box;                                    
+    width: 80%;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+    margin-left: 5px;
+    border: 0;
+    border-top: 10px solid #28a745;
+}
+/* iklan */
+.lainnya{
+    margin-left: 32px;
+}
+.lainnya h3{
+    margin: 10px auto;
+}
+.lainnya .iklan-terkait{
+    display: grid;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(1, auto);
+    margin-bottom: 5%;
+}
+.iklan-terkait .card{
+    margin: auto 5px;
+    height: 280px;
+}
+
+.iklan-terkait .card .card-head{
+    min-width: 150px;
+    min-height: 150px;
+    margin: auto 5px;
+    background-color: #000;
+}
+.iklan-terkait .card .card-body h6{
+    line-height: 5px;
+}
+.iklan-terkait .card .card-body #nama_kendaraan{
+    margin-top: -15px;
+}
+.card .card_head #gambarIklan{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+}

@@ -1,0 +1,11 @@
+.card-name{
+    color: rgba(0, 0, 0, 0.7);
+    display: -webkit-box;
+    max-height: 38px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    overflow: hidden;
+    white-space: normal;
+    overflow-wrap: break-word;
+}

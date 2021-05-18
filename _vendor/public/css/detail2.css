@@ -1,0 +1,72 @@
+content{
+    overflow: hidden;
+}
+.card{
+    max-height: 500px;
+}
+.card .card-img{
+    /* height:inherit; */
+    /* height: 100vh; */
+    max-height: 500px;
+    /* width: 10px; */
+}
+/* #whislist{
+    background-color: khaki;
+    width: 10px;
+    height: 10px;
+} */
+/* #formOrder{
+    visibility: hidden;
+} */
+.kendaraan{
+    /* background-color: red; */
+    display: grid;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);   
+}
+.card header{
+    font-size: 32px;
+    margin-top: 20px;
+    margin-left: 30px;
+    /* background-color: red; */
+}
+.card #deskripsi{
+    margin-left: 30px;
+}
+.card .row .col .center{
+    margin-bottom: 50px;
+}
+.container{
+    margin-bottom: 100px;
+}
+.center{
+    width: 90%;
+    /* background-color: red; */
+    margin: 20px auto;
+}
+.lainnya{
+    margin-top: 25px;
+}
+.lainnya .card{
+    float: left;
+}
+content a{
+    color:#000;
+}
+a:hover{
+    color: #0066ff;
+    text-decoration: none;
+}
+.card{
+    margin: 0 10px;
+}
+.card:hover{
+    box-shadow: 10px 5px 5px rgb(235, 233, 233);
+}
+.content{
+    margin-top: 20px;
+    /* margin-bottom: 100px; */
+}

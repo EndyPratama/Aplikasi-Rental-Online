@@ -1,0 +1,167 @@
+.row{
+    margin: auto 0;
+}
+.container{
+    /* background-color: blanchedalmond; */
+    /* height: 200px; */
+    /* height: 100vh; */
+    margin: 2% auto;
+}
+.container .menu_profile{
+    margin-bottom: 2%;
+}
+.container .menu_profile .row{
+    flex-wrap: nowrap;
+}
+.container .profile{
+    width: 100%;
+    height: 200px;
+}
+.container .profile .profile_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: blue; */
+    width: 100%;
+    height: 100%;
+}
+.profile .profile_image img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-right: 50px;
+}
+.profile_image .user_role .role{
+    background-color: #000;
+    color: #fff;
+    border-radius: 50px;
+    width: 100px;
+    text-align: center;
+}
+.menu{
+    /* position: relative; */
+    width: 100%;
+    height: 200px;
+    /* margin: 100% 0; */
+    /* background-color: rosybrown; */
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+}
+.menu .submenu{
+    text-align: center;
+    margin: 15px 0;
+}
+.menu .submenu i{
+    color: #000;
+    font-size: 38px;
+}
+.logout_icon{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+}
+.logout_icon i{
+    color: #000;
+    font-size: 42px;
+    margin: auto 0;
+}
+.pesanan_user{
+    margin-bottom: 5%;
+}
+.pesanan_user .pesanan tbody img{
+    width: 100px;
+    height: 100px;
+}
+.table td{
+    vertical-align: middle;
+    text-align: center;
+}
+/* Modal Content */
+.content{
+    width: 100%;
+    text-align: left;
+}
+.content .content-header{
+    border-bottom: thin solid rgb(224, 224, 224);
+    margin-bottom: 10px;
+}
+.content .content-header .left-detail p{
+    line-height: 15px;
+}
+.content .content-body p{
+    line-height: 15px;
+}
+.content .right-detail a.btn{
+    display: block;
+    width: 150px;
+    margin: 5px 0 5px auto;
+}
+.content-body .total-pembayaran{
+    padding-left: 24px;
+    border-left: 1px solid rgb(229, 231, 233);
+}
+/* Favorite */
+.favorite .header .row{
+    justify-content: space-between;
+    margin: auto 25px;
+}
+.favorite .favorite_user{
+    display: grid;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(1, auto);
+    margin-bottom: 5%;
+}
+.favorite_user .pesanan_detail .pesanan_head{
+    min-width: 150px;
+    min-height: 150px;
+    margin: auto 5px;
+    background-color: #000;
+}
+.pesanan_detail .pesanan_head img{
+    max-width: 100%;
+    height: 150px;
+    display: flex;
+    margin: 0 auto;
+}
+.favorite_user .pesanan_detail .pesanan_body{
+    text-align: center;
+}
+/* Footer */
+footer .jaminan{
+    display: flex;
+    margin-bottom: 5%;
+    margin: 2% 5%;
+}
+footer .jaminan .box{
+    width: 300px;
+    height: 200px;
+    background-color: gainsboro;
+    margin: auto;
+}
+footer .jaminan i{
+    display: block;
+    font-size: 42px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+footer .jaminan .deskripsi{
+    text-align: center;
+}
+.copyright{
+    /* position:absolute; */
+    text-align: center;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Contoh tinggi footer 60px */
+    background-color: rgb(36, 37, 42);
+    color: rgb(255, 255, 255);
+ }
