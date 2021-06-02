@@ -42,7 +42,7 @@
                         <div class="logo_name mr-3" style=" color:#fff;font-size:32px;"><i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i></div>
                     </a>
                     <ul class="nav__links">
-                        <li><a href="<?= base_url('/home'); ?>">Home</a></li>
+                        <li><a href="<?= base_url('user/home'); ?>">Home</a></li>
                         <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
                         <?php
                         $user = $this->session->userdata('id');
