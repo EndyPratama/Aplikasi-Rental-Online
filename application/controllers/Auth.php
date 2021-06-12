@@ -116,10 +116,10 @@ class Auth extends CI_Controller
 	private function _sendEmail($token, $type)
 	{
 		$config = [
-			'protocol'  => 'smtp',
+			'protocol'  => 'mail',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => 'k.08.framework@gmail.com',
-			'smtp_pass' => 'k0812345',
+			'smtp_user' => 'k.08.framework.par.c@gmail.com',
+			'smtp_pass' => 'framework123',
 			'smtp_port' => '465',
 			'mailtype'  => 'html',
 			'starttls'  => true,
@@ -130,7 +130,7 @@ class Auth extends CI_Controller
 		$this->load->library('email', $config);
 		$this->email->initialize($config);
 
-		$this->email->from('k.08.framework@gmail.com', 'K 08 Framework');
+		$this->email->from('k.08.framework.par.c@gmail.com', 'K 08 Framework');
 		$this->email->to($this->input->post('email'));
 
 		if ($type == 'verify') {

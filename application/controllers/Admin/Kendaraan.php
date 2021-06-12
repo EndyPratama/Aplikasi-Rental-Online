@@ -58,6 +58,19 @@ class Kendaraan extends CI_Controller
     // Pengolahan Insert Data
     public function insert()
     {
+        $gambar = $_FILES['gambar'];
+        if ($gambar=''){}else{
+            $config['upload_path'] = './vendor/public/img';
+            $config['allowed_types'] = 'jpg|png|jfif';
+            
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload('gambar')){
+                echo "Upload gagal"; die();
+            }else{
+                $gambar = $this->upload->data('file_name');
+            }
+        }
+        
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama', true)),
             'mesin' => htmlspecialchars($this->input->post('mesin', true)),
@@ -69,7 +82,7 @@ class Kendaraan extends CI_Controller
             'deskripsi' => htmlspecialchars($this->input->post('deskripsi', true)),
             'harga' => htmlspecialchars($this->input->post('harga', true)),
             'ketersediaan' => htmlspecialchars($this->input->post('ketersediaan', true)),
-            'gambar' => htmlspecialchars($this->input->post('gambar', true))
+            'gambar' => $gambar
         ];
         $this->db->insert('kendaraan', $data);
         redirect(base_url('admin/kendaraan'));
