@@ -35,11 +35,14 @@ class Profile extends CI_Controller
             $role = 'User';
         }
         $pesanan = $this->M_Profile->getDataPesanan($user);
+
         $favorite = $this->M_Profile->getWhislist($user);
+
         $profile = $this->M_Profile->getGambar($user);
         $profile = json_decode(json_encode($profile), true);
         $profile = $profile["0"];
         $profile = $profile['gambar'];
+
         $data = array(
             'title' => 'Profile',
             'gambar_profile' => $profile,
@@ -51,9 +54,9 @@ class Profile extends CI_Controller
             'whislist' => $favorite,
             'css' => 'profile3.css'
         );
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/profile', $data);
         $this->load->view('/user/layout/footer');
@@ -272,35 +275,51 @@ class Profile extends CI_Controller
         $profile = $this->M_Profile->getProfileUser($user);
 
         $getBooking = $this->M_Kendaraan->getBookingById($user);
-        $pembayaran = json_decode(json_encode($getBooking), true);
-        $pembayaran = $pembayaran["0"];
-        $pembayaran = $pembayaran['metode_pembayaran'];
+        if ($getBooking == Null) {
+            $data = array(
+                'booking' => 0,
+                'profile' => $profile,
+                'foto_profile' => $gambar,
+                'title' => 'Pembayaran',
+                'css' =>  'pembayaran.css'
+            );
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/transaksi', $data);
+            $this->load->view('/user/layout/footer');
+        } else {
+            $pembayaran = json_decode(json_encode($getBooking), true);
+            $pembayaran = $pembayaran["0"];
+            $pembayaran = $pembayaran['metode_pembayaran'];
 
-        $bank = array("BCA", "BNI", "MANDIRI", "BRI");
-        for ($i = 0; $i < 4; $i++) {
-            if ($pembayaran == $bank[$i]) {
-                $rekening = $this->M_Admin->getRekening($bank[$i]);
+            $bank = array("BCA", "BNI", "MANDIRI", "BRI", "COD");
+            for ($i = 0; $i < 4; $i++) {
+                if ($pembayaran == $bank[$i]) {
+                    $rekening = $this->M_Admin->getRekening($bank[$i]);
+                }
             }
+            $rekening = json_decode(json_encode($rekening), true);
+            $rekening = $rekening["0"];
+            $nomer = $rekening['nomer'];
+            $an = $rekening['a/n'];
+            $data = array(
+                'booking' => $getBooking,
+                'metode_pembayaran' => $pembayaran,
+                'an' => $an,
+                'rekening' => $nomer,
+                'profile' => $profile,
+                'foto_profile' => $gambar,
+                'title' => 'Pembayaran',
+                'css' =>  'pembayaran.css'
+            );
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/transaksi', $data);
+            $this->load->view('/user/layout/footer');
         }
-        $rekening = json_decode(json_encode($rekening), true);
-        $rekening = $rekening["0"];
-        $nomer = $rekening['nomer'];
-        $an = $rekening['a/n'];
-        $data = array(
-            'booking' => $getBooking,
-            'metode_pembayaran' => $pembayaran,
-            'an' => $an,
-            'rekening' => $nomer,
-            'profile' => $profile,
-            'foto_profile' => $gambar,
-            'title' => 'Setting',
-            'css' => 'setting2.css'
-        );
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/transaksi', $data);
-        $this->load->view('/user/layout/footer');
     }
 }

@@ -16,6 +16,9 @@ class Booking extends CI_Controller
             'title' => 'Daftar Booking',
             'css' => 'kendaraan.css'
         );
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
         $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/booking', $data);
         $this->load->view('/admin/layout/footer');
@@ -24,15 +27,6 @@ class Booking extends CI_Controller
     {
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";

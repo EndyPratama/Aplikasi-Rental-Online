@@ -81,14 +81,14 @@
 							if ($i < 5) {
 								$row++;
 								$i++;
-								$harga = number_format($p->harga, 0, ',', '.');
+								$supir = number_format($p->supir, 0, ',', '.');
 						?>
 								<input id="invoice<?= $row; ?>" type="hidden" value="<?= $p->invoice; ?>">
 								<input id="status<?= $row; ?>" type="hidden" value="<?= $p->status; ?>">
-								<input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $p->nama; ?>">
+								<input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $p->kendaraan; ?>">
 								<input id="tanggal<?= $row; ?>" type="hidden" value="<?= $p->tanggal; ?>">
 								<input id="durasi<?= $row; ?>" type="hidden" value="<?= $p->durasi; ?>">
-								<input id="sopir<?= $row; ?>" type="hidden" value="0">
+								<input id="sopir<?= $row; ?>" type="hidden" value="<?= $supir; ?>">
 								<?php
 								$harga = number_format($p->harga, 0, ',', '.');
 								$total = number_format($p->total, 0, ',', '.');

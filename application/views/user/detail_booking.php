@@ -62,8 +62,7 @@
                     <div class="form-group">
                         <label for="inputAddress">Metode Pembayaran</label>
                         <select class="custom-select" name="metode_pembayaran">
-                            <option value="COD" selected>Cash On Delivery</option>
-                            <option value="BNI">BNI [009<?= rand(); ?>]</option>
+                            <option value="BNI" selected>BNI [009<?= rand(); ?>]</option>
                             <option value="BRI">BRI [002<?= rand(); ?>]</option>
                             <option value="BCA">BCA [014<?= rand(); ?>]</option>
                             <option value="MANDIRI">MANDIRI [008<?= rand(); ?>]</option>
