@@ -54,16 +54,15 @@ class Profile extends CI_Controller
             'whislist' => $favorite,
             'css' => 'profile3.css'
         );
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
         $this->load->view('/user/layout/header', $data);
         $this->load->view('/user/profile', $data);
         $this->load->view('/user/layout/footer');
     }
     public function history($data = NULL)
     {
-        // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
         // echo $user;
         $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
