@@ -39,11 +39,11 @@
                                             <div class="form-group col-md-6">
                                                 <input type="hidden" name="idUser" value="<?= $this->session->userdata('id'); ?>">
                                                 <label for="nama">Nama : </label>
-                                                <input type="text" class="form-control" id="nama" name="peminjam" autofocus>
+                                                <input type="text" class="form-control" value="<?= $nama; ?>" id="nama" name="peminjam" readonly>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="alamat">Alamat : </label>
-                                                <input type="text" class="form-control" id="alamat" name="alamat">
+                                                <input type="text" class="form-control" id="alamat" name="alamat" autofocus>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="kendaraan">Kendaraan : </label>

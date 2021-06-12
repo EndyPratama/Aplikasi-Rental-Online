@@ -74,7 +74,12 @@ class Kendaraan extends CI_Controller
 
         $kendaraan = $this->M_Kendaraan->getDetailById($id);
         $iklan = $this->M_Kendaraan->getIklan($merk);
+
         $user = $this->session->userdata('id');
+        $nama = $this->M_Profile->cekNama($user);
+        $nama = json_decode(json_encode($nama), true);
+        $nama = $nama["0"];
+        $nama = $nama['name'];
 
         $whislist = $this->M_Kendaraan->getWhislist($user, $id);
         if ($whislist == NULL) {
@@ -101,6 +106,7 @@ class Kendaraan extends CI_Controller
 
         $data = array(
             'detail' => $kendaraan,
+            'nama' => $nama,
             'iklan' => $iklan,
             'review' => $review,
             'total' => $total,
@@ -130,6 +136,7 @@ class Kendaraan extends CI_Controller
         $profile = $profile["0"];
         $profile = $profile['gambar'];
 
+        $nama = $this->input->post('peminjam');
         $alamat = $this->input->post('alamat');
         $kendaraan = $this->input->post('kendaraan');
         $gambar = $this->input->post('gambar');
@@ -138,6 +145,8 @@ class Kendaraan extends CI_Controller
 
         $data = array(
             'id' => $id,
+            'nama' => $nama,
+            'alamat' => $alamat,
             'durasi' => $durasi,
             'profile' => $profile,
             'kendaraan' => $kendaraan,
@@ -163,20 +172,45 @@ class Kendaraan extends CI_Controller
         $tgl_kmbl = $this->input->post('tgl_kmbl');
         $metode_pembayaran = $this->input->post('metode_pembayaran');
         $durasi = $this->input->post('quant[2]');
+        $kendaraan = $this->input->post('nama_kendaraan');
 
         $supir = $this->input->post('supir');
+        if ($supir == NULL) {
+            $supir = 0;
+        }
         $harga_kendaraan = $this->input->post('kendaraan');
         $total = $this->input->post('total');
+
+        $d = date('d');
+        $m = date('m');
+        $y = date('Y');
+        $iduser = $this->M_Profile->cekId($nama);
+        $iduser = json_decode(json_encode($iduser), true);
+        $iduser = $iduser["0"];
+        $iduser = $iduser['id'];
+
+        $idmbl = $this->M_Kendaraan->getIdKendaraan($kendaraan);
+        $idmbl = json_decode(json_encode($idmbl), true);
+        $idmbl = $idmbl["0"];
+        $idmbl = $idmbl['id_kendaraan'];
+        $kode = "$iduser$idmbl";
+
+        $invoice = "INV/MBL/$y/$m/$d/$kode";
+
         $data = array(
-            'nama' => $nama,
+            'id_user' => $this->session->userdata('id'),
+            'peminjam' => $nama,
             'alamat' => $alamat,
+            'kendaraan' => $kendaraan,
+            'durasi' => $durasi,
             'tgl_pnjm' => $tgl_pnjm,
             'tgl_kmbl' => $tgl_kmbl,
             'metode_pembayaran' => $metode_pembayaran,
-            'durasi' => $durasi,
+            'harga_kendaraan' => $harga_kendaraan,
             'supir' => $supir,
-            'kendaraan' => $harga_kendaraan,
-            'total' => $total
+            'total' => $total,
+            'bukti_transaksi' => "",
+            'invoice' => $invoice,
             // 'action' => 0
         );
         echo "<pre>";
@@ -186,9 +220,7 @@ class Kendaraan extends CI_Controller
     // Pesan kendaraan
     public function pesan()
     {
-        $id = $this->input->post('idUser');
-        $cekUser = $this->M_Kendaraan->cekUser($id);
-        $user = json_decode(json_encode($cekUser), true);
+        $user = $this->session->userdata('id');
 
 
         if ($user == NULL) {
@@ -201,26 +233,59 @@ class Kendaraan extends CI_Controller
             $this->load->view('/user/laporan', $data);
             $this->load->view('/user/layout/footer');
         } else {
-            $user = $user["0"];
-            $user = $user['id'];
-            $peminjam = $this->input->post('peminjam');
+
+            // 
+            $nama = $this->input->post('nama');
             $alamat = $this->input->post('alamat');
-            $kendaraan = $this->input->post('kendaraan');
-            $durasi = $this->input->post('durasi');
-            $total = $this->input->post('total');
+            $tgl_pnjm = $this->input->post('tgl_pnjm');
+            $tgl_kmbl = $this->input->post('tgl_kmbl');
+            $metode_pembayaran = $this->input->post('metode_pembayaran');
+            $durasi = $this->input->post('quant[2]');
+            $kendaraan = $this->input->post('nama_kendaraan');
+
+            $supir = $this->input->post('supir');
+            if ($supir == NULL) {
+                $supir = 0;
+            }
 
             $profile = $this->M_Profile->getGambar($user);
             $profile = json_decode(json_encode($profile), true);
             $profile = $profile["0"];
             $profile = $profile['gambar'];
 
+            $harga_kendaraan = $this->input->post('kendaraan');
+            $total = $this->input->post('total');
+
+            $d = date('d');
+            $m = date('m');
+            $y = date('Y');
+            $iduser = $this->M_Profile->cekId($nama);
+            $iduser = json_decode(json_encode($iduser), true);
+            $iduser = $iduser["0"];
+            $iduser = $iduser['id'];
+
+            $idmbl = $this->M_Kendaraan->getIdKendaraan($kendaraan);
+            $idmbl = json_decode(json_encode($idmbl), true);
+            $idmbl = $idmbl["0"];
+            $idmbl = $idmbl['id_kendaraan'];
+            $kode = "$iduser$idmbl";
+
+            $invoice = "INV/MBL/$y/$m/$d/$kode";
+
             $data = array(
-                'id_user' => $user,
-                'peminjam' => $peminjam,
+                'id_user' => $this->session->userdata('id'),
+                'peminjam' => $nama,
                 'alamat' => $alamat,
                 'kendaraan' => $kendaraan,
                 'durasi' => $durasi,
-                'harga' => $total,
+                'tgl_pnjm' => $tgl_pnjm,
+                'tgl_kmbl' => $tgl_kmbl,
+                'metode_pembayaran' => $metode_pembayaran,
+                'harga' => $harga_kendaraan,
+                'supir' => $supir,
+                'total' => $total,
+                'bukti_transaksi' => "",
+                'invoice' => $invoice,
                 'action' => 0
             );
             // echo "<pre>";

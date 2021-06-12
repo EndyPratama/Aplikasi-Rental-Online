@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="<?= base_url('/user/kendaraan/cek'); ?>" method="POST">
+    <form action="<?= base_url('/user/kendaraan/pesan'); ?>" method="POST">
         <div class="row">
             <div class="col">
                 <h3 class="my-3">Kendaraan yang dipesan : </h3>
@@ -7,10 +7,12 @@
                     <div class="col-3">
                         <div class="detail_gambar" style="width: 100%;">
                             <img src="<?= base_url('vendor/public/img/' . $gambar); ?>" alt="" style="width: 100%;">
+                            <input type="hidden" value="<?= $gambar; ?>" name="gambar">
                         </div>
                     </div>
                     <div class="col-9">
                         <p><?= $kendaraan; ?></p>
+                        <input type="hidden" value="<?= $kendaraan; ?>" name="nama_kendaraan">
                         <p>Pemilik : Mr. X</p>
                         <div class="row" style="margin:0;">
                             <p>Durasi :</p>
@@ -40,11 +42,11 @@
 
                     <div class="form-group">
                         <label for="inputNama">Nama</label>
-                        <input type="text" class="form-control" id="inputNama" name="nama" placeholder="Nama Peminjam">
+                        <input type="text" class="form-control" id="inputNama" value="<?= $nama; ?>" name="nama" readonly>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="alamat" placeholder="Alamat Rumah Anda ....">
+                        <input type="text" class="form-control" id="inputAddress" value="<?= $alamat; ?>" name="alamat" placeholder="Alamat Rumah Anda ....">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">

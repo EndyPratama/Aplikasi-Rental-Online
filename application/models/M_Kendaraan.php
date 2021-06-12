@@ -5,7 +5,14 @@ class M_Kendaraan extends CI_Model
 {
     // protected $komik = 'komik';
     // protected $member = 'member';
-
+    public function getIdKendaraan($nama)
+    {
+        $this->db->select("id_kendaraan");
+        $this->db->from("kendaraan");
+        $this->db->where('nama', $nama);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getKendaraan()
     {
         $this->db->select("id_kendaraan,nama,gambar,tahun,harga");
@@ -96,6 +103,18 @@ class M_Kendaraan extends CI_Model
         $this->db->select("id, peminjam, alamat, kendaraan, durasi, booking.harga");
         $this->db->from("booking");
         $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
+        $this->db->where('action = 0');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getBookingById()
+    {
+
+        // $this->db->select("id, peminjam, alamat, kendaraan, durasi, booking.harga");
+        $this->db->select("*");
+        $this->db->from("booking");
+        // $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
         $this->db->where('action = 0');
         $query = $this->db->get();
         return $query->result();

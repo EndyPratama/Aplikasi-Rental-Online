@@ -9,7 +9,7 @@ class Profile extends CI_Controller
         $this->load->model('M_Profile');
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
-        $this->load->model('M_Profile');
+        $this->load->model('M_Admin');
     }
     public function index()
     {
@@ -259,8 +259,48 @@ class Profile extends CI_Controller
         echo "<pre>";
         print_r($data);
         echo "</pre>";
-
-
         redirect(base_url('/user/profile/setting'));
+    }
+    public function transaksi()
+    {
+        $user = $this->session->userdata('id');
+        $gambar = $this->M_Profile->getGambar($user);
+        $gambar = json_decode(json_encode($gambar), true);
+        $gambar = $gambar["0"];
+        $gambar = $gambar['gambar'];
+
+        $profile = $this->M_Profile->getProfileUser($user);
+
+        $getBooking = $this->M_Kendaraan->getBookingById($user);
+        $pembayaran = json_decode(json_encode($getBooking), true);
+        $pembayaran = $pembayaran["0"];
+        $pembayaran = $pembayaran['metode_pembayaran'];
+
+        $bank = array("BCA", "BNI", "MANDIRI", "BRI");
+        for ($i = 0; $i < 4; $i++) {
+            if ($pembayaran == $bank[$i]) {
+                $rekening = $this->M_Admin->getRekening($bank[$i]);
+            }
+        }
+        $rekening = json_decode(json_encode($rekening), true);
+        $rekening = $rekening["0"];
+        $nomer = $rekening['nomer'];
+        $an = $rekening['a/n'];
+        $data = array(
+            'booking' => $getBooking,
+            'metode_pembayaran' => $pembayaran,
+            'an' => $an,
+            'rekening' => $nomer,
+            'profile' => $profile,
+            'foto_profile' => $gambar,
+            'title' => 'Setting',
+            'css' => 'setting2.css'
+        );
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        $this->load->view('/user/layout/header', $data);
+        $this->load->view('/user/transaksi', $data);
+        $this->load->view('/user/layout/footer');
     }
 }
