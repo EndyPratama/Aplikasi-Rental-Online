@@ -248,14 +248,20 @@
 					if ($i < 5) :
 						$i++;
 				?>
-						<div class="pesanan_detail">
-							<div class="pesanan_head">
-								<img src="<?= base_url('vendor/public/img/' . $w->gambar); ?>" alt="">
+						<a href="<?= base_url('user/kendaraan/mobil/' . $w->id_kendaraan); ?>">
+							<div class="pesanan_detail">
+								<div class="pesanan_head">
+									<img src="<?= base_url('vendor/public/img/' . $w->gambar); ?>" alt="">
+								</div>
+								<div class="pesanan_body">
+									<div class="nama">
+
+										<?= $w->nama; ?>
+
+									</div>
+								</div>
 							</div>
-							<div class="pesanan_body">
-								<div class="nama"><?= $w->nama; ?></div>
-							</div>
-						</div>
+						</a>
 				<?php
 					endif;
 				endforeach;

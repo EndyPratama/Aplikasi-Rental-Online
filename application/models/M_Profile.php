@@ -95,7 +95,8 @@ class M_Profile extends CI_Model
     }
     public function getWhislist($user)
     {
-        $this->db->select("kendaraan.harga,kendaraan.gambar,kendaraan.nama");
+        // $this->db->select("kendaraan.harga,kendaraan.gambar,kendaraan.nama");
+        $this->db->select("*");
         $this->db->from("whislist,kendaraan");
         $where = "whislist.id_kendaraan = kendaraan.id_kendaraan and whislist.id_user = $user";
         $this->db->where($where);
