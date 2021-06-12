@@ -21,6 +21,11 @@
     <!-- CDN Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <!------ Include the above in your HEAD tag ---------->
+
     <!-- CDN JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <title><?= $title; ?></title>
@@ -39,7 +44,10 @@
             <nav>
                 <div class="row">
                     <a class="logo" href="/">
-                        <div class="logo_name mr-3" style=" color:#fff;font-size:32px;"><i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i></div>
+                        <div class="logo_name mr-3" style=" color:#fff;font-size:32px;">
+                            <i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i>
+                            <span style="font-size: 16px;"> V.1.0</span>
+                        </div>
                     </a>
                     <ul class="nav__links">
                         <li><a href="<?= base_url('/home'); ?>">Home</a></li>

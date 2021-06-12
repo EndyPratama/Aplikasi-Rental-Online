@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-2" id="sidebar">
-            <form action="<?= base_url('/kendaraan/list'); ?>" method="POST">
+            <form action="<?= base_url('/user/kendaraan/'); ?>" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
                     <div class="input-group-append">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </form>
-            <form action="<?= base_url('/kendaraan/filter'); ?>" method="post">
+            <form action="<?= base_url('/user/kendaraan/filter'); ?>" method="post">
                 <button type="reset" class="reset btn btn-outline-dark">Reset Filter</button>
                 <!-- <a type="reset">Reset Filter</a> -->
                 <a href="#submenu1" class="sub" data-toggle="collapse">

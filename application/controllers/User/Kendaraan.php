@@ -126,6 +126,71 @@ class Kendaraan extends CI_Controller
         $cekUser = $this->M_Kendaraan->cekUser($id);
         $user = json_decode(json_encode($cekUser), true);
 
+        $profile = $this->M_Profile->getGambar($id);
+        $profile = json_decode(json_encode($profile), true);
+        $profile = $profile["0"];
+        $profile = $profile['gambar'];
+
+        $alamat = $this->input->post('alamat');
+        $kendaraan = $this->input->post('kendaraan');
+        $gambar = $this->input->post('gambar');
+        $durasi = $this->input->post('durasi');
+        $harga = $this->input->post('harga');
+
+        $data = array(
+            'id' => $id,
+            'durasi' => $durasi,
+            'profile' => $profile,
+            'kendaraan' => $kendaraan,
+            'gambar' => $gambar,
+            'harga' => $harga,
+            'foto_profile' => $profile,
+            'title' => 'Detail Pesanan',
+            'css' => 'laporan.css'
+        );
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+
+        $this->load->view('/user/layout/header', $data);
+        $this->load->view('/user/detail_booking', $data);
+        $this->load->view('/user/layout/footer');
+    }
+    public function cek()
+    {
+        $nama = $this->input->post('nama');
+        $alamat = $this->input->post('alamat');
+        $tgl_pnjm = $this->input->post('tgl_pnjm');
+        $tgl_kmbl = $this->input->post('tgl_kmbl');
+        $metode_pembayaran = $this->input->post('metode_pembayaran');
+        $durasi = $this->input->post('quant[2]');
+
+        $supir = $this->input->post('supir');
+        $harga_kendaraan = $this->input->post('kendaraan');
+        $total = $this->input->post('total');
+        $data = array(
+            'nama' => $nama,
+            'alamat' => $alamat,
+            'tgl_pnjm' => $tgl_pnjm,
+            'tgl_kmbl' => $tgl_kmbl,
+            'metode_pembayaran' => $metode_pembayaran,
+            'durasi' => $durasi,
+            'supir' => $supir,
+            'kendaraan' => $harga_kendaraan,
+            'total' => $total
+            // 'action' => 0
+        );
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
+    // Pesan kendaraan
+    public function pesan()
+    {
+        $id = $this->input->post('idUser');
+        $cekUser = $this->M_Kendaraan->cekUser($id);
+        $user = json_decode(json_encode($cekUser), true);
+
 
         if ($user == NULL) {
             $data = array(

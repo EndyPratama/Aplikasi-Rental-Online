@@ -23,7 +23,7 @@
 						<div class="row">
 							<div class="col">
 								<div class="submenu transaksi">
-									<a href="<?= base_url('user/transaksi/daftar_transaksi'); ?>">
+									<a href="<?= base_url('user/profile/history'); ?>">
 										<i class='bx bx-cart'></i>
 										<div class="deskripsi"><small>Transaksi</small></div>
 									</a>
@@ -50,7 +50,7 @@
 							</div>
 							<div class="col">
 								<div class="submenu history">
-									<a href="<?= base_url('user/profile/history'); ?>">
+									<a href="<?= base_url('user/profile/menunggu_ulasan'); ?>">
 										<i class='bx bx-history'></i>
 										<div class="deskripsi"><small>History Peminjaman</small></div>
 									</a>
