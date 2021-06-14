@@ -32,8 +32,6 @@ class Contact extends CI_Controller
             'history' => $history,
             'profile' => $profile,
             'foto_profile' => $profile,
-            'foto_profile' => $profile,
-            'profile' => $profile,
             'notif' => ''
         );
         // echo "<pre>";
