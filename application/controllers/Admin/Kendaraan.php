@@ -59,18 +59,20 @@ class Kendaraan extends CI_Controller
     public function insert()
     {
         $gambar = $_FILES['gambar'];
-        if ($gambar=''){}else{
+        if ($gambar = '') {
+        } else {
             $config['upload_path'] = './vendor/public/img';
             $config['allowed_types'] = 'jpg|png|jfif';
-            
+
             $this->load->library('upload', $config);
-            if(!$this->upload->do_upload('gambar')){
-                echo "Upload gagal"; die();
-            }else{
+            if (!$this->upload->do_upload('gambar')) {
+                echo "Upload gagal";
+                die();
+            } else {
                 $gambar = $this->upload->data('file_name');
             }
         }
-        
+
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama', true)),
             'mesin' => htmlspecialchars($this->input->post('mesin', true)),

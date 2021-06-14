@@ -71,12 +71,18 @@
                                 <p><em>Jika bank anda sama maka hilangkan 3 digit angka depannya.</em></p>
                             </div>
                             <div class="card-footer bg-transparent border-success">
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Launch demo modal
+                                </button> -->
                                 <?php
                                 if ($b->bukti_transaksi == Null) {
                                 ?>
-                                    <div class="alert alert-danger" role="alert">
+                                    <!-- <div class="alert alert-danger" role="alert">
                                         Upload Bukti Transaksi
-                                    </div>
+                                    </div> -->
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                        Upload Bukti Transaksi
+                                    </button>
                                 <?php
                                 } else if ($b->bukti_transaksi != Null && $b->action == 0) {
                                 ?>
@@ -92,9 +98,27 @@
                                 <?php
                                 }
                                 ?>
-
-
-
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Masukkan Gambar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="">
+                                            <div class="modal-body">
+                                                <input type="file">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
