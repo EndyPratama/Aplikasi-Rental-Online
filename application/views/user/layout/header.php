@@ -58,9 +58,9 @@
                         </div>
                     </a>
                     <ul class="nav__links">
-                        <!-- <li><a href="<?= base_url('user/home'); ?>">Home</a></li> -->
-                        <li><a href="<?= base_url('user/kendaraan'); ?>">Home</a></li>
-                        <!-- <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li> -->
+                        <li><a href="<?= base_url('user/home'); ?>">Home</a></li>
+                        <!-- <li><a href="<?= base_url('user/kendaraan'); ?>">Home</a></li> -->
+                        <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
                         <?php
                         $user = $this->session->userdata('id');
                         if ($user != 0) {
