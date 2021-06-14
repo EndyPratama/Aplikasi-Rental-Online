@@ -1,17 +1,17 @@
 .carousel-contain{
-    background-color: #24252a;
+    background-color: #838385;
 }
 
-.carousel-item{
-    height: 50%;
-    width: 50%;
-    margin: 0px 0px 100px 300px;
+img.tengah{
+    height: 40%;
+    width: 40%;
+    margin-left: 325px;
 }
 
-.carousel-item img{
-    margin-top: 100px;
-}
-
-.desc{
+.jumbotron{
+    background-color: #838385;
+    background-size: cover;
     text-align: center;
+    height: 400px;
+    margin-bottom: 0px;
 }
