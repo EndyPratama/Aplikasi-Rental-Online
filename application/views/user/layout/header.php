@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
-    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header1.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header2.css') ?>">
 
     <!-- CDN fontawsome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -58,8 +58,9 @@
                         </div>
                     </a>
                     <ul class="nav__links">
-                        <li><a href="<?= base_url('user/home'); ?>">Home</a></li>
-                        <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
+                        <!-- <li><a href="<?= base_url('user/home'); ?>">Home</a></li> -->
+                        <li><a href="<?= base_url('user/kendaraan'); ?>">Home</a></li>
+                        <!-- <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li> -->
                         <?php
                         $user = $this->session->userdata('id');
                         if ($user != 0) {

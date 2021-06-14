@@ -71,14 +71,13 @@
                 </a>
                 <span class="tooltip">Kendaraan</span>
             </li>
-            <li>
+            <!-- <li>
                 <a href="<?= base_url('Admin/Lokasi'); ?>">
-                    <!-- saat active tambah bx-flashing -->
                     <i class='bx bxs-map'></i>
                     <span class="links_name">Kendaraan</span>
                 </a>
                 <span class="tooltip">Lokasi</span>
-            </li>
+            </li> -->
             <li>
                 <a href="<?= base_url('Admin/Pesan/'); ?>">
                     <i class='bx bx-message-dots'>

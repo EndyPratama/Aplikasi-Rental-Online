@@ -2,7 +2,7 @@
     <div class="row gutters">
         <?php foreach ($profile as $p) : ?>
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
+                <div class="card h-10">
                     <div class="card-body">
                         <div class="account-settings">
                             <div class="user-profile">
@@ -13,14 +13,16 @@
                                 </div>
                                 <h5 class="user-name mt-3"><?= $p->nama; ?></h5>
                                 <h6 class="user-email">@<?= $p->username; ?></h6>
-                                <div class="mt-3">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fa fa-fw fa-camera"></i>
-                                        <span>Change Photo</span>
-                                    </button>
-                                </div>
+                                <!-- <div class="mt-3">
+                                    <form action="">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-fw fa-camera"></i>
+                                            <span>Change Photo</span>
+                                        </button>
+                                    </form>
+                                </div> -->
                             </div>
-                            <div class="px-xl-3 mx-3 mt-5">
+                            <!-- <div class="px-xl-3 mx-3 mt-5">
                                 <h6>Change Password</h6>
                                 <form action="" method="POST">
                                     <div class="form-group">
@@ -33,7 +35,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -70,18 +72,25 @@
                                         <input type="text" class="form-control" name="phone" id="phone" value="<?= $p->phone; ?>">
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="saldo">saldo</label>
                                         <input type="text" class="form-control" name="saldo" id="saldo" placeholder="Enter saldo number" readonly>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="ttl">Tanggal lahir</label>
                                         <input type="date" class="form-control" name="ttl" id="ttl" value="<?= $p->ttl; ?>">
                                     </div>
                                 </div>
+                                <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="ttl">Upload Foto</label>
+                                        <input type="file" class="form-control" name="image">
+                                    </div>
+                                </div> -->
+
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

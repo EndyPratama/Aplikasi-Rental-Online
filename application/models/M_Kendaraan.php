@@ -148,14 +148,6 @@ class M_Kendaraan extends CI_Model
     {
         $this->db->insert('booking', $data);
     }
-    // $model = $this->input->post('model');
-    //     // SELECT DISTINCT model, merk FROM `kendaraan` WHERE 1
-    //     $tahun = $this->input->post('tahun');
-    //     // SELECT DISTINCT tahun FROM `kendaraan` WHERE 1
-    //     $mesin = $this->input->post('mesin');
-    //     // SELECT DISTINCT mesin FROM `kendaraan` WHERE 1
-    //     $warna = $this->input->post('warna');
-    //     // SELECT DISTINCT warna FROM `kendaraan` WHERE 1
     public function getMerk()
     {
         $this->db->select("DISTINCT(merk)");
@@ -203,23 +195,38 @@ class M_Kendaraan extends CI_Model
     }
     public function getKendaraanByFilter($model = '', $tahun = '', $mesin = '', $warna = '')
     {
-        $this->db->select("*");
+        $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
         $this->db->from("kendaraan");
+        $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
         if ($model != NULL) {
-            $this->db->where('model', $model);
+            $this->db->where('kendaraan.model', $model);
         }
         if ($tahun != NULL) {
-            $this->db->where('tahun', $tahun);
+            $this->db->where('kendaraan.tahun', $tahun);
         }
         if ($mesin != NULL) {
-            $this->db->where('mesin', $mesin);
+            $this->db->where('kendaraan.mesin', $mesin);
         }
         if ($warna != NULL) {
-            $this->db->where('warna', $warna);
+            $this->db->where('kendaraan.warna', $warna);
         }
         // $this->db->where($array);
+        $this->db->group_by("kendaraan.nama");
+        $this->db->order_by('review', 'DESC');
         $query = $this->db->get();
         return $query->result();
+
+        // $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
+        // $this->db->from("kendaraan");
+        // $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
+        // $where = "kendaraan.nama LIKE '%$keyword%' OR kendaraan.merk LIKE '%$keyword%'";
+        // // $this->db->like('merk', $keyword);
+        // // $this->db->or_like('model', $keyword);
+        // $this->db->where($where);
+        // $this->db->group_by("kendaraan.nama");
+        // $this->db->order_by('review', 'DESC');
+        // $query = $this->db->get();
+        // return $query->result();
     }
     public function getWhislist($user, $kendaraan)
     {
