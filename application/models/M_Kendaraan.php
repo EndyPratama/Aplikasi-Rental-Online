@@ -51,8 +51,8 @@ class M_Kendaraan extends CI_Model
     public function getDetailById($id)
     {
         $this->db->select("*");
-        $this->db->from("kendaraan, user");
-        $where = "kendaraan.userid = user.id and kendaraan.id_kendaraan = $id";
+        $this->db->from("kendaraan");
+        $where = "id_kendaraan = $id";
         $this->db->where($where);
         // $this->db->where('kendaraan.id_kendaraan', $id);
         $query = $this->db->get();

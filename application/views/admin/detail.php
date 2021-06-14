@@ -15,7 +15,6 @@
                         <div class="card-header rounded">
                             <h2>Rp <?= $harga; ?>/hari</h2>
                             <h6><?= $d->nama; ?></h6>
-                            <h6><small><?= $d->tahun; ?></small> <small><em>[<?= $d->name; ?>]</em></small></h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
