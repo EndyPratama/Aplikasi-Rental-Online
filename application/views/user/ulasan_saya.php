@@ -76,8 +76,8 @@
                             <div class="col-4">
                                 <div class="action" style="display: flex; flex-direction:column;">
                                     <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#exampleModal"><i class='bx bxl-telegram'>Lihat Ulasan</i></a>
-                                    <a href="" class="btn btn-outline-success"><i class='bx bx-notepad'>Sewa Lagi</i></a>
-                                    <a href="" class="btn btn-outline-warning"><i class='bx bx-message-square-detail'>Hubungi Admin</i></a>
+                                    <a href="<?= base_url('/user/kendaraan/mobil/' . $u->id_kendaraan); ?>" class="btn btn-outline-success"><i class='bx bx-notepad'>Sewa Lagi</i></a>
+                                    <a href="<?= base_url('/user/contact'); ?>" class="btn btn-outline-warning"><i class='bx bx-message-square-detail'>Hubungi Admin</i></a>
                                 </div>
                             </div>
                         </div>

@@ -199,13 +199,13 @@
                                         <p id="receive-tanggal"></p>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <!-- <div class="col-5">
                                     <div class="right-detail">
                                         <a href="#" class="btn btn-success">Beri ulasan</a>
                                         <a href="#" class="btn btn-warning">Sewa Lagi</a>
                                         <a href="#" class="btn btn-secondary">Tanya Penjual</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="content-body">

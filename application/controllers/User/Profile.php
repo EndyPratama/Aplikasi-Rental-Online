@@ -10,6 +10,9 @@ class Profile extends CI_Controller
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
         $this->load->model('M_Admin');
+        $this->load->library('session');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
     }
     public function index()
     {
@@ -322,5 +325,60 @@ class Profile extends CI_Controller
             $this->load->view('/user/transaksi', $data);
             $this->load->view('/user/layout/footer');
         }
+    }
+    public function uploadbukti($id)
+    {
+        $data['bookings'] = $this->db->get('booking')->result_array();
+
+        $bukti_transaksi = $_FILES['bukti_transaksi'];
+        // echo $bukti_transaksi;
+        if ($bukti_transaksi = '') {
+            // echo "Masuk If ";
+        } else {
+            // echo "Masuk Else ";
+            $config['upload_path'] = './vendor/public/img';
+            $config['allowed_types'] = 'jpg|png|jfif';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('bukti_transaksi')) {
+                echo "Upload gagal";
+                die();
+            } else {
+                $bukti_transaksi = $this->upload->data('file_name');
+            }
+
+            // echo $id;
+            // echo $bukti_transaksi;
+        }
+
+        // $gambar = $_FILES['gambar'];
+        // if ($gambar = '') {
+        // } else {
+        //     $config['upload_path'] = './vendor/public/img';
+        //     $config['allowed_types'] = 'jpg|png|jfif';
+
+        //     $this->load->library('upload', $config);
+        //     if (!$this->upload->do_upload('gambar')) {
+        //         echo "Upload gagal";
+        //         die();
+        //     } else {
+        //         $gambar = $this->upload->data('file_name');
+        //     }
+        // }
+
+        $this->db->set('bukti_transaksi', $bukti_transaksi);
+        $this->db->where('id', $id);
+        $this->db->update('booking');
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert">' .
+                'Edit data kendaraan berhasil' .
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>'
+        );
+        redirect(base_url('user/profile'));
     }
 }
