@@ -57,9 +57,10 @@
                         <?= form_error('ketersediaan', '<small class="text-danger" pl-1>', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="gambar"><b>Upload Photo</b></label>
+                        <label for="gambar"><b>Upload Gambar</b></label>
                         <div class="file-upload-wrapper">
-                            <input type="file" id="input-file-now" class="file-upload" />
+                        <input type="file" class="form-control" id="gambar" name="gambar" value="<?= set_value('gambar'); ?>">
+                        <?= form_error('gambar', '<small class="text-danger" pl-1>', '</small>'); ?>
                         </div>
                     </div>
                 </div>

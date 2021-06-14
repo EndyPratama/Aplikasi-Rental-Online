@@ -5,7 +5,14 @@ class M_Kendaraan extends CI_Model
 {
     // protected $komik = 'komik';
     // protected $member = 'member';
-
+    public function getIdKendaraan($nama)
+    {
+        $this->db->select("id_kendaraan");
+        $this->db->from("kendaraan");
+        $this->db->where('nama', $nama);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getKendaraan()
     {
         $this->db->select("id_kendaraan,nama,gambar,tahun,harga");
@@ -44,8 +51,8 @@ class M_Kendaraan extends CI_Model
     public function getDetailById($id)
     {
         $this->db->select("*");
-        $this->db->from("kendaraan, user");
-        $where = "kendaraan.userid = user.id and kendaraan.id_kendaraan = $id";
+        $this->db->from("kendaraan");
+        $where = "id_kendaraan = $id";
         $this->db->where($where);
         // $this->db->where('kendaraan.id_kendaraan', $id);
         $query = $this->db->get();
@@ -101,6 +108,18 @@ class M_Kendaraan extends CI_Model
         return $query->result();
     }
 
+    public function getBookingById()
+    {
+
+        // $this->db->select("id, peminjam, alamat, kendaraan, durasi, booking.harga");
+        $this->db->select("*");
+        $this->db->from("booking");
+        // $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
+        $this->db->where('action = 0');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getIklan($merk)
     {
         $this->db->select("*");
@@ -129,14 +148,6 @@ class M_Kendaraan extends CI_Model
     {
         $this->db->insert('booking', $data);
     }
-    // $model = $this->input->post('model');
-    //     // SELECT DISTINCT model, merk FROM `kendaraan` WHERE 1
-    //     $tahun = $this->input->post('tahun');
-    //     // SELECT DISTINCT tahun FROM `kendaraan` WHERE 1
-    //     $mesin = $this->input->post('mesin');
-    //     // SELECT DISTINCT mesin FROM `kendaraan` WHERE 1
-    //     $warna = $this->input->post('warna');
-    //     // SELECT DISTINCT warna FROM `kendaraan` WHERE 1
     public function getMerk()
     {
         $this->db->select("DISTINCT(merk)");
@@ -184,23 +195,38 @@ class M_Kendaraan extends CI_Model
     }
     public function getKendaraanByFilter($model = '', $tahun = '', $mesin = '', $warna = '')
     {
-        $this->db->select("*");
+        $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
         $this->db->from("kendaraan");
+        $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
         if ($model != NULL) {
-            $this->db->where('model', $model);
+            $this->db->where('kendaraan.model', $model);
         }
         if ($tahun != NULL) {
-            $this->db->where('tahun', $tahun);
+            $this->db->where('kendaraan.tahun', $tahun);
         }
         if ($mesin != NULL) {
-            $this->db->where('mesin', $mesin);
+            $this->db->where('kendaraan.mesin', $mesin);
         }
         if ($warna != NULL) {
-            $this->db->where('warna', $warna);
+            $this->db->where('kendaraan.warna', $warna);
         }
         // $this->db->where($array);
+        $this->db->group_by("kendaraan.nama");
+        $this->db->order_by('review', 'DESC');
         $query = $this->db->get();
         return $query->result();
+
+        // $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
+        // $this->db->from("kendaraan");
+        // $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
+        // $where = "kendaraan.nama LIKE '%$keyword%' OR kendaraan.merk LIKE '%$keyword%'";
+        // // $this->db->like('merk', $keyword);
+        // // $this->db->or_like('model', $keyword);
+        // $this->db->where($where);
+        // $this->db->group_by("kendaraan.nama");
+        // $this->db->order_by('review', 'DESC');
+        // $query = $this->db->get();
+        // return $query->result();
     }
     public function getWhislist($user, $kendaraan)
     {
@@ -272,9 +298,9 @@ class M_Kendaraan extends CI_Model
     }
     public function menungguUlasan($id)
     {
-        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, transaction.tanggal");
-        $this->db->from("transaction,user, kendaraan");
-        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = $id AND transaction.ulasan = 0";
+        $this->db->select("booking.id_user, kendaraan.id_kendaraan, transaction.id_transaksi, booking.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, transaction.tanggal");
+        $this->db->from("transaction, kendaraan, booking");
+        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = '$id' AND booking.kendaraan = kendaraan.nama AND transaction.ulasan = 0";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -286,9 +312,14 @@ class M_Kendaraan extends CI_Model
     }
     public function ulasanSaya($id)
     {
-        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, transaction.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, review.rating, transaction.tanggal, review.ulasan");
-        $this->db->from("transaction,user, kendaraan, review");
-        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = $id AND transaction.ulasan = 1 AND transaction.id_transaksi = review.transaksi";
+        $this->db->select("booking.id, kendaraan.id_kendaraan, transaction.id_transaksi, booking.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, review.rating, transaction.tanggal, review.ulasan");
+        $this->db->from("transaction, kendaraan, review, booking");
+        $where = "transaction.user_id = booking.id_user AND 
+                  transaction.kendaraan_id = kendaraan.id_kendaraan AND 
+                  TRANSACTION.user_id = $id AND 
+                  transaction.ulasan = 1 AND 
+                  booking.kendaraan = kendaraan.nama AND
+                  transaction.id_transaksi = review.transaksi";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -300,9 +331,9 @@ class M_Kendaraan extends CI_Model
     }
     public function ulasan_kendaraan($transaksiID)
     {
-        $this->db->select("user.id, kendaraan.id_kendaraan, transaction.id_transaksi, TRANSACTION.invoice, kendaraan.nama, kendaraan.gambar, transaction.tanggal");
-        $this->db->from("kendaraan,user,transaction");
-        $where = "transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = $transaksiID";
+        $this->db->select("booking.id, kendaraan.id_kendaraan, transaction.id_transaksi, booking.invoice, kendaraan.nama, kendaraan.gambar, transaction.tanggal");
+        $this->db->from("kendaraan,booking,transaction");
+        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = $transaksiID AND booking.kendaraan = kendaraan.nama";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();

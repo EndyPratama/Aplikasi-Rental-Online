@@ -9,7 +9,7 @@ class Profile extends CI_Controller
         $this->load->model('M_Profile');
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
-        $this->load->model('M_Profile');
+        $this->load->model('M_Admin');
     }
     public function index()
     {
@@ -35,11 +35,14 @@ class Profile extends CI_Controller
             $role = 'User';
         }
         $pesanan = $this->M_Profile->getDataPesanan($user);
+
         $favorite = $this->M_Profile->getWhislist($user);
+
         $profile = $this->M_Profile->getGambar($user);
         $profile = json_decode(json_encode($profile), true);
         $profile = $profile["0"];
         $profile = $profile['gambar'];
+
         $data = array(
             'title' => 'Profile',
             'gambar_profile' => $profile,
@@ -60,7 +63,6 @@ class Profile extends CI_Controller
     }
     public function history($data = NULL)
     {
-        // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
         // echo $user;
         $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
@@ -223,6 +225,7 @@ class Profile extends CI_Controller
     public function update($user)
     {
         $nama = $this->input->post('nama');
+        $image = $this->input->post('image');
         $username = $this->input->post('username');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -233,19 +236,20 @@ class Profile extends CI_Controller
         $zip_code = $this->input->post('zip_code');
 
         // update user
-        $data = [
-            'name' => $nama,
-            'username' => $username,
-            'email' => $email
-        ];
-        $this->db->where('id', $user);
-        $this->db->update('user', $data);
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        // $data = [
+        //     'name' => $nama,
+        //     'username' => $username,
+        //     'email' => $email
+        // ];
+        // $this->db->where('id', $user);
+        // $this->db->update('user', $data);
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
         // update profile
         $data = [
+            'image' => $image,
             'nama' => $nama,
             'phone' => $phone,
             'ttl' => $ttl,
@@ -254,13 +258,69 @@ class Profile extends CI_Controller
             'provinsi' => $provinsi,
             'kode_pos' => $zip_code,
         ];
-        $this->db->where('userid', $user);
-        $this->db->update('profile', $data);
+        // $this->db->where('userid', $user);
+        // $this->db->update('profile', $data);
         echo "<pre>";
         print_r($data);
         echo "</pre>";
+        // redirect(base_url('/user/profile/setting'));
+    }
+    public function transaksi()
+    {
+        $user = $this->session->userdata('id');
+        $gambar = $this->M_Profile->getGambar($user);
+        $gambar = json_decode(json_encode($gambar), true);
+        $gambar = $gambar["0"];
+        $gambar = $gambar['gambar'];
 
+        $profile = $this->M_Profile->getProfileUser($user);
 
-        redirect(base_url('/user/profile/setting'));
+        $getBooking = $this->M_Kendaraan->getBookingById($user);
+        if ($getBooking == Null) {
+            $data = array(
+                'booking' => 0,
+                'profile' => $profile,
+                'foto_profile' => $gambar,
+                'title' => 'Pembayaran',
+                'css' =>  'pembayaran.css'
+            );
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/transaksi', $data);
+            $this->load->view('/user/layout/footer');
+        } else {
+            $pembayaran = json_decode(json_encode($getBooking), true);
+            $pembayaran = $pembayaran["0"];
+            $pembayaran = $pembayaran['metode_pembayaran'];
+
+            $bank = array("BCA", "BNI", "MANDIRI", "BRI", "COD");
+            for ($i = 0; $i < 4; $i++) {
+                if ($pembayaran == $bank[$i]) {
+                    $rekening = $this->M_Admin->getRekening($bank[$i]);
+                }
+            }
+            $rekening = json_decode(json_encode($rekening), true);
+            $rekening = $rekening["0"];
+            $nomer = $rekening['nomer'];
+            $an = $rekening['a/n'];
+            $data = array(
+                'booking' => $getBooking,
+                'metode_pembayaran' => $pembayaran,
+                'an' => $an,
+                'rekening' => $nomer,
+                'profile' => $profile,
+                'foto_profile' => $gambar,
+                'title' => 'Pembayaran',
+                'css' =>  'pembayaran.css'
+            );
+            // echo "<pre>";
+            // print_r($data);
+            // echo "</pre>";
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/transaksi', $data);
+            $this->load->view('/user/layout/footer');
+        }
     }
 }

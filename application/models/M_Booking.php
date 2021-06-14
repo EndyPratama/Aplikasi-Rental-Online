@@ -46,12 +46,12 @@ class M_Booking extends CI_Model
     }
     public function getHarga($id)
     {
-        $this->db->select("harga");
+        $this->db->select("total");
         $this->db->from("booking");
         $this->db->where("id", $id);
         // select * from pesan JOIN akun on pesan.user_id=akun.id join jawaban on pesan.id_pesan = jawaban.id_pesan where pesan.user_id='6' 
         $query = $this->db->get();
-        return $query->row()->harga;
+        return $query->row()->total;
     }
     public function getIdUser($id)
     {

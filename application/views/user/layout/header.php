@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
-    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header1.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header2.css') ?>">
 
     <!-- CDN fontawsome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -21,10 +21,23 @@
     <!-- CDN Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <!------ Include the above in your HEAD tag ---------->
+
     <!-- CDN JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <title><?= $title; ?></title>
-
+    <script>
+        function printContent(el) {
+            var restorepage = document.body.innerHTML;
+            var printcontent = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printcontent;
+            window.print();
+            document.body.innerHTML = restorepage;
+        }
+    </script>
 </head>
 
 <body>
@@ -39,11 +52,15 @@
             <nav>
                 <div class="row">
                     <a class="logo" href="/">
-                        <div class="logo_name mr-3" style=" color:#fff;font-size:32px;"><i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i></div>
+                        <div class="logo_name mr-3" style=" color:#fff;font-size:32px;">
+                            <i class='bx bx-car' style="color:#fff;font-size:42px;">Rental Online</i>
+                            <span style="font-size: 16px;"> V.1.0</span>
+                        </div>
                     </a>
                     <ul class="nav__links">
-                        <li><a href="<?= base_url('user/home'); ?>">Home</a></li>
-                        <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
+                        <!-- <li><a href="<?= base_url('user/home'); ?>">Home</a></li> -->
+                        <li><a href="<?= base_url('user/kendaraan'); ?>">Home</a></li>
+                        <!-- <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li> -->
                         <?php
                         $user = $this->session->userdata('id');
                         if ($user != 0) {

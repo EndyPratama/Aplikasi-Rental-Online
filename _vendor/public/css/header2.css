@@ -21,10 +21,6 @@
     margin-left: auto; */
   }
   
-  nav {
-    /* order: 1; */
-  }
-  
   .nav__links a,
   .cta,
   .overlay__content a {
@@ -43,7 +39,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    margin: auto;
+    margin: auto auto auto 20px;
   }
   
   .nav__links li {

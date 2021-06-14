@@ -59,20 +59,18 @@ class Kendaraan extends CI_Controller
     public function insert()
     {
         $gambar = $_FILES['gambar'];
-        if ($gambar = '') {
-        } else {
+        if ($gambar=''){}else{
             $config['upload_path'] = './vendor/public/img';
             $config['allowed_types'] = 'jpg|png|jfif';
-
+            
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('gambar')) {
-                echo "Upload gagal";
-                die();
-            } else {
+            if(!$this->upload->do_upload('gambar')){
+                echo "Upload gagal"; die();
+            }else{
                 $gambar = $this->upload->data('file_name');
             }
         }
-
+        
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama', true)),
             'mesin' => htmlspecialchars($this->input->post('mesin', true)),
@@ -108,8 +106,8 @@ class Kendaraan extends CI_Controller
     // Pengolahan Edit Data
     public function edit()
     {
+      
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
-
         $id = $this->input->post('id_kendaraan');
         $nama = $this->input->post('nama');
         $mesin = $this->input->post('mesin');
@@ -121,8 +119,19 @@ class Kendaraan extends CI_Controller
         $deskripsi = $this->input->post('deskripsi');
         $harga = $this->input->post('harga');
         $ketersediaan = $this->input->post('ketersediaan');
-        $gambar = $this->input->post('gambar');
-
+        $gambar = $_FILES['gambar'];
+        if ($gambar=''){}else{
+            $config['upload_path'] = './vendor/public/img';
+            $config['allowed_types'] = 'jpg|png|jfif';
+            
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload('gambar')){
+                echo "Upload gagal"; die();
+            }else{
+                $gambar = $this->upload->data('file_name');
+            }
+        }
+        
         $this->db->set('nama', $nama);
         $this->db->set('mesin', $mesin);
         $this->db->set('bahan_bakar', $bahan_bakar);
@@ -155,7 +164,7 @@ class Kendaraan extends CI_Controller
         <span aria-hidden="true">&times;</span>
     </button></div>');
         $this->db->delete("kendaraan", array("id_kendaraan" => $id_kendaraan));
-        redirect('Kendaraan');
+        redirect(base_url('admin/kendaraan'));
     }
     // Read Data
     public function list()

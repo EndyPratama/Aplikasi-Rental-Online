@@ -72,14 +72,17 @@ class M_Profile extends CI_Model
     // }
     public function getDataPesanan($id)
     {
-        $this->db->distinct();
-        // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
-        $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi, booking.peminjam");
-        $this->db->from("transaction");
-        $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
-        $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
-        $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi)");
+        // $this->db->distinct();
+        // // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
+        // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi, booking.peminjam");
+        // $this->db->from("transaction");
+        // $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
+        // $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
+        $this->db->select("*");
+        $this->db->from("booking,transaction, kendaraan");
+        $where = ("transaction.user_id=booking.id_user AND transaction.user_id='$id' AND kendaraan.id_kendaraan = transaction.kendaraan_id AND booking.kendaraan = kendaraan.nama");
         $this->db->where($where);
+        // $this->db->where('id_user', $id);
         $query = $this->db->get();
         return $query->result();
         /*
@@ -92,7 +95,8 @@ class M_Profile extends CI_Model
     }
     public function getWhislist($user)
     {
-        $this->db->select("kendaraan.harga,kendaraan.gambar,kendaraan.nama");
+        // $this->db->select("kendaraan.harga,kendaraan.gambar,kendaraan.nama");
+        $this->db->select("*");
         $this->db->from("whislist,kendaraan");
         $where = "whislist.id_kendaraan = kendaraan.id_kendaraan and whislist.id_user = $user";
         $this->db->where($where);

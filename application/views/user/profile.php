@@ -23,18 +23,17 @@
 						<div class="row">
 							<div class="col">
 								<div class="submenu transaksi">
-									<a href="<?= base_url('user/transaksi/daftar_transaksi'); ?>">
+									<a href="<?= base_url('user/profile/transaksi'); ?>">
 										<i class='bx bx-cart'></i>
 										<div class="deskripsi"><small>Transaksi</small></div>
 									</a>
 								</div>
 							</div>
 							<div class="col">
-								<div class="submenu booking">
-									<!-- $user = $this->session->userdata('id'); -->
-									<a href="<?= base_url('user/kendaraan/kendaraan_user/' . $this->session->userdata('id')); ?>">
-										<i class='bx bxs-car'></i>
-										<div class="deskripsi"><small>Kendaraan</small></div>
+								<div class="submenu history">
+									<a href="<?= base_url('user/profile/history'); ?>">
+										<i class='bx bx-history'></i>
+										<div class="deskripsi"><small>History Peminjaman</small></div>
 									</a>
 								</div>
 							</div>
@@ -49,20 +48,14 @@
 								</div>
 							</div>
 							<div class="col">
-								<div class="submenu history">
-									<a href="<?= base_url('user/profile/history'); ?>">
-										<i class='bx bx-history'></i>
-										<div class="deskripsi"><small>History Peminjaman</small></div>
+								<div class="submenu logout">
+									<a href="<?= base_url(); ?>">
+										<i class='bx bx-log-out'></i>
+										<div class="logout">Logout</div>
 									</a>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="logout_icon">
-						<i class='bx bx-log-out'></i>
-						<div class="logout">Logout</div>
 					</div>
 				</div>
 			</div>
@@ -88,14 +81,14 @@
 							if ($i < 5) {
 								$row++;
 								$i++;
-								$harga = number_format($p->harga, 0, ',', '.');
+								$supir = number_format($p->supir, 0, ',', '.');
 						?>
 								<input id="invoice<?= $row; ?>" type="hidden" value="<?= $p->invoice; ?>">
 								<input id="status<?= $row; ?>" type="hidden" value="<?= $p->status; ?>">
-								<input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $p->nama; ?>">
+								<input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $p->kendaraan; ?>">
 								<input id="tanggal<?= $row; ?>" type="hidden" value="<?= $p->tanggal; ?>">
 								<input id="durasi<?= $row; ?>" type="hidden" value="<?= $p->durasi; ?>">
-								<input id="sopir<?= $row; ?>" type="hidden" value="0">
+								<input id="sopir<?= $row; ?>" type="hidden" value="<?= $supir; ?>">
 								<?php
 								$harga = number_format($p->harga, 0, ',', '.');
 								$total = number_format($p->total, 0, ',', '.');
@@ -255,14 +248,20 @@
 					if ($i < 5) :
 						$i++;
 				?>
-						<div class="pesanan_detail">
-							<div class="pesanan_head">
-								<img src="<?= base_url('vendor/public/img/' . $w->gambar); ?>" alt="">
+						<a href="<?= base_url('user/kendaraan/mobil/' . $w->id_kendaraan); ?>">
+							<div class="pesanan_detail">
+								<div class="pesanan_head">
+									<img src="<?= base_url('vendor/public/img/' . $w->gambar); ?>" alt="">
+								</div>
+								<div class="pesanan_body">
+									<div class="nama">
+
+										<?= $w->nama; ?>
+
+									</div>
+								</div>
 							</div>
-							<div class="pesanan_body">
-								<div class="nama"><?= $w->nama; ?></div>
-							</div>
-						</div>
+						</a>
 				<?php
 					endif;
 				endforeach;

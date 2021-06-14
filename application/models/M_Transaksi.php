@@ -32,17 +32,20 @@ class M_Transaksi extends CI_Model
     }
     public function getTransaksiKendaraan($id, $filter = NULL)
     {
-        $this->db->distinct();
+        // $this->db->distinct();
         // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga As total, transaction.tanggal, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi");
-        $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,transaction.invoice, transaction.metode_pembayaran, kendaraan.id_kendaraan, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi, transaction.ulasan");
-        $this->db->from("transaction");
-        $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
-        $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
-        // $this->db->join('review', 'transaction.id_transaksi = review.transaksi', 'left');
+        // $this->db->select("transaction.id_transaksi, transaction.user_id,transaction.status, transaction.harga as total, transaction.tanggal,booking.invoice, booking.metode_pembayaran, kendaraan.id_kendaraan, kendaraan.nama, kendaraan.model, kendaraan.merk, kendaraan.harga, kendaraan.gambar, booking.durasi, transaction.ulasan");
+        // $this->db->from("transaction");
+        // $this->db->join('kendaraan', 'transaction.kendaraan_id = kendaraan.id_kendaraan', 'left');
+        // $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
+        $this->db->select("*");
+        $this->db->from("booking,transaction, kendaraan");
         if ($filter != NULL) {
-            $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi) AND transaction.status='$filter'");
+            $where = ("transaction.user_id = booking.id_user AND transaction.user_id='$id' AND kendaraan.id_kendaraan = transaction.kendaraan_id AND booking.kendaraan = kendaraan.nama AND transaction.status='$filter'");
+            // $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi) AND transaction.status='$filter'");
         } else {
-            $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi)");
+            $where = ("transaction.user_id = booking.id_user AND transaction.user_id='$id' AND kendaraan.id_kendaraan = transaction.kendaraan_id AND booking.kendaraan = kendaraan.nama");
+            // $where = ("transaction.user_id='$id' AND booking.action='1' AND transaction.harga=(kendaraan.harga*booking.durasi)");
         }
         $this->db->where($where);
         $query = $this->db->get();
