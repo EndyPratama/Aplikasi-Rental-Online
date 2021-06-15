@@ -52,7 +52,7 @@ class Auth extends CI_Controller
 						redirect(base_url('/admin/dashboard/'));
 					} else {
 						// $this->session->set_userdata('id', $id);
-						redirect(base_url('/user/kendaraan/'));
+						redirect(base_url('/user/home/'));
 					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
@@ -236,10 +236,11 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
+		$this->session->set_userdata('id');
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
-		redirect('auth');
+		redirect(base_url('auth'));
 	}
 }
