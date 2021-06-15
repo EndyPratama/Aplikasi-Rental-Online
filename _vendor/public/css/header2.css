@@ -21,6 +21,10 @@
     margin-left: auto; */
   }
   
+  nav {
+    /* order: 1; */
+  }
+  
   .nav__links a,
   .cta,
   .overlay__content a {
