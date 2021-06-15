@@ -7,6 +7,9 @@ class Pesan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Pesan');
+        if ($this->session->userdata('id') == 0) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {

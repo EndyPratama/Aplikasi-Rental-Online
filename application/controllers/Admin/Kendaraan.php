@@ -133,7 +133,7 @@ class Kendaraan extends CI_Controller
         $this->db->set('deskripsi', $deskripsi);
         $this->db->set('harga', $harga);
         $this->db->set('ketersediaan', $ketersediaan);
-        $this->db->set('gambar', $gambar);
+        // $this->db->set('gambar', $gambar);
         $this->db->where('id_kendaraan', $id);
         $this->db->update('kendaraan');
 

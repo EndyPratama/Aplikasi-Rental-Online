@@ -7,6 +7,9 @@ class Chart extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Chart');
+        if ($this->session->userdata('id') == 0) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {

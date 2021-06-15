@@ -12,12 +12,12 @@ class Dashboard extends CI_Controller
         $this->load->model('M_Kendaraan');
         $this->load->model('M_Member');
         $this->load->model('M_Booking');
+        if ($this->session->userdata('id') == 0) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {
-        // $this->session->set_userdata('id', '1');
-        // $this->session->set_userdata('id', '1');
-        // $this->session->set_userdata('id', '1');
         $user = $this->session->userdata('id');
         $nama = $this->M_Profile->cekNama($user);
         $nama = json_decode(json_encode($nama), true);
@@ -76,4 +76,5 @@ class Dashboard extends CI_Controller
         $this->load->view('/admin/admin', $data);
         $this->load->view('/admin/layout/footer');
     }
+    // }
 }

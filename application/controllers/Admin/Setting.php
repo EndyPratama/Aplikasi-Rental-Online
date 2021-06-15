@@ -10,6 +10,9 @@ class Setting extends CI_Controller
         $this->load->model('M_Profile');
         $this->load->model('M_Transaksi');
         $this->load->model('M_Kendaraan');
+        if ($this->session->userdata('id') == 0) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {

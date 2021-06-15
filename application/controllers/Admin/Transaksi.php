@@ -7,6 +7,9 @@ class Transaksi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Transaksi');
+        if ($this->session->userdata('id') == 0) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {
@@ -50,9 +53,9 @@ class Transaksi extends CI_Controller
             'rating' => "",
             'tanggal' => "",
         ];
-         echo "<pre>";
-         print_r($data);
-         echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->db->insert('review', $data);
 
 
@@ -71,7 +74,6 @@ class Transaksi extends CI_Controller
 
     public function cek($kendaraan_id)
     {
-
     }
 
     public function lunas($kendaraan_id)
@@ -117,9 +119,9 @@ class Transaksi extends CI_Controller
             'rating' => "",
             'tanggal' => "",
         ];
-         echo "<pre>";
-         print_r($data);
-         echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->db->insert('review', $data);
 
         $status = 'Dibatalkan';
@@ -169,12 +171,11 @@ class Transaksi extends CI_Controller
             'rating' => "",
             'tanggal' => "",
         ];
-         echo "<pre>";
-         print_r($data);
-         echo "</pre>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
         $this->db->insert('review', $data);
 
         redirect(base_url('admin/transaksi'));
     }
-
 }
