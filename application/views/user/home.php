@@ -1,3 +1,11 @@
+<div class="container-fluid jumbotron">
+    <h2>
+        RENO <br>
+    </h2>
+    RENO adalah penyedia jasa rental kendaraan online yang menggunakan website
+    sebagai platform transaksi. <br>
+    RENO mengedepankan kecepatan, kemudahan dan kepercayaan pengguna terhadap layanan yang digunakan
+</div>
 <div class="container-fluid carousel-contain">
     <div class="container bordered">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
