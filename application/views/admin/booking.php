@@ -56,12 +56,18 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="gambar" style="width:100%;">
-                                                        <img src="<?= base_url('vendor/public/img/' . $b->bukti_transaksi) ?>" alt="transaksi" style="width:100%;">
+                                                        <?php if ($b->bukti_transaksi != NULL) { ?>
+                                                            <img src="<?= base_url('vendor/public/img/' . $b->bukti_transaksi) ?>" alt="transaksi" style="width:100%;">
+                                                        <?php } else { ?>
+                                                            <p>Belum melakukan upload bukti pembayaran...</p>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <a href="<?= base_url('admin/booking/terima/' . $b->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                                                    <?php if ($b->bukti_transaksi != NULL) { ?>
+                                                        <a href="<?= base_url('admin/booking/terima/' . $b->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
