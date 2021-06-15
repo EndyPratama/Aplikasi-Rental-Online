@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="<?= base_url('/'); ?>"><i class='bx bx-log-out' id="log_out"></i></a>
+                <a href="<?= base_url('/auth/logout'); ?>"><i class='bx bx-log-out' id="log_out"></i></a>
             </div>
         </div>
     </div>
