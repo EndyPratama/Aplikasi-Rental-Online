@@ -63,11 +63,11 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <?php if ($t->bukti_transaksi != NULL) { ?>
-                                                <a href="<?= base_url('admin/transaksi/terima/' . $t->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                                                <a href="<?= base_url('admin/transaksi/lunas/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Lunas</i></a>
                                             <?php } ?>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         <?php
                         endif;
@@ -84,7 +84,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/diterima/' . $t->id_kendaraan . '/' . $t->id); ?>" class="btn btn-success"><i class="fa fa-check"> Kendaraan Diterima</i></a>
+                                    <a href="<?= base_url('admin/transaksi/diterima/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Kendaraan Diterima</i></a>
 
                                 </td>
                             </tr>
