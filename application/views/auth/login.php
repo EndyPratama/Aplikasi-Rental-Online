@@ -35,6 +35,7 @@
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('auth/registration'); ?>">Create an Account!</a>
                                     </div>
+                                    <a href="<?= base_url('auth/skip') ?>" style="margin-left: 80%;">Lewati Login</a>
                                 </div>
                             </div>
                         </div>

@@ -162,21 +162,21 @@ class Auth extends CI_Controller
 		// print_r($user);
 		if ($user != null) {
 			// $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-			echo "Masuk User";
+			// echo "Masuk User";
 			$this->db->select("*");
 			$this->db->from("user_token");
 			// $this->db->where("token", $token);
 			$user_token = $this->db->get()->result();
 			$user_token = json_decode(json_encode($user_token), true);
 			$user_token = $user_token["0"];
-			echo "<pre>";
-			print_r($user_token);
-			echo "</pre>";
+			// echo "<pre>";
+			// print_r($user_token);
+			// echo "</pre>";
 			if ($user_token != NULL) {
-				echo "Masuk user_token";
-				echo time();
+				// echo "Masuk user_token";
+				// echo time();
 				if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-					echo "Masuk sini bang";
+					// echo "Masuk sini bang";
 					$this->db->set('is_active', 1);
 					$this->db->where('email', $email);
 					$this->db->update('user');
@@ -207,9 +207,9 @@ class Auth extends CI_Controller
 						'jenis_kelamin' => "",
 						'phone' => "",
 					];
-					echo "<pre>";
-					print_r($data);
-					echo "</pre>";
+					// echo "<pre>";
+					// print_r($data);
+					// echo "</pre>";
 
 					$this->db->insert('profile', $data);
 					redirect(base_url('auth'));
@@ -242,5 +242,12 @@ class Auth extends CI_Controller
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
 		redirect(base_url('auth'));
+	}
+	public function skip()
+	{
+
+		$this->session->set_userdata('id', 0);
+		// echo $this->session->userdata('id');
+		redirect(base_url('/user/home/'));
 	}
 }

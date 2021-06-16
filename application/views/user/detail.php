@@ -29,63 +29,70 @@
                                 <h6><?= $d->nama; ?></h6>
                             </div>
                             <div class="card-body">
-                                <button class="btn btn-success btn-block" onclick="formOpen()" id="order">Order now</button>
-                                <!-- JS untuk merubah form pemesanan -->
-                                <div id="formOrder" style="visibility: hidden;">
-                                    <form action="<?= base_url('user/kendaraan/booking'); ?>" method="post" enctype="multipart/form-data">
-                                        <div class="form-row">
-                                            <input type="hidden" value="<?= $d->gambar; ?>" name="gambar">
-                                            <input type="hidden" value="<?= $d->harga; ?>" name="harga">
-                                            <div class="form-group col-md-6">
-                                                <input type="hidden" name="idUser" value="<?= $this->session->userdata('id'); ?>">
-                                                <label for="nama">Nama : </label>
-                                                <input type="text" class="form-control" value="<?= $nama; ?>" id="nama" name="peminjam" readonly>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="alamat">Alamat : </label>
-                                                <input type="text" class="form-control" id="alamat" name="alamat" autofocus>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="kendaraan">Kendaraan : </label>
-                                                <input type="text" class="form-control" id="kendaraan" value="<?= $d->nama; ?>" name="kendaraan" readonly>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="confirm">Durasi</label>
-                                                <div>
-                                                    <select name="durasi" class="form-control">
-                                                        <option value="1">1 Hari</option>
-                                                        <option value="2">2 Hari</option>
-                                                        <option value="3">3 Hari</option>
-                                                    </select>
+                                <?php if ($this->session->userdata('id') == 0) { ?>
+                                    <a href="<?= base_url('auth'); ?>" class="btn btn-outline-success" style="width: 100%;">Login</a>
+                                    <h5>Note!</h5>
+                                    <p>Harap Register / Login Untuk melakukan pemesanan</p>
+                                <?php } else { ?>
+                                    <button class="btn btn-success btn-block" onclick="formOpen()" id="order">Order now</button>
+                                    <!-- JS untuk merubah form pemesanan -->
+                                    <div id="formOrder" style="visibility: hidden;">
+                                        <form action="<?= base_url('user/kendaraan/booking'); ?>" method="post" enctype="multipart/form-data">
+                                            <div class="form-row">
+                                                <input type="hidden" value="<?= $d->gambar; ?>" name="gambar">
+                                                <input type="hidden" value="<?= $d->harga; ?>" name="harga">
+                                                <div class="form-group col-md-6">
+                                                    <input type="hidden" name="idUser" value="<?= $this->session->userdata('id'); ?>">
+                                                    <label for="nama">Nama : </label>
+                                                    <input type="text" class="form-control" value="<?= $nama; ?>" id="nama" name="peminjam" readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="alamat">Alamat : </label>
+                                                    <input type="text" class="form-control" id="alamat" name="alamat" autofocus>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="kendaraan">Kendaraan : </label>
+                                                    <input type="text" class="form-control" id="kendaraan" value="<?= $d->nama; ?>" name="kendaraan" readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="confirm">Durasi</label>
+                                                    <div>
+                                                        <select name="durasi" class="form-control">
+                                                            <option value="1">1 Hari</option>
+                                                            <option value="2">2 Hari</option>
+                                                            <option value="3">3 Hari</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="total">Harga : </label>
-                                            <input type="text" class="form-control" id="harga" value="" readonly>
-                                            <input type="hidden" id="total" value="" name="total">
-                                            <script>
-                                                $(function() {
-                                                    $('select[name=durasi]').on('change', function() {
-                                                        durasi = $(this).children("option:selected").val();
-                                                        console.log(durasi);
-                                                        var harga = "Rp " + <?= $d->harga; ?> * durasi;
-                                                        var total = <?= $d->harga; ?> * durasi;
-                                                        document.getElementById("harga").value = harga;
-                                                        document.getElementById("total").value = total;
+                                            <div class="form-group">
+                                                <label for="total">Harga : </label>
+                                                <input type="text" class="form-control" id="harga" value="" readonly>
+                                                <input type="hidden" id="total" value="" name="total">
+                                                <script>
+                                                    $(function() {
+                                                        $('select[name=durasi]').on('change', function() {
+                                                            durasi = $(this).children("option:selected").val();
+                                                            console.log(durasi);
+                                                            var harga = "Rp " + <?= $d->harga; ?> * durasi;
+                                                            var total = <?= $d->harga; ?> * durasi;
+                                                            document.getElementById("harga").value = harga;
+                                                            document.getElementById("total").value = total;
+                                                        });
                                                     });
-                                                });
-                                            </script>
-                                        </div>
-                                        <button type="submit" class="btn btn-success btn-block">Booking now</button>
-                                    </form>
-                                </div>
-                                <script>
-                                    function formOpen() {
-                                        document.getElementById('formOrder').style.visibility = 'visible';
-                                        document.getElementById('order').style.display = 'none';
-                                    }
-                                </script>
+                                                </script>
+                                            </div>
+                                            <button type="submit" class="btn btn-success btn-block">Booking now</button>
+                                        </form>
+
+                                    </div>
+                                    <script>
+                                        function formOpen() {
+                                            document.getElementById('formOrder').style.visibility = 'visible';
+                                            document.getElementById('order').style.display = 'none';
+                                        }
+                                    </script>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -238,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="filter mt-3">
+                    <!-- <div class="filter mt-3">
                         <div class="row">
                             <div class="col-1">
                                 <h5>Filter : </h5>
@@ -252,7 +259,7 @@
                                 <a href="" class="btn btn-outline-secondary"><i class='bx bxs-star' style='color:#3fff2a;'></i>1</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mt-3">
                         <h3>Semua Ulasan : </h3>
                     </div>
@@ -306,14 +313,16 @@
             <div class="iklan-terkait">
                 <?php foreach ($iklan as $i) : ?>
                     <div class="card">
-                        <div class="card-head">
-                            <img src="<?= base_url('vendor/public/img/' . $i->gambar); ?>" alt="<?= $i->nama; ?>" style="max-width: 100%;height: 150px;display: flex;margin: 0 auto;">
-                        </div>
-                        <div class="card-body">
-                            <h6>Rp <?= $i->harga; ?>/hr</h6>
-                            <p><small><?= $i->tahun; ?></small></p>
-                            <p id="nama_kendaraan"><?= $i->nama; ?></p>
-                        </div>
+                        <a href="<?= base_url('/user/kendaraan/mobil/' . $i->id_kendaraan); ?>" style="text-decoration: none; color:#000">
+                            <div class="card-head">
+                                <img src="<?= base_url('vendor/public/img/' . $i->gambar); ?>" alt="<?= $i->nama; ?>" style="max-width: 100%;height: 150px;display: flex;margin: 0 auto;">
+                            </div>
+                            <div class="card-body">
+                                <h6>Rp <?= $i->harga; ?>/hr</h6>
+                                <p><small><?= $i->tahun; ?></small></p>
+                                <p id="nama_kendaraan"><?= $i->nama; ?></p>
+                            </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>

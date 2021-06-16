@@ -8,29 +8,45 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('M_Kendaraan');
         $this->load->model('M_Profile');
+        // if ($this->session->userdata('id') == NULL) {
+        //     // redirect(base_url('auth'));
+        //     echo "Loh kok";
+        // }
     }
     public function index()
     {
-        $user = $this->session->userdata('id');
-        
-        $profile = $this->M_Profile->getGambar($user);
-        $profile = json_decode(json_encode($profile), true);
-        $profile = $profile["0"];
-        $profile = $profile['gambar'];
+        if ($this->session->userdata('id') == 0) {
+            $data = array(
+                'title' => 'Home',
+                'profile' => 'default.jpg',
+                'foto_profile' => 'default.jpg',
+                'css' => 'home.css'
+            );
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/home', $data);
+            $this->load->view('/user/layout/footer');
+        } else {
+            $user = $this->session->userdata('id');
 
-        // $rating = $this->M_Kendaraan->getReviewRating($id);
-        // $rating = json_decode(json_encode($rating), true);
-        // $rating = $rating["0"];
-        // $rating = $rating['avg(rating)'];
+            $profile = $this->M_Profile->getGambar($user);
+            $profile = json_decode(json_encode($profile), true);
+            $profile = $profile["0"];
+            $profile = $profile['gambar'];
 
-        $data = array(
-            'title' => 'Home',
-            'profile' => $profile,
-            'foto_profile' => $profile,
-            'css' => 'home.css'
-        );
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/home', $data);
-        $this->load->view('/user/layout/footer');
+            // $rating = $this->M_Kendaraan->getReviewRating($id);
+            // $rating = json_decode(json_encode($rating), true);
+            // $rating = $rating["0"];
+            // $rating = $rating['avg(rating)'];
+
+            $data = array(
+                'title' => 'Home',
+                'profile' => $profile,
+                'foto_profile' => $profile,
+                'css' => 'home.css'
+            );
+            $this->load->view('/user/layout/header', $data);
+            $this->load->view('/user/home', $data);
+            $this->load->view('/user/layout/footer');
+        }
     }
 }

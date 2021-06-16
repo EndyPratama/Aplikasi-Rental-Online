@@ -12,6 +12,9 @@ class Kendaraan extends CI_Controller
         $this->load->library('session');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        // if ($this->session->userdata('id') == NULL) {
+        //     redirect(base_url('auth'));
+        // }
     }
     // Read Data
     public function index()
@@ -22,8 +25,6 @@ class Kendaraan extends CI_Controller
         } else {
             $kendaraan = $this->M_Kendaraan;
         }
-        // session
-        // $this->session->set_userdata('id', '2');
         $user = $this->session->userdata('id');
 
         $kendaraan = $kendaraan->search($keyword);
@@ -32,14 +33,12 @@ class Kendaraan extends CI_Controller
         $tahun = $this->M_Kendaraan->getTahun();
         $mesin = $this->M_Kendaraan->getMesin();
         $warna = $this->M_Kendaraan->getWarna();
-        // $tahun = $this->M_Kendaraan->getTahun();
-        // $tahun = $this->M_Kendaraan->getTahun();
-        $profile = $this->_gambar();
 
-        // $rating = $this->M_Kendaraan->getReviewRating($id);
-        // $rating = json_decode(json_encode($rating), true);
-        // $rating = $rating["0"];
-        // $rating = $rating['avg(rating)'];
+        // if ($this->session->userdata('id') == 0) {
+        // $profile = 'default.jpg';
+        // } else {
+        $profile = $this->_gambar();
+        // }
 
         $data = array(
             'kendaraan' => $kendaraan,
@@ -73,10 +72,15 @@ class Kendaraan extends CI_Controller
         $iklan = $this->M_Kendaraan->getIklan($merk);
 
         $user = $this->session->userdata('id');
-        $nama = $this->M_Profile->cekNama($user);
-        $nama = json_decode(json_encode($nama), true);
-        $nama = $nama["0"];
-        $nama = $nama['name'];
+
+        if ($user == 0) {
+            $nama = '';
+        } else {
+            $nama = $this->M_Profile->cekNama($user);
+            $nama = json_decode(json_encode($nama), true);
+            $nama = $nama["0"];
+            $nama = $nama['name'];
+        }
 
         $whislist = $this->M_Kendaraan->getWhislist($user, $id);
         if ($whislist == NULL) {
@@ -337,12 +341,17 @@ class Kendaraan extends CI_Controller
     }
     private function _gambar()
     {
-        $user = $this->session->userdata('id');
-        $profile = $this->M_Profile->getGambar($user);
-        $profile = json_decode(json_encode($profile), true);
-        $profile = $profile["0"];
-        $profile = $profile['gambar'];
-        return $profile;
+        if ($this->session->userdata('id') == 0) {
+            $profile = 'default.jpg';
+            return $profile;
+        } else {
+            $user = $this->session->userdata('id');
+            $profile = $this->M_Profile->getGambar($user);
+            $profile = json_decode(json_encode($profile), true);
+            $profile = $profile["0"];
+            $profile = $profile['gambar'];
+            return $profile;
+        }
     }
     // Tampilkan Whislist Kendaraan User
     public function whislist($id)

@@ -8,6 +8,9 @@ class Contact extends CI_Controller
         parent::__construct();
         $this->load->model('M_Contact');
         $this->load->model('M_Profile');
+        if ($this->session->userdata('id') == NULL) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {

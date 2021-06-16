@@ -13,6 +13,9 @@ class Profile extends CI_Controller
         $this->load->library('session');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        if ($this->session->userdata('id') == NULL) {
+            redirect(base_url('auth'));
+        }
     }
     public function index()
     {
@@ -239,20 +242,19 @@ class Profile extends CI_Controller
         $zip_code = $this->input->post('zip_code');
 
         // update user
-        // $data = [
-        //     'name' => $nama,
-        //     'username' => $username,
-        //     'email' => $email
-        // ];
-        // $this->db->where('id', $user);
-        // $this->db->update('user', $data);
+        $data = [
+            'name' => $nama,
+            'username' => $username,
+            'email' => $email
+        ];
+        $this->db->where('id', $user);
+        $this->db->update('user', $data);
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
 
         // update profile
         $data = [
-            'image' => $image,
             'nama' => $nama,
             'phone' => $phone,
             'ttl' => $ttl,
@@ -261,12 +263,12 @@ class Profile extends CI_Controller
             'provinsi' => $provinsi,
             'kode_pos' => $zip_code,
         ];
-        // $this->db->where('userid', $user);
-        // $this->db->update('profile', $data);
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        // redirect(base_url('/user/profile/setting'));
+        $this->db->where('userid', $user);
+        $this->db->update('profile', $data);
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        redirect(base_url('/user/profile/setting'));
     }
     public function transaksi()
     {

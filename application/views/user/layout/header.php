@@ -68,14 +68,7 @@
                             <li><a href="<?= base_url('user/contact'); ?>">Contact</a></li>
                             <!-- <li><a href="<?= base_url('profile'); ?>">Profile</a></li> -->
                         <?php
-                        } else {
-                        ?>
-                            <a class="cta" href="<?= base_url('auth'); ?>">
-                                <i class='bx bxs-log-out' style="color:#fff;font-size:32px;"></i>
-                            </a>
-                        <?php
-                        }
-                        ?>
+                        } ?>
                     </ul>
                 </div>
             </nav>
@@ -115,6 +108,7 @@
 
              -->
         </div>
+        <p class="menu_mobile cta">Menu</p>
         <div class="col-1">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -124,27 +118,25 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
                     <a class="dropdown-item" href="<?= base_url('/user/profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
-                    <a class="dropdown-item" href="<?= base_url('/'); ?>"><i class='bx bx-log-out'>Logout</i></a>
+                    <a class="dropdown-item" href="<?= base_url('/auth/logout'); ?>"><i class='bx bx-log-out'>Logout</i></a>
                 </div>
             </div>
         </div>
         <!-- logout taruh di kanan -->
-
-
-        <p class="menu_mobile cta">Menu</p>
     </header>
+
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
         <div class="overlay__content">
             <a href="<?= base_url('/home'); ?>">Home</a>
             <a href="<?= base_url('user/kendaraan/list'); ?>">Kendaraan</a>
-            <a href="<?= base_url('user/contact'); ?>">Contact</a>
-            <a href="<?= base_url('user/profile'); ?>">Profile</a>
+
             <?php
             $user = $this->session->userdata('id');
             if ($user != 0) {
             ?>
-                <a href="<?= base_url('/'); ?>">Logout</a>
+                <a href="<?= base_url('user/contact'); ?>">Contact</a>
+                <a href="<?= base_url('/auth/logout'); ?>">Logout</a>
             <?php
             } else {
             ?>
@@ -152,7 +144,6 @@
             <?php
             }
             ?>
-
         </div>
     </div>
     <script type="text/javascript" src="<?= base_url('vendor/public/js/mobile2.js'); ?>"></script>
