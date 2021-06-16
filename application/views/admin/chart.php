@@ -4,7 +4,7 @@
     <!-- <div class="row"> -->
     <div class="form-group col-md-4">
         <select name="jenis" id="jenis" class="form-control">
-            <option value="kendaraan" selected>Kendaraan</option>
+            <option value="kendaraan" selected>Merk Kendaraan</option>
             <option value="transaksi">Transaksi</option>
         </select>
         <!-- </div>
@@ -56,7 +56,7 @@
                     $merk = $item->merk;
                     $type_mobil .= "'$merk'" . ", ";
                     $total = $item->total;
-                    $jumlah .= "$total" . ", ";
+                    // $jumlah .= "$total" . ", ";
                 }
                 ?>
                 <script>

@@ -14,7 +14,8 @@ class Chart extends CI_Controller
     public function index()
     {
         $data = array(
-            'graph' => $this->M_Chart->graph(),
+            'kendaraan' => $this->M_Chart->kendaraan(),
+            'transaksi' => $this->M_Chart->transaksi(),
             'css' => 'chart.css',
             'title' => 'Graph'
         );
