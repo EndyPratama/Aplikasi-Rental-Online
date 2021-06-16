@@ -103,7 +103,7 @@ class M_Kendaraan extends CI_Model
         $this->db->select("id, peminjam, alamat, kendaraan, durasi, booking.harga");
         $this->db->from("booking");
         $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
-        $this->db->where('action = 0');
+        $this->db->where('action = 1');
         $query = $this->db->get();
         return $query->result();
     }
@@ -115,7 +115,7 @@ class M_Kendaraan extends CI_Model
         $this->db->select("*");
         $this->db->from("booking");
         // $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
-        $this->db->where('action = 0');
+        $this->db->where('action = 1  OR action = 0');
         $query = $this->db->get();
         return $query->result();
     }

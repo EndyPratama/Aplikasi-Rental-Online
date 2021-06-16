@@ -290,12 +290,12 @@ class Profile extends CI_Controller
                 'title' => 'Pembayaran',
                 'css' =>  'pembayaran.css'
             );
-            // echo "<pre>";
-            // print_r($data);
-            // echo "</pre>";
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/transaksi', $data);
-            $this->load->view('/user/layout/footer');
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
+            // $this->load->view('/user/layout/header', $data);
+            // $this->load->view('/user/transaksi', $data);
+            // $this->load->view('/user/layout/footer');
         } else {
             $pembayaran = json_decode(json_encode($getBooking), true);
             $pembayaran = $pembayaran["0"];
@@ -353,21 +353,6 @@ class Profile extends CI_Controller
             // echo $id;
             // echo $bukti_transaksi;
         }
-
-        // $gambar = $_FILES['gambar'];
-        // if ($gambar = '') {
-        // } else {
-        //     $config['upload_path'] = './vendor/public/img';
-        //     $config['allowed_types'] = 'jpg|png|jfif';
-
-        //     $this->load->library('upload', $config);
-        //     if (!$this->upload->do_upload('gambar')) {
-        //         echo "Upload gagal";
-        //         die();
-        //     } else {
-        //         $gambar = $this->upload->data('file_name');
-        //     }
-        // }
 
         $this->db->set('bukti_transaksi', $bukti_transaksi);
         $this->db->where('id', $id);

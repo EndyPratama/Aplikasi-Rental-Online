@@ -75,7 +75,12 @@
                                     Launch demo modal
                                 </button> -->
                                 <?php
-                                if ($b->bukti_transaksi == Null) {
+                                if ($b->bukti_transaksi == Null && $b->action == 0) { ?>
+                                    <div class="alert alert-info" role="alert">
+                                        Mengajukan Pesanan
+                                    </div>
+                                <?php
+                                } else if ($b->bukti_transaksi == Null && $b->action == 1) {
                                 ?>
                                     <!-- <div class="alert alert-danger" role="alert">
                                         Upload Bukti Transaksi
@@ -84,13 +89,13 @@
                                         Upload Bukti Transaksi
                                     </button>
                                 <?php
-                                } else if ($b->bukti_transaksi != Null && $b->action == 0) {
+                                } else if ($b->bukti_transaksi != Null && $b->action == 1) {
                                 ?>
                                     <div class="alert alert-warning" role="alert">
                                         Menunggu Verifikasi
                                     </div>
                                 <?php
-                                } else {
+                                } else if ($b->bukti_transaksi != Null && $b->action == 2) {
                                 ?>
                                     <div class="alert alert-success" role="alert">
                                         Diterima
