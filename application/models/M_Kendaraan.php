@@ -256,7 +256,7 @@ class M_Kendaraan extends CI_Model
         // $this->db->or_like('model', $keyword);
         $this->db->where($where);
         $this->db->group_by("kendaraan.nama");
-        $this->db->order_by('review', 'DESC');
+        $this->db->order_by('review.rating', 'DESC');
         $query = $this->db->get();
         return $query->result();
         /*
