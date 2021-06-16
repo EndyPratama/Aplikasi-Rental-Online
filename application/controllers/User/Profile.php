@@ -17,6 +17,7 @@ class Profile extends CI_Controller
             redirect(base_url('auth'));
         }
     }
+
     public function index()
     {
         // $this->session->set_userdata('id', '2');

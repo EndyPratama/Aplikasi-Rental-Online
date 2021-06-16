@@ -37,12 +37,37 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/cek/' . $t->id_kendaraan); ?>" class="btn btn-warning"><i class="fa fa-search"> Cek</i></a>
-                                    <a href="<?= base_url('admin/transaksi/lunas/' . $t->id_kendaraan); ?>" class="btn btn-success"><i class="fa fa-check"> Lunas</i></a>
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"> Lihat</i></a>
                                     <a href="<?= base_url('admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a>
-
                                 </td>
                             </tr>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Bukti Pembayaran</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="gambar" style="width:100%;">
+                                                <?php if ($t->bukti_transaksi != NULL) { ?>
+                                                    <img src="<?= base_url('vendor/public/img/' . $t->bukti_transaksi) ?>" alt="transaksi" style="width:100%;">
+                                                <?php } else { ?>
+                                                    <p>Belum melakukan upload bukti pembayaran...</p>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <?php if ($t->bukti_transaksi != NULL) { ?>
+                                                <a href="<?= base_url('admin/transaksi/terima/' . $t->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php
                         endif;
                     endif;
@@ -96,8 +121,8 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-star"> Lihat Review</i></a>
-                                
+                                    <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-star"> Lihat Review</i></a>
+
                                 </td>
                             </tr>
                         <?php
@@ -115,7 +140,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                Transaksi dibatalkan
+                                    Transaksi dibatalkan
 
                                 </td>
                             </tr>
@@ -124,52 +149,52 @@
                     endif;
                     ?>
                     <script>
-                    function formOpen(data) {
-                        // nama, gambar, invoice, rating, ulasan
-                        // console.log(data);
-                        // var id = document.getElementById("id" + data).value;
+                        function formOpen(data) {
+                            // nama, gambar, invoice, rating, ulasan
+                            // console.log(data);
+                            // var id = document.getElementById("id" + data).value;
 
-                        var nama = document.getElementById("nama" + data).value;
-                        document.getElementById("tamplate-name").innerHTML = nama;
+                            var nama = document.getElementById("nama" + data).value;
+                            document.getElementById("tamplate-name").innerHTML = nama;
 
-                        var invoice = document.getElementById("invoice" + data).value;
-                        document.getElementById("tamplate-invoice").innerHTML = invoice;
+                            var invoice = document.getElementById("invoice" + data).value;
+                            document.getElementById("tamplate-invoice").innerHTML = invoice;
 
-                        var gambar = document.getElementById("gambar" + data).value;
-                        document.getElementById("tamplate-gambar").src = "<?= base_url(); ?>/vendor/public/img/" + gambar;
+                            var gambar = document.getElementById("gambar" + data).value;
+                            document.getElementById("tamplate-gambar").src = "<?= base_url(); ?>/vendor/public/img/" + gambar;
 
-                        var rating = document.getElementById("rating" + data).value;
-                        // document.getElementById("tamplate-rating").value = rating;
-                        for (var i = 0; i < rating; i++) {
-                            $("#star" + i).removeClass("bx-star");
-                            $("#star" + i).addClass("bxs-star");
+                            var rating = document.getElementById("rating" + data).value;
+                            // document.getElementById("tamplate-rating").value = rating;
+                            for (var i = 0; i < rating; i++) {
+                                $("#star" + i).removeClass("bx-star");
+                                $("#star" + i).addClass("bxs-star");
+                            }
+                            if (rating == 1) {
+                                document.getElementById('pendapat').innerHTML = "Sangat Buruk";
+                            } else if (rating == 2) {
+                                document.getElementById('pendapat').innerHTML = "Buruk";
+                            } else if (rating == 3) {
+                                document.getElementById('pendapat').innerHTML = "Cukup";
+                            } else if (rating == 4) {
+                                document.getElementById('pendapat').innerHTML = "Baik";
+                            } else if (rating == 5) {
+                                document.getElementById('pendapat').innerHTML = "Sangat Baik";
+                            }
+
+                            var ulasan = document.getElementById("ulasan" + data).value;
+                            document.getElementById("tamplate-ulasan").value = ulasan;
+
+                            var tanggal = document.getElementById("tanggal" + data).value;
+                            document.getElementById("tamplate-tanggal").innerHTML = tanggal;
+
+                            console.log(nama);
+                            console.log(invoice);
+                            console.log(gambar);
+                            console.log(rating);
+                            console.log(ulasan);
+                            console.log(tanggal);
                         }
-                        if (rating == 1) {
-                            document.getElementById('pendapat').innerHTML = "Sangat Buruk";
-                        } else if (rating == 2) {
-                            document.getElementById('pendapat').innerHTML = "Buruk";
-                        } else if (rating == 3) {
-                            document.getElementById('pendapat').innerHTML = "Cukup";
-                        } else if (rating == 4) {
-                            document.getElementById('pendapat').innerHTML = "Baik";
-                        } else if (rating == 5) {
-                            document.getElementById('pendapat').innerHTML = "Sangat Baik";
-                        }
-
-                        var ulasan = document.getElementById("ulasan" + data).value;
-                        document.getElementById("tamplate-ulasan").value = ulasan;
-
-                        var tanggal = document.getElementById("tanggal" + data).value;
-                        document.getElementById("tamplate-tanggal").innerHTML = tanggal;
-
-                        console.log(nama);
-                        console.log(invoice);
-                        console.log(gambar);
-                        console.log(rating);
-                        console.log(ulasan);
-                        console.log(tanggal);
-                    }
-                </script>
+                    </script>
                 <?php endforeach; ?>
             </tbody>
         </table>

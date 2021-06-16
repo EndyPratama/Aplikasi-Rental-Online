@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
     <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/') . $css ?>">
-    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header2.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('vendor/public/css/header3.css') ?>">
 
     <!-- CDN fontawsome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -73,8 +73,9 @@
                 </div>
             </nav>
         </div>
+        <p class="menu_mobile cta">Menu</p>
         <div class="col-1">
-            <div class="dropdown">
+            <div class="dropdown" style="margin-right: 20px;">
                 <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" style="font-size: 32px;color:#fff;">
                     <i class='bx bxs-bell'></i>
                 </a>
@@ -108,19 +109,27 @@
 
              -->
         </div>
-        <p class="menu_mobile cta">Menu</p>
-        <div class="col-1">
-            <div class="dropdown">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="<?= base_url('vendor/public/img/' . $foto_profile); ?>" alt="" style="width: 50px;height:50px;border-radius:50px;">
-                </a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
-                    <a class="dropdown-item" href="<?= base_url('/user/profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
-                    <a class="dropdown-item" href="<?= base_url('/auth/logout'); ?>"><i class='bx bx-log-out'>Logout</i></a>
+        <div class="col-2 profile">
+            <?php if ($this->session->userdata('id') == 0) { ?>
+                <div class="row">
+                    <a href="<?= base_url('auth'); ?>" class="btn btn-outline-success mr-2">Login</a>
+                    <a href="<?= base_url('auth/registration'); ?>" class="btn btn-outline-primary">Registrasi</a>
                 </div>
-            </div>
+            <?php } else { ?>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?= base_url('vendor/public/img/' . $foto_profile); ?>" alt="" style="width: 50px;height:50px;border-radius:50px;">
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
+                        <a class="dropdown-item" href="<?= base_url('/user/profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
+                        <a class="dropdown-item" href="<?= base_url('/auth/logout'); ?>"><i class='bx bx-log-out'>Logout</i></a>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
         <!-- logout taruh di kanan -->
     </header>
