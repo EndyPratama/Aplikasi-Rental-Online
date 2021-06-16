@@ -8,9 +8,30 @@ class M_Transaksi extends CI_Model
 
     public function getTransaksi()
     {
-        $this->db->select("user.id, user.name, kendaraan.id_kendaraan, kendaraan.nama,transaction.id_transaksi, transaction.tanggal, transaction.harga, transaction.status, booking.bukti_transaksi");
-        $this->db->from("transaction,user,kendaraan, booking");
-        $where = ("transaction.user_id = user.id AND transaction.kendaraan_id = kendaraan.id_kendaraan AND booking.id_user = user.id AND booking.kendaraan = kendaraan.nama");
+        $this->db->select("
+            user.id, user.name, 
+            kendaraan.id_kendaraan, 
+            kendaraan.gambar, 
+            kendaraan.nama, 
+            transaction.id_transaksi, 
+            transaction.tanggal, 
+            transaction.harga, 
+            transaction.status, 
+            booking.bukti_transaksi,
+            booking.invoice,
+            review.ulasan, 
+            review.rating
+            ");
+        $this->db->from("transaction,user,kendaraan, booking, review");
+        $where = ("
+            transaction.user_id = user.id AND 
+            transaction.kendaraan_id = kendaraan.id_kendaraan AND 
+            booking.id_user = user.id AND 
+            booking.kendaraan = kendaraan.nama AND 
+            review.userid = user.id AND 
+            review.transaksi = transaction.id_transaksi AND 
+            review.kendaraanid = kendaraan.id_kendaraan
+            ");
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();

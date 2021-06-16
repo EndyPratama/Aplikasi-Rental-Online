@@ -6,6 +6,7 @@
     $status = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai", "Dibatalkan");
     ?>
     <?php
+    $a = 0;
     for ($i = 0; $i < 5; $i++) :
     ?>
         <h3><?= $title[$i]; ?></h3>
@@ -121,8 +122,55 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-star"> Lihat Review</i></a>
+                                    <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#lihatreview"><i class="fa fa-star"> Lihat Review</i></a>
 
+                                    <div class="modal fade" id="lihatreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p style="margin-bottom: 0;"><strong><?= $t->invoice; ?></strong></p>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="gambar" style="width: 100%; height:200px">
+                                                                <img src="<?= base_url('vendor/public/img/' . $transaksi[$a]->gambar); ?>" id="tamplate-gambar" alt="" style="max-height: 100%;max-width: 100%;margin: auto;display: flex;">
+                                                                <?php $a++; ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <p><strong><?= $t->nama; ?></strong></p>
+                                                                <p style="margin-left:auto;margin-right:50px;"><em><?= $t->tanggal; ?></em></p>
+                                                            </div>
+                                                            <p>Peminjam : <?= $t->name; ?></p>
+                                                            <?php for ($j = 0; $j < 5; $j++) : ?>
+                                                                <i id="star<?= $j; ?>" class='bx bx-star' style='color:#3fff2a; font-size:24px;'></i>
+                                                            <?php endfor; ?>
+                                                            <script>
+                                                                <?php for ($j = 0; $j < $t->rating; $j++) : ?>
+                                                                    $("#star<?= $j; ?>").removeClass("bx-star");
+                                                                    $("#star<?= $j; ?>").addClass("bxs-star");
+                                                                <?php endfor; ?>
+                                                            </script>
+                                                            <span id="pendapat"></span>
+                                                            <br><br>
+                                                            <div class="form-group">
+                                                                <label>Ulasan Peminjam : </label>
+                                                                <textarea class="form-control" rows="3" name="ulasan" readonly><?= $t->ulasan; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         <?php
