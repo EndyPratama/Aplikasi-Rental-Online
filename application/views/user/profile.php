@@ -87,6 +87,8 @@
 								<input id="status<?= $row; ?>" type="hidden" value="<?= $p->status; ?>">
 								<input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $p->kendaraan; ?>">
 								<input id="tanggal<?= $row; ?>" type="hidden" value="<?= $p->tanggal; ?>">
+								<input id="ambil<?= $row; ?>" type="hidden" value="<?= $p->tgl_pnjm; ?>">
+								<input id="kembali<?= $row; ?>" type="hidden" value="<?= $p->tgl_kmbl; ?>">
 								<input id="durasi<?= $row; ?>" type="hidden" value="<?= $p->durasi; ?>">
 								<input id="sopir<?= $row; ?>" type="hidden" value="<?= $supir; ?>">
 								<?php
@@ -144,11 +146,22 @@
 								console.log(tanggal);
 								document.getElementById("receive-tanggal").innerHTML = tanggal + " WIB ";
 
+								var ambil = document.getElementById("ambil" + data).value;
+								console.log(ambil);
+								document.getElementById("receive-ambil").innerHTML = ambil + " WIB ";
+
+								var kembali = document.getElementById("kembali" + data).value;
+								console.log(kembali);
+								document.getElementById("receive-kembali").innerHTML = kembali + " WIB ";
+
 								var durasi = document.getElementById("durasi" + data).value;
 								console.log(durasi);
 								document.getElementById("receive-durasi").innerHTML = durasi + " Hari";
 
 								var sopir = document.getElementById("sopir" + data).value;
+								var durasi = document.getElementById("durasi" + data).value;
+								sopir = (sopir / durasi) * 1000;
+								sopir = new Intl.NumberFormat('de-DE').format(sopir)
 								console.log(sopir);
 								document.getElementById("receive-sopir").innerHTML = "Rp " + sopir;
 
@@ -180,26 +193,28 @@
 								<div class="content">
 									<div class="content-header">
 										<div class="row">
-											<div class="col-7">
+											<div class="col-6">
 												<div class="left-detail">
 													<p><small> Nomor Invoice</small></p>
 													<p id="receive-invoice"></p>
-													<p><small>Status</small></p>
-													<p id="receive-status"></p>
 													<p><small>Nama Kendaraan</small></p>
 													<p id="receive-kendaraan"></p>
-													<p><small>Tanggal Pembelian</small></p>
-													<p id="receive-tanggal"></p>
+													<p><small>Tanggal Pengambilan</small></p>
+													<p id="receive-ambil"></p>
 												</div>
 											</div>
-											<!-- <div class="col-5">
-												<div class="right-detail">
-													<a href="#" class="btn btn-success">Beri ulasan</a>
-													<a href="#" class="btn btn-warning">Sewa Lagi</a>
-													<a href="#" class="btn btn-secondary">Tanya Penjual</a>
+											<div class="col-6">
+												<div class="left-detail">
+													<p><small>Status</small></p>
+													<p id="receive-status"></p>
+													<p><small>Tanggal Pembayaran</small></p>
+													<p id="receive-tanggal"></p>
+													<p><small>Tanggal Pengembalian</small></p>
+													<p id="receive-kembali"></p>
 												</div>
-											</div> -->
+											</div>
 										</div>
+										<br>
 									</div>
 									<div class="content-body">
 										<div class="row">
