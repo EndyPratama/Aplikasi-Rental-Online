@@ -13,12 +13,29 @@ class Chart extends CI_Controller
     }
     public function index()
     {
-        $data = array(
-            'kendaraan' => $this->M_Chart->kendaraan(),
-            'transaksi' => $this->M_Chart->transaksi(),
-            'css' => 'chart.css',
-            'title' => 'Graph'
-        );
+        $jenis = $this->input->post('jenis');
+        $diagram = $this->input->post('diagram');
+        if ($diagram == null) {
+            $diagram = 'pie';
+        }
+        if ($jenis == null || $jenis == 'kendaraan') {
+            $data = array(
+                'graph' => $this->M_Chart->kendaraan(),
+                'nama' => 'kendaraan',
+                'diagram' => $diagram,
+                'css' => 'chart.css',
+                'title' => 'Graph'
+            );
+        } else if ($jenis == 'transaksi') {
+            $data = array(
+                'graph' => $this->M_Chart->transaksi(),
+                'nama' => 'transaksi',
+                'diagram' => $diagram,
+                'css' => 'chart.css',
+                'title' => 'Graph'
+            );
+        }
+
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
@@ -28,5 +45,27 @@ class Chart extends CI_Controller
         $this->load->view('/admin/layout/sidebar', $data);
         $this->load->view('/admin/chart', $data);
         $this->load->view('/admin/layout/footer');
+    }
+    public function Graphdata()
+    {
+        $jenis = $this->input->post('graph');
+        if ($jenis == 'kendaraan') {
+            $notif = $this->M_Chart->kendaraan();
+            $notif = json_decode(json_encode($notif), true);
+            $notif = $notif["0"];
+            echo json_encode($notif);
+        } else {
+            $notif = $this->M_Chart->transaksi();
+            // $notif = json_decode(json_encode($notif), true);
+            // $notif = $notif["0"];
+            echo json_encode($notif);
+        }
+        // echo $id;
+        // $data = array(
+        //     'kendaraan' => 
+        //     'transaksi' => 
+        //     'css' => 'chart.css',
+        //     'title' => 'Graph'
+        // );
     }
 }

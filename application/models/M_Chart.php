@@ -14,9 +14,9 @@ class M_Chart extends CI_Model
     {
         // $data = $this->db->query("SELECT * from kendaraan");
         $data = $this->db->query("
-        SELECT kendaraan.merk, count(booking.action) AS Terpinjam
+        SELECT kendaraan.merk, count(booking.action) AS total
         FROM kendaraan, booking
-        WHERE booking.kendaraan = kendaraan.nama AND booking.action = 1
+        WHERE booking.kendaraan = kendaraan.nama AND booking.action != 1
         GROUP BY kendaraan.merk");
         // SELECT merk, COUNT( * ) AS total FROM kendaraan GROUP BY merk
         return $data->result();
