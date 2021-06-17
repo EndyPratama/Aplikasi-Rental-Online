@@ -7,20 +7,32 @@ class Transaksi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Transaksi');
+        $this->load->model('M_Booking');
         if ($this->session->userdata('id') == 0) {
             redirect(base_url('auth'));
         }
     }
     public function index()
     {
+
+        // $transaksi = $this->M_Transaksi->getTransaksi();
+        // $id = json_decode(json_encode($transaksi), true);
+        // $id = $id["0"];
+        // $transaksi = $this->M_Transaksi->getRating();
+        // if ($transaksi == null) {
+        // }
         $transaksi = $this->M_Transaksi->getTransaksi();
         $rating = $this->M_Transaksi->getRating();
-        if ($rating == null) {
-            $rating = 0;
-        }
+        // if ($rating == null) {
+        //     $rating = 0;
+        //     // $ulasan = '';
+        // } else {
+        // }
         $data = array(
+            // 'id' => $id,
             'transaksi' => $transaksi,
             'rating' => $rating,
+            // 'ulasan' => $ulasan,
             'title' => 'Histori Transaksi',
             'css' => 'kendaraan.css'
         );
@@ -78,10 +90,6 @@ class Transaksi extends CI_Controller
         redirect(base_url('admin/transaksi'));
     }
 
-    public function cek($kendaraan_id)
-    {
-    }
-
     public function lunas($kendaraan_id, $user_id, $transaksi_id)
     {
         $data['trans'] = $this->db->get('transaction')->result_array();
@@ -92,6 +100,12 @@ class Transaksi extends CI_Controller
         $this->db->where('transaction.kendaraan_id', $kendaraan_id);
         $this->db->where('transaction.id_transaksi', $transaksi_id);
         $this->db->update('transaction');
+
+        $action = '2';
+        $id_booking = $this->M_Booking->getIdBooking($transaksi_id);
+        $this->db->set('action', $action);
+        $this->db->where('id', $id_booking);
+        $this->db->update('booking');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

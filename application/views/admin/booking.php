@@ -4,7 +4,7 @@
     <hr>
     <?php
     $title = array("Menunggu Konfirmasi", "Diterima", "Ditolak");
-    $action = array("0", "1", "2");
+    // $action = array("0", "1", "-1");
     ?>
     <?php
     for ($i = 0; $i < 3; $i++) :
@@ -18,6 +18,7 @@
                     <th scope="col">Nama Peminjam</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">Kendaraan</th>
+                    <th scope="col">Tanggal</th>
                     <th scope="col">Durasi</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Aksi</th>
@@ -37,6 +38,7 @@
                                 <td><?= $b->peminjam; ?></td>
                                 <td><?= $b->alamat; ?></td>
                                 <td><?= $b->kendaraan; ?></td>
+                                <td><?= $b->tgl_pnjm; ?></td>
                                 <td><?= $b->durasi; ?> Hari</td>
                                 <td>Rp <?= $total; ?></td>
                                 <td class="align-middle">
@@ -48,7 +50,7 @@
                         endif;
                     endif;
                     if ($title[$i] == "Diterima") :
-                        if ($b->action == 1) :
+                        if ($b->action == 1 || $b->action == 2) :
                             $harga = number_format($b->harga, 0, ',', '.');
                         ?>
                             <tr>
@@ -57,6 +59,7 @@
                                 <td><?= $b->peminjam; ?></td>
                                 <td><?= $b->alamat; ?></td>
                                 <td><?= $b->kendaraan; ?></td>
+                                <td><?= $b->tgl_pnjm; ?></td>
                                 <td><?= $b->durasi; ?> Hari</td>
                                 <td>Rp <?= $harga; ?></td>
                                 <td class="align-middle">Diterima</td>
@@ -65,7 +68,7 @@
                         endif;
                     endif;
                     if ($title[$i] == "Ditolak") :
-                        if ($b->action == 2) :
+                        if ($b->action == -1) :
                             $harga = number_format($b->harga, 0, ',', '.');
                         ?>
                             <tr>
@@ -74,6 +77,7 @@
                                 <td><?= $b->peminjam; ?></td>
                                 <td><?= $b->alamat; ?></td>
                                 <td><?= $b->kendaraan; ?></td>
+                                <td><?= $b->tgl_pnjm; ?></td>
                                 <td><?= $b->durasi; ?> Hari</td>
                                 <td>Rp <?= $harga; ?></td>
                                 <td class="align-middle">Ditolak</td>

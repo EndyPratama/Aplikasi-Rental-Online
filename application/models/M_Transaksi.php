@@ -30,32 +30,46 @@ class M_Transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    // public function getRating()
+    // {
+    //     $this->db->select("
+    //         user.id, user.name, 
+    //         kendaraan.id_kendaraan, 
+    //         kendaraan.gambar, 
+    //         kendaraan.nama, 
+    //         transaction.id_transaksi, 
+    //         transaction.tanggal, 
+    //         transaction.harga, 
+    //         transaction.status, 
+    //         booking.bukti_transaksi,
+    //         booking.invoice,
+    //         review.ulasan, 
+    //         review.rating
+    //         ");
+    //     $this->db->from("transaction,user,kendaraan, booking, review");
+    //     $where = ("
+    //         transaction.user_id = user.id AND 
+    //         transaction.kendaraan_id = kendaraan.id_kendaraan AND 
+    //         transaction.id_booking = booking.id AND
+    //         booking.id_user = user.id AND 
+    //         booking.kendaraan = kendaraan.nama AND
+    //         review.transaksi = transaction.id_transaksi AND 
+    //         review.userid = user.id AND 
+    //         review.kendaraanid = kendaraan.id_kendaraan
+    //         ");
+    //     $this->db->where($where);
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
     public function getRating()
     {
         $this->db->select("
-            user.id, user.name, 
-            kendaraan.id_kendaraan, 
-            kendaraan.gambar, 
-            kendaraan.nama, 
-            transaction.id_transaksi, 
-            transaction.tanggal, 
-            transaction.harga, 
-            transaction.status, 
-            booking.bukti_transaksi,
-            booking.invoice,
+            transaction.id_transaksi,
             review.ulasan, 
             review.rating
             ");
-        $this->db->from("transaction,user,kendaraan, booking, review");
-        $where = ("
-            transaction.user_id = user.id AND 
-            transaction.kendaraan_id = kendaraan.id_kendaraan AND 
-            booking.id_user = user.id AND 
-            booking.kendaraan = kendaraan.nama AND 
-            review.userid = user.id AND 
-            review.transaksi = transaction.id_transaksi AND 
-            review.kendaraanid = kendaraan.id_kendaraan
-            ");
+        $this->db->from("transaction, review");
+        $where = ("review.transaksi = transaction.id_transaksi");
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -117,6 +131,14 @@ class M_Transaksi extends CI_Model
         $this->db->select("SUM(harga)");
         $this->db->from("transaction");
         $this->db->where('status', 'Selesai');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getIdTransaksi($id)
+    {
+        $this->db->select("id_transaksi");
+        $this->db->from("transaction");
+        $this->db->where('id_booking', $id);
         $query = $this->db->get();
         return $query->result();
     }

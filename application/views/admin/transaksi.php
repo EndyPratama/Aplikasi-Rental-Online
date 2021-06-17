@@ -7,6 +7,7 @@
     ?>
     <?php
     $a = 0;
+    $data = 0;
     for ($i = 0; $i < 5; $i++) :
     ?>
         <h3><?= $title[$i]; ?></h3>
@@ -26,6 +27,22 @@
                 <?php
                 $row = 1;
                 foreach ($transaksi as $t) :
+                    foreach ($rating as $r) {
+                        // echo "HAIIII";
+                        // $transaksi_idTransaksi = $t->id_transaksi;
+                        // echo $transaksi_idTransaksi;
+                        // echo "-";
+                        // $rating_idTransaksi = $r->id_transaksi;
+                        // echo $rating_idTransaksi;
+                        // echo "_";
+                        // if ($rating_idTransaksi == $transaksi_idTransaksi) {
+                        //     echo "Loh bisa";
+                        // }
+                        if ($r->id_transaksi == $t->id_transaksi) {
+                            $rating_kendaraan = $r->rating;
+                            $ulasan_kendaraan = $r->ulasan;
+                        }
+                    }
                     if ($title[$i] == "Menunggu Pembayaran") :
                         if ($t->status == "Menunggu Pembayaran" || $t->status == "Menunggu Verifikasi") :
                             $harga = number_format($t->harga, 0, ',', '.');
@@ -111,6 +128,7 @@
                         endif;
                     endif;
                     if ($title[$i] == "Selesai") :
+
                         if ($t->status == "Selesai") :
                             $harga = number_format($t->harga, 0, ',', '.');
                         ?>
@@ -118,17 +136,29 @@
                                 <th scope="row"><?= $row++; ?></th>
                                 <td><?= $t->name; ?></td>
                                 <td><?= $t->nama; ?></td>
+                                <input type="hidden" name="nama_kendaraan" id="nama_kendaraan<?= $data; ?>" value="<?= $t->nama; ?>">
+                                <input type="hidden" name="invoice_kendaraan" id="invoice_kendaraan<?= $data; ?>" value="<?= $t->invoice; ?>">
+                                <input type="hidden" name="peminjam_kendaraan" id="peminjam_kendaraan<?= $data; ?>" value="<?= $t->name; ?>">
+
+
+                                <input type="hidden" name="rating_kendaraan" id="rating_kendaraan<?= $data; ?>" value="<?= $rating_kendaraan; ?>">
+                                <input type="hidden" name="ulasan_kendaraan" id="ulasan_kendaraan<?= $data; ?>" value="<?= $ulasan_kendaraan; ?>">
+
+                                <input type="hidden" name="tanggal_kendaraan" id="tanggal_kendaraan<?= $data; ?>" value="<?= $t->tanggal; ?>">
+                                <input type="hidden" name="gambar_kendaraan" id="gambar_kendaraan<?= $data; ?>" value="<?= $t->gambar; ?>">
                                 <td><?= date('D-m-y [H:m:s]', strtotime($t->tanggal)); ?></td>
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
+
                                 <td class="align-middle">
-                                    <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#lihatreview"><i class="fa fa-star"> Lihat Review</i></a>
+                                    <a href="" class="btn btn-success" onclick="formOpen(<?= $data; ?>)" data-toggle="modal" data-target="#lihatreview"><i class="fa fa-star"> Lihat Review</i></a>
 
                                     <div class="modal fade" id="lihatreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <p style="margin-bottom: 0;"><strong><?= $t->invoice; ?></strong></p>
+                                                    <div id="tamplate-invoice_kendaraan">
+                                                    </div>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -137,30 +167,25 @@
                                                     <div class="row">
                                                         <div class="col-4">
                                                             <div class="gambar" style="width: 100%; height:200px">
-                                                                <img src="<?= base_url('vendor/public/img/' . $transaksi[$a]->gambar); ?>" id="tamplate-gambar" alt="" style="max-height: 100%;max-width: 100%;margin: auto;display: flex;">
+                                                                <img id="tamplate-gambar_kendaraan" alt="" style="max-height: 100%;max-width: 100%;margin: auto;display: flex;">
                                                                 <?php $a++; ?>
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <div class="row">
-                                                                <p><strong><?= $t->nama; ?></strong></p>
-                                                                <p style="margin-left:auto;margin-right:50px;"><em><?= $t->tanggal; ?></em></p>
+                                                            <div class="row" style="margin:0;">
+                                                                <div id="tamplate-name"></div>
+                                                                <div id="tamplate-tanggal_kendaraan" style="margin-left:auto;margin-right:50px;"></div>
                                                             </div>
-                                                            <p>Peminjam : <?= $t->name; ?></p>
+                                                            <div id="tamplate-nama_peminjam"></div>
+                                                            <br>
                                                             <?php for ($j = 0; $j < 5; $j++) : ?>
                                                                 <i id="star<?= $j; ?>" class='bx bx-star' style='color:#3fff2a; font-size:24px;'></i>
                                                             <?php endfor; ?>
-                                                            <script>
-                                                                <?php for ($j = 0; $j < $t->rating; $j++) : ?>
-                                                                    $("#star<?= $j; ?>").removeClass("bx-star");
-                                                                    $("#star<?= $j; ?>").addClass("bxs-star");
-                                                                <?php endfor; ?>
-                                                            </script>
                                                             <span id="pendapat"></span>
                                                             <br><br>
                                                             <div class="form-group">
                                                                 <label>Ulasan Peminjam : </label>
-                                                                <textarea class="form-control" rows="3" name="ulasan" readonly><?= $t->ulasan; ?></textarea>
+                                                                <textarea class="form-control" rows="3" name="ulasan" id="tamplate-ulasan_kendaraan" readonly></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,6 +199,7 @@
                                 </td>
                             </tr>
                         <?php
+                            $data++;
                         endif;
                     endif;
                     if ($title[$i] == "Dibatalkan") :
@@ -198,26 +224,33 @@
                     ?>
                     <script>
                         function formOpen(data) {
-                            // nama, gambar, invoice, rating, ulasan
-                            // console.log(data);
-                            // var id = document.getElementById("id" + data).value;
 
-                            var nama = document.getElementById("nama" + data).value;
-                            document.getElementById("tamplate-name").innerHTML = nama;
+                            var nama_kendaraan = document.getElementById("nama_kendaraan" + data).value;
+                            document.getElementById("tamplate-name").innerHTML = nama_kendaraan;
 
-                            var invoice = document.getElementById("invoice" + data).value;
-                            document.getElementById("tamplate-invoice").innerHTML = invoice;
+                            var peminjam_kendaraan = document.getElementById("peminjam_kendaraan" + data).value;
+                            document.getElementById("tamplate-nama_peminjam").innerHTML = "Peminjam : " + peminjam_kendaraan;
 
-                            var gambar = document.getElementById("gambar" + data).value;
-                            document.getElementById("tamplate-gambar").src = "<?= base_url(); ?>/vendor/public/img/" + gambar;
+                            var invoice_kendaraan = document.getElementById("invoice_kendaraan" + data).value;
+                            document.getElementById("tamplate-invoice_kendaraan").innerHTML = invoice_kendaraan;
 
-                            var rating = document.getElementById("rating" + data).value;
+                            var gambar_kendaraan = document.getElementById("gambar_kendaraan" + data).value;
+                            document.getElementById("tamplate-gambar_kendaraan").src = "<?= base_url(); ?>/vendor/public/img/" + gambar_kendaraan;
+
+                            var rating = document.getElementById("rating_kendaraan" + data).value;
                             // document.getElementById("tamplate-rating").value = rating;
+                            console.log(rating);
+                            for (var i = 0; i < 5; i++) {
+                                $("#star" + i).removeClass("bxs-star");
+                                $("#star" + i).addClass("bx-star");
+                            }
                             for (var i = 0; i < rating; i++) {
                                 $("#star" + i).removeClass("bx-star");
                                 $("#star" + i).addClass("bxs-star");
                             }
-                            if (rating == 1) {
+                            if (rating == 0) {
+                                document.getElementById('pendapat').innerHTML = "";
+                            } else if (rating == 1) {
                                 document.getElementById('pendapat').innerHTML = "Sangat Buruk";
                             } else if (rating == 2) {
                                 document.getElementById('pendapat').innerHTML = "Buruk";
@@ -229,18 +262,11 @@
                                 document.getElementById('pendapat').innerHTML = "Sangat Baik";
                             }
 
-                            var ulasan = document.getElementById("ulasan" + data).value;
-                            document.getElementById("tamplate-ulasan").value = ulasan;
+                            var ulasan = document.getElementById("ulasan_kendaraan" + data).value;
+                            document.getElementById("tamplate-ulasan_kendaraan").value = ulasan;
 
-                            var tanggal = document.getElementById("tanggal" + data).value;
-                            document.getElementById("tamplate-tanggal").innerHTML = tanggal;
-
-                            console.log(nama);
-                            console.log(invoice);
-                            console.log(gambar);
-                            console.log(rating);
-                            console.log(ulasan);
-                            console.log(tanggal);
+                            var tanggal_kendaraan = document.getElementById("tanggal_kendaraan" + data).value;
+                            document.getElementById("tamplate-tanggal_kendaraan").innerHTML = tanggal_kendaraan;
                         }
                     </script>
                 <?php endforeach; ?>

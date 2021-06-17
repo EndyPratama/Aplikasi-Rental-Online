@@ -62,4 +62,13 @@ class M_Booking extends CI_Model
         $query = $this->db->get();
         return $query->row()->id_user;
     }
+    public function getIdBooking($transaksi)
+    {
+        $this->db->select("id_booking");
+        $this->db->from("transaction");
+        $this->db->where("id_transaksi", $transaksi);
+        // select * from pesan JOIN akun on pesan.user_id=akun.id join jawaban on pesan.id_pesan = jawaban.id_pesan where pesan.user_id='6' 
+        $query = $this->db->get();
+        return $query->row()->id_booking;
+    }
 }

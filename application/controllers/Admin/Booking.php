@@ -28,6 +28,7 @@ class Booking extends CI_Controller
     }
     public function terima($id)
     {
+        // echo $id; //id booking
         // Update Action
         $data['booking'] = $this->db->get('booking')->result_array();
         // echo "<pre>";
@@ -62,12 +63,13 @@ class Booking extends CI_Controller
 
         $status = 'Menunggu Pembayaran';
         $harga = $this->M_Booking->getHarga($id);
-        $id = $this->M_Booking->getIdUser($id);
+        $id_user = $this->M_Booking->getIdUser($id);
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date("Y-m-d H:i:s");
 
         $databaru = [
-            'user_id' => $id,
+            'id_booking' => $id,
+            'user_id' => $id_user,
             'kendaraan_id' => $id_kendaraan,
             'tanggal' => $tanggal,
             'status' => $status,

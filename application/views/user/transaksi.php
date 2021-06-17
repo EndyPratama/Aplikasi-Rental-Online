@@ -35,14 +35,19 @@
                                         <p>:</p>
                                     </div>
                                     <div class="col">
+                                        <?php
+                                        $harga = number_format($b->harga, 0, ',', '.');
+                                        $supir = number_format($b->supir, 0, ',', '.');
+                                        $total = number_format($b->total, 0, ',', '.');
+                                        ?>
                                         <p><?= $b->invoice; ?></p>
                                         <p><?= $b->kendaraan; ?></p>
                                         <p><?= $b->tgl_pnjm; ?></p>
                                         <p><?= $b->tgl_kmbl; ?></p>
-                                        <p>Rp <?= $b->harga; ?></p>
-                                        <p>Rp <?= $b->supir; ?></p>
+                                        <p>Rp <?= $harga; ?></p>
+                                        <p>Rp <?= $supir; ?></p>
                                         <p><?= $b->durasi; ?> Hari</p>
-                                        <p><strong>Rp <?= $b->total; ?></strong></p>
+                                        <p><strong>Rp <?= $total; ?></strong></p>
                                     </div>
                                 </div>
                             </div>

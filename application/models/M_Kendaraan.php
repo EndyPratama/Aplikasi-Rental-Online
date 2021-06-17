@@ -113,9 +113,9 @@ class M_Kendaraan extends CI_Model
 
         // $this->db->select("id, peminjam, alamat, kendaraan, durasi, booking.harga");
         $this->db->select("*");
-        $this->db->from("booking,transaction");
+        $this->db->from("booking,kendaraan");
         // $this->db->join('kendaraan', 'booking.kendaraan = kendaraan.nama', 'left');
-        $this->db->where("booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.action = 0) AND booking.id_user = $user");
+        $this->db->where("booking.kendaraan = kendaraan.nama AND booking.id_user = $user AND (booking.action = 1 OR booking.action = 0)");
         $query = $this->db->get();
         return $query->result();
         /*
@@ -124,6 +124,7 @@ FROM booking, transaction
 WHERE booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.action = 0) AND booking.id_user = 21
         */
     }
+    // getBookingById
 
     public function getIklan($merk)
     {

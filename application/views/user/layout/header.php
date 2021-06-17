@@ -74,7 +74,7 @@
             </nav>
         </div>
         <p class="menu_mobile cta">Menu</p>
-        <div class="col-1">
+        <!-- <div class="col-1">
             <div class="dropdown" style="margin-right: 20px;">
                 <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" style="font-size: 32px;color:#fff;">
                     <i class='bx bxs-bell'></i>
@@ -98,7 +98,6 @@
                     </a>
                 </div>
             </div>
-            <!-- 
                 notifikasi yang dibutuhkan :
                 1. id notif
                 2. id user
@@ -106,9 +105,7 @@
                 4. jenis
                 5. tanggal/waktu
                 6. direct ke mana
-
-             -->
-        </div>
+        </div> -->
 
         <div class="col-2 profile">
             <?php if ($this->session->userdata('id') == 0) { ?>
