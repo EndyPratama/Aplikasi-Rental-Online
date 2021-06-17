@@ -60,7 +60,7 @@ class Booking extends CI_Controller
         // print_r($data);
         // echo "</pre>";
 
-        $status = 'Berlangsung';
+        $status = 'Menunggu Pembayaran';
         $harga = $this->M_Booking->getHarga($id);
         $id = $this->M_Booking->getIdUser($id);
         date_default_timezone_set('Asia/Jakarta');

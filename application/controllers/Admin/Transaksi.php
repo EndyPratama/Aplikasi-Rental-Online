@@ -64,6 +64,7 @@ class Transaksi extends CI_Controller
 
         $this->db->set('status', $status);
         $this->db->where('transaction.kendaraan_id', $kendaraan_id);
+        $this->db->where('transaction.id_transaksi', $transaksi_id);
         $this->db->update('transaction');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -76,7 +77,7 @@ class Transaksi extends CI_Controller
     {
     }
 
-    public function lunas($kendaraan_id)
+    public function lunas($kendaraan_id, $user_id, $transaksi_id)
     {
         $data['trans'] = $this->db->get('transaction')->result_array();
 
@@ -84,6 +85,7 @@ class Transaksi extends CI_Controller
 
         $this->db->set('status', $status);
         $this->db->where('transaction.kendaraan_id', $kendaraan_id);
+        $this->db->where('transaction.id_transaksi', $transaksi_id);
         $this->db->update('transaction');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -92,7 +94,7 @@ class Transaksi extends CI_Controller
         redirect(base_url('admin/transaksi'));
     }
 
-    public function batal($kendaraan_id)
+    public function batal($kendaraan_id, $user_id, $transaksi_id)
     {
         $$data['kendaraans'] = $this->db->get('kendaraan')->result_array();
 
@@ -128,6 +130,7 @@ class Transaksi extends CI_Controller
 
         $this->db->set('status', $status);
         $this->db->where('transaction.kendaraan_id', $kendaraan_id);
+        $this->db->where('transaction.id_transaksi', $transaksi_id);
         $this->db->update('transaction');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -137,7 +140,7 @@ class Transaksi extends CI_Controller
     }
 
 
-    public function diterima($kendaraan_id)
+    public function diterima($kendaraan_id, $user_id, $transaksi_id)
     {
         $data['trans'] = $this->db->get('transaction')->result_array();
 
@@ -145,6 +148,7 @@ class Transaksi extends CI_Controller
 
         $this->db->set('status', $status);
         $this->db->where('transaction.kendaraan_id', $kendaraan_id);
+        $this->db->where('transaction.id_transaksi', $transaksi_id);
         $this->db->update('transaction');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
