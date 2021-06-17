@@ -27,7 +27,7 @@
                 $row = 1;
                 foreach ($transaksi as $t) :
                     if ($title[$i] == "Menunggu Pembayaran") :
-                        if ($t->status == "Menunggu Pembayaran") :
+                        if ($t->status == "Menunggu Pembayaran" || $t->status == "Menunggu Verifikasi") :
                             $harga = number_format($t->harga, 0, ',', '.');
                 ?>
                             <tr>
@@ -67,7 +67,7 @@
                                             <?php } ?>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         <?php
                         endif;

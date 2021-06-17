@@ -357,6 +357,21 @@ class Profile extends CI_Controller
         $this->db->set('bukti_transaksi', $bukti_transaksi);
         $this->db->where('id', $id);
         $this->db->update('booking');
+        $user = $this->session->userdata('id');
+        $getBooking = $this->M_Kendaraan->getBookingById($user);
+        $getBooking = json_decode(json_encode($getBooking), true);
+        $getBooking = $getBooking["0"];
+        $id_transaksi = $getBooking['id_transaksi'];
+        $data = array(
+            'booking' => $getBooking
+        );
+        $this->db->set('status', 'Menunggu Verifikasi');
+        $this->db->where('id_transaksi', $id_transaksi);
+        $this->db->update('transaction');
+
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
         $this->session->set_flashdata(
             'message',

@@ -14,8 +14,13 @@ class Transaksi extends CI_Controller
     public function index()
     {
         $transaksi = $this->M_Transaksi->getTransaksi();
+        $rating = $this->M_Transaksi->getRating();
+        if ($rating == null) {
+            $rating = 0;
+        }
         $data = array(
             'transaksi' => $transaksi,
+            'rating' => $rating,
             'title' => 'Histori Transaksi',
             'css' => 'kendaraan.css'
         );
