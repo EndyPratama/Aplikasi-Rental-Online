@@ -71,8 +71,11 @@ class Profile extends CI_Controller
     public function history($data = NULL)
     {
         $user = $this->session->userdata('id');
-        // echo $user;
-        $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
+        if ($data == 'Dibatalkan') {
+            $kendaraan = $this->M_Transaksi->getTransaksiKendaraanBatal($user);
+        } else {
+            $kendaraan = $this->M_Transaksi->getTransaksiKendaraan($user, $data);
+        }
         $merk = $this->M_Kendaraan->getMerk();
         $profile = $this->M_Profile->getGambar($user);
         $profile = json_decode(json_encode($profile), true);

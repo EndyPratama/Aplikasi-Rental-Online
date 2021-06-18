@@ -309,7 +309,7 @@ WHERE booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.a
     {
         $this->db->select("booking.id_user, kendaraan.id_kendaraan, transaction.id_transaksi, booking.invoice, kendaraan.nama, transaction.status, kendaraan.gambar, transaction.tanggal");
         $this->db->from("transaction, kendaraan, booking");
-        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = '$id' AND booking.kendaraan = kendaraan.nama AND transaction.ulasan = 0";
+        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND TRANSACTION.user_id = '$id' AND booking.kendaraan = kendaraan.nama AND transaction.ulasan = 0 AND booking.id = transaction.id_booking";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -328,7 +328,9 @@ WHERE booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.a
                   TRANSACTION.user_id = $id AND 
                   transaction.ulasan = 1 AND 
                   booking.kendaraan = kendaraan.nama AND
-                  transaction.id_transaksi = review.transaksi";
+                  transaction.id_transaksi = review.transaksi AND 
+                  booking.id = transaction.id_booking
+                  ";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -342,7 +344,7 @@ WHERE booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.a
     {
         $this->db->select("booking.id, kendaraan.id_kendaraan, transaction.id_transaksi, booking.invoice, kendaraan.nama, kendaraan.gambar, transaction.tanggal");
         $this->db->from("kendaraan,booking,transaction");
-        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = $transaksiID AND booking.kendaraan = kendaraan.nama";
+        $where = "transaction.user_id = booking.id_user AND transaction.kendaraan_id = kendaraan.id_kendaraan AND transaction.id_transaksi = $transaksiID AND booking.kendaraan = kendaraan.nama AND booking.id = transaction.id_booking";
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();

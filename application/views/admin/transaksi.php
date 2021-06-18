@@ -2,13 +2,13 @@
     <h1>Data Transaksi : </h1>
     <hr>
     <?php
-    $title = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai", "Dibatalkan");
-    $status = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai", "Dibatalkan");
+    $title = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai");
+    $status = array("Menunggu Pembayaran", "Lunas", "Berlangsung", "Selesai");
     ?>
     <?php
     $a = 0;
     $data = 0;
-    for ($i = 0; $i < 5; $i++) :
+    for ($i = 0; $i < 4; $i++) :
     ?>
         <h3><?= $title[$i]; ?></h3>
         <table class="table">
@@ -28,16 +28,6 @@
                 $row = 1;
                 foreach ($transaksi as $t) :
                     foreach ($rating as $r) {
-                        // echo "HAIIII";
-                        // $transaksi_idTransaksi = $t->id_transaksi;
-                        // echo $transaksi_idTransaksi;
-                        // echo "-";
-                        // $rating_idTransaksi = $r->id_transaksi;
-                        // echo $rating_idTransaksi;
-                        // echo "_";
-                        // if ($rating_idTransaksi == $transaksi_idTransaksi) {
-                        //     echo "Loh bisa";
-                        // }
                         if ($r->id_transaksi == $t->id_transaksi) {
                             $rating_kendaraan = $r->rating;
                             $ulasan_kendaraan = $r->ulasan;
@@ -56,7 +46,7 @@
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
                                     <a class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"> Lihat</i></a>
-                                    <a href="<?= base_url('admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a>
+                                    <!-- <a href="<?= base_url('admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a> -->
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -198,27 +188,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        <?php
-                            $data++;
-                        endif;
-                    endif;
-                    if ($title[$i] == "Dibatalkan") :
-                        if ($t->status == "Dibatalkan") :
-                            $harga = number_format($t->harga, 0, ',', '.');
-                        ?>
-                            <tr>
-                                <th scope="row"><?= $row++; ?></th>
-                                <td><?= $t->name; ?></td>
-                                <td><?= $t->nama; ?></td>
-                                <td><?= date('D-m-y [H:m:s]', strtotime($t->tanggal)); ?></td>
-                                <td>Rp <?= $harga; ?></td>
-                                <td><?= $t->status; ?></td>
-                                <td class="align-middle">
-                                    Transaksi dibatalkan
-
-                                </td>
-                            </tr>
                     <?php
+                            $data++;
                         endif;
                     endif;
                     ?>

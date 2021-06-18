@@ -92,7 +92,7 @@ class Booking extends CI_Controller
     {
         $data['booking'] = $this->db->get('booking')->result_array();
 
-        $action = '2';
+        $action = '-1';
 
         $this->db->set('action', $action);
         $this->db->where('id', $id);

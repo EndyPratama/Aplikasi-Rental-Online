@@ -230,7 +230,10 @@ class Kendaraan extends CI_Controller
             $idmbl = $idmbl['id_kendaraan'];
             $kode = "$iduser$idmbl";
 
-            $invoice = "INV/MBL/$y/$m/$d/$kode";
+            $unik =  date('his');
+            // echo $unik;
+
+            $invoice = "INV/MBL/$y/$m/$d/$kode/$unik";
 
             $data = array(
                 'id_user' => $this->session->userdata('id'),

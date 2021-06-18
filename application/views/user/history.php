@@ -32,10 +32,10 @@
     <div class="status">
         <div class="row">
             <h5><b>Status</b></h5>
-            <a href="<?= base_url('/user/profile/history'); ?>" class="btn btn-outline-success">Semua</a>
+            <!-- <a href="<?= base_url('/user/profile/history'); ?>" class="btn btn-outline-success">Semua</a> -->
             <a href="<?= base_url('/user/profile/history/Selesai'); ?>" class="btn btn-outline-success">Selesai</a>
             <a href="<?= base_url('/user/profile/history/Berlangsung'); ?>" class="btn btn-outline-warning">Berlangsung</a>
-            <!-- <a href="<?= base_url('/user/profile/history/Dibatalkan'); ?>" class="btn btn-outline-danger">Dibatalkan</a> -->
+            <a href="<?= base_url('/user/profile/history/Dibatalkan'); ?>" class="btn btn-outline-danger">Dibatalkan</a>
             <!-- <button class="btn btn-outline-success active">Semua</button>
             <button class="btn btn-outline-success">Selesai</button>
             <button class="btn btn-outline-success">Dibatalkan</button>
@@ -48,9 +48,21 @@
         $row++;
     ?>
         <input id="invoice<?= $row; ?>" type="hidden" value="<?= $k->invoice; ?>">
-        <input id="status<?= $row; ?>" type="hidden" value="<?= $k->status; ?>">
+        <?php if ($k->action != -1) {
+            $status = $k->status;
+        } else {
+            $status = "Dibatalkan";
+        } ?>
+        <input id="status<?= $row; ?>" type="hidden" value="<?= $status; ?>">
         <input id="kendaraan<?= $row; ?>" type="hidden" value="<?= $k->nama; ?>">
-        <input id="tanggal<?= $row; ?>" type="hidden" value="<?= $k->tanggal; ?>">
+
+        <?php if ($k->action != -1) {
+            $tanggal = $k->tanggal;
+        } else {
+            $tanggal = $k->tgl_pnjm;
+        } ?>
+        <input id="tanggal<?= $row; ?>" type="hidden" value="<?= $tanggal; ?>">
+
         <input id="durasi<?= $row; ?>" type="hidden" value="<?= $k->durasi; ?>">
         <input id="sopir<?= $row; ?>" type="hidden" value="0">
         <?php
@@ -66,12 +78,14 @@
                 <div class="row">
                     <div class="icon"><i class='bx bxs-car'></i></div>
                     <div class="merk">Sewa</div>
-                    <div class="tanggal"><?= $k->tanggal; ?></div>
+                    <div class="tanggal"><?= $tanggal; ?></div>
                     <div class="Keterangan">
-                        <?php if ($k->status == 'Selesai') { ?>
+                        <?php if ($status == 'Selesai') { ?>
                             <span class="badge badge-success"><?= $k->status; ?></span>
-                        <?php } else { ?>
+                        <?php } else if ($status == 'Berlangsung') { ?>
                             <span class="badge badge-warning"><?= $k->status; ?></span>
+                        <?php } else { ?>
+                            <span class="badge badge-danger"><?= $status; ?></span>
                         <?php } ?>
                     </div>
                 </div>
@@ -90,7 +104,9 @@
                         ?>
                         <div id="harga<?= $row; ?>" class="harga_mobil"><?= $k->durasi; ?> x Rp <?= $harga; ?> </div>
                         <div class="lainnya">
-                            <a href="#" onclick="formOpen(<?= $row; ?>)" data-toggle="modal" data-target="#exampleModal">Biaya lain-lain</a>
+                            <?php if ($k->action != -1) : ?>
+                                <a href="#" onclick="formOpen(<?= $row; ?>)" data-toggle="modal" data-target="#exampleModal">Biaya lain-lain</a>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -108,30 +124,32 @@
                     </div>
                 </div>
             </div>
-            <div class="card_footer">
-                <div class="row">
-                    <div class="detail">
-                        <a href="#" onclick="formOpen(<?= $row; ?>)" data-toggle="modal" data-target="#exampleModal">Lihat Detail Transaksi</a>
-                    </div>
-                    <div class="ulasan">
-                        <?php if ($k->ulasan == '1') : ?>
-                            <a href="<?= base_url('/user/profile/ulasan_saya'); ?>" class="btn btn-success">Lihat ulasan</a>
-                        <?php endif; ?>
-                        <?php if ($k->ulasan == '0') : ?>
-                            <a href="<?= base_url('/user/profile/menunggu_ulasan'); ?>" class="btn btn-success">Beri ulasan</a>
-                        <?php endif; ?>
-                    </div>
-                    <div class="dropdown">
-                        <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class='bx bx-dots-horizontal-rounded'></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="<?= base_url('/user/kendaraan/mobil/' . $k->id_kendaraan); ?>">Sewa lagi</a>
-                            <a class="dropdown-item" href="<?= base_url('/user/contact'); ?>">Tanyakan ketersediaan</a>
+            <?php if ($k->action != -1) : ?>
+                <div class="card_footer">
+                    <div class="row">
+                        <div class="detail">
+                            <a href="#" onclick="formOpen(<?= $row; ?>)" data-toggle="modal" data-target="#exampleModal">Lihat Detail Transaksi</a>
+                        </div>
+                        <div class="ulasan">
+                            <?php if ($k->ulasan == '1') : ?>
+                                <a href="<?= base_url('/user/profile/ulasan_saya'); ?>" class="btn btn-success">Lihat ulasan</a>
+                            <?php endif; ?>
+                            <?php if ($k->ulasan == '0') : ?>
+                                <a href="<?= base_url('/user/profile/menunggu_ulasan'); ?>" class="btn btn-success">Beri ulasan</a>
+                            <?php endif; ?>
+                        </div>
+                        <div class="dropdown">
+                            <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="<?= base_url('/user/kendaraan/mobil/' . $k->id_kendaraan); ?>">Sewa lagi</a>
+                                <a class="dropdown-item" href="<?= base_url('/user/contact'); ?>">Tanyakan ketersediaan</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
         <script>
             function formOpen(data) {

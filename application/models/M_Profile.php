@@ -80,8 +80,9 @@ class M_Profile extends CI_Model
         // $this->db->join('booking', 'transaction.user_id = booking.id_user', 'left');
         $this->db->select("*");
         $this->db->from("booking,transaction, kendaraan");
-        $where = ("transaction.user_id=booking.id_user AND transaction.user_id='$id' AND kendaraan.id_kendaraan = transaction.kendaraan_id AND booking.kendaraan = kendaraan.nama");
+        $where = ("transaction.user_id=booking.id_user AND transaction.user_id='$id' AND kendaraan.id_kendaraan = transaction.kendaraan_id AND booking.kendaraan = kendaraan.nama AND booking.id = transaction.id_booking");
         $this->db->where($where);
+        $this->db->order_by('transaction.tanggal', 'DESC');
         // $this->db->where('id_user', $id);
         $query = $this->db->get();
         return $query->result();
