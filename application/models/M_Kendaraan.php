@@ -199,11 +199,14 @@ WHERE booking.id_user = transaction.user_id AND (booking.action = 1 OR booking.a
         $query = $this->db->get();
         return $query->result();
     }
-    public function getKendaraanByFilter($model = '', $tahun = '', $mesin = '', $warna = '')
+    public function getKendaraanByFilter($merk = '', $model = '', $tahun = '', $mesin = '', $warna = '')
     {
         $this->db->select("kendaraan.id_kendaraan, kendaraan.nama, kendaraan.tahun, kendaraan.harga, kendaraan.ketersediaan, kendaraan.gambar, SUM(review.rating)/COUNT(NULLIF(0,review.rating)) AS rating, COUNT(CASE WHEN review.rating != 0 THEN review.rating END) AS review");
         $this->db->from("kendaraan");
         $this->db->join('review', 'kendaraan.id_kendaraan = review.kendaraanid', 'LEFT');
+        if ($merk != NULL) {
+            $this->db->where('kendaraan.merk', $merk);
+        }
         if ($model != NULL) {
             $this->db->where('kendaraan.model', $model);
         }

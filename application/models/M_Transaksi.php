@@ -142,4 +142,12 @@ class M_Transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function cekInvoice($keyword)
+    {
+        $this->db->select("*");
+        $this->db->from("booking");
+        $this->db->where('invoice', $keyword);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

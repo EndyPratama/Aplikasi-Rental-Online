@@ -38,6 +38,7 @@ class Kendaraan extends CI_Controller
     // Read Data
     public function index()
     {
+        // echo "Masuk lo padahal";
         $keyword = $this->input->post('keyword');
         if ($keyword) {
             $kendaraan = $this->M_Kendaraan;
@@ -267,6 +268,8 @@ class Kendaraan extends CI_Controller
     // Cek Filter Kendaraan
     public function filter()
     {
+        $merk = $this->input->post('merk');
+        // echo $merk;
         $model = $this->input->post('model');
         $tahun = $this->input->post('tahun');
         $mesin = $this->input->post('mesin');
@@ -277,7 +280,7 @@ class Kendaraan extends CI_Controller
             'mesin' => $mesin,
             'warna' => $warna
         );
-        $kendaraan = $this->M_Kendaraan->getKendaraanByFilter($model, $tahun, $mesin, $warna);
+        $kendaraan = $this->M_Kendaraan->getKendaraanByFilter($merk, $model, $tahun, $mesin, $warna);
         $merk = $this->M_Kendaraan->getMerk();
         $model = $this->M_Kendaraan->getModel();
         $tahun = $this->M_Kendaraan->getTahun();
