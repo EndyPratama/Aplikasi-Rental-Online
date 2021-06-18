@@ -48,11 +48,44 @@
     </div>
     <div class="invoice mt-5">
         <h1 class="mb-3">Cek Invoice Kendaraan : </h1>
+        <!-- <form method="POST" onsubmit="return sendData()">
+            <p>
+                <label>Title</label>
+                <input type="text" id="title" placeholder="judul artikel">
+            </p>
+            <p>
+                <label>Isi Artikel</label><br>
+                <textarea id="body" placeholder="isi artikel..." cols="50" rows="10"></textarea>
+            </p>
+            <input type="submit" value="Kirim" />
+        </form> -->
+
+        <!-- <script>
+        $(document).
+            function sendData() {
+                var xhr = new XMLHttpRequest();
+                var url = "<?= base_url('User/Home/cekinvoice'); ?>";
+
+                var data = JSON.stringify({
+                    title: document.getElementById("title").value,
+                    body: document.getElementById("body").value
+                });
+
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.onload = function() {
+                    console.log(this.responseText);
+                };
+
+                xhr.send(data);
+                return false;
+            }
+        </script> -->
         <form id="cek_invoice">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" name="submit"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -60,7 +93,7 @@
         <script>
             $(document).ready(function(e) {
                 $('#cek_invoice').submit(function() {
-                    console.log("Masuk script");
+                    // console.log("Masuk script");
                     e.ajax({
                         url: '<?= base_url('User/Home/cekinvoice'); ?>',
                         type: 'POST',
@@ -71,31 +104,33 @@
                             data = JSON.parse(data)
                             console.log(data);
                             console.log(data[0]["peminjam"]);
+                            total = new Intl.NumberFormat('de-DE').format(data[0]["total"]);
                             input = ``;
+                            $('#invoice').empty(input);
                             input += `
-                                    <table class="table">
-                                        <thead>
-                                            <th>#</th>
-                                            <th>Peminjam</th>
-                                            <th>Kendaraan</th>
-                                            <th>Tanggal</th>
-                                            <th>Durasi</th>
-                                            <th>Total</th>
-                                            <th>Status</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>` + data[0]["peminjam"] + `</td>
-                                            <td>` + data[0]["kendaraan"] + `</td>
-                                            <td>` + data[0]["tgl_pnjm"] + `</td>
-                                            <td>` + data[0]["durasi"] + `</td>
-                                            <td>` + data[0]["total"] + `</td>
-                                            <td>` + data[0]["status"] + `</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                        `;
+                        <table class="table">
+                            <thead>
+                                <th>#</th>
+                                <th>Peminjam</th>
+                                <th>Kendaraan</th>
+                                <th>Tanggal</th>
+                                <th>Durasi</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>` + data[0]["peminjam"] + `</td>
+                                <td>` + data[0]["kendaraan"] + `</td>
+                                <td>` + data[0]["tgl_pnjm"] + `</td>
+                                <td>` + data[0]["durasi"] + ` Hari</td>
+                                <td>Rp. ` + total + `</td>
+                                <td>` + data[0]["status"] + `</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                            `;
                             // document.getElementById("invoice").innerHTML = input;
                             $('#invoice').append(input);
                         },
@@ -115,28 +150,30 @@
                 <?php for ($i = 0; $i < 5; $i++) : ?>
                     <td>
                         <div class="card">
-                            <div class="image" style="width: 100%;height:180px;background-color:pink;">
-                                <img src="<?= base_url('vendor/public/img/' . $kendaraan[$i]->gambar); ?>" class="card-img-top" alt="..." style="width: inherit;height:100%;">
-                            </div>
-                            <div class="card-body">
-                                <!-- // $kendaraa[$i]->gambar; -->
-                                <p class="card-text" style="height: 25px;overflow:hidden;"><strong><?= $kendaraan[$i]->nama; ?></strong></p>
-                                <p class="card-text">Rp. <?= $kendaraan[$i]->harga; ?></p>
-                                <div class="rating">
-                                    <div class="row" style="margin:0; align-items: center;">
-                                        <?php for ($j = 0; $j < 5; $j++) : ?>
-                                            <i id="star<?= $i; ?><?= $j; ?>" class='bx bx-star' style='color:#3fff2a; font-size:18px;'></i>
-                                        <?php endfor; ?>
-                                        <div>(<?= $kendaraan[$i]->review; ?>)</div>
-                                    </div>
-                                    <script>
-                                        <?php for ($j = 0; $j < $kendaraan[$i]->rating; $j++) : ?>
-                                            $("#star<?= $i; ?><?= $j; ?>").removeClass("bx-star");
-                                            $("#star<?= $i; ?><?= $j; ?>").addClass("bxs-star");
-                                        <?php endfor; ?>
-                                    </script>
+                            <a href="<?= base_url('user/kendaraan/mobil/' . $kendaraan[$i]->id_kendaraan); ?>">
+                                <div class="image" style="width: 100%;height:180px;background-color:pink;">
+                                    <img src="<?= base_url('vendor/public/img/' . $kendaraan[$i]->gambar); ?>" class="card-img-top" alt="..." style="width: inherit;height:100%;">
                                 </div>
-                            </div>
+                                <div class="card-body">
+                                    <!-- // $kendaraa[$i]->gambar; -->
+                                    <p class="card-text" style="height: 25px;overflow:hidden;"><strong><?= $kendaraan[$i]->nama; ?></strong></p>
+                                    <p class="card-text">Rp. <?= $kendaraan[$i]->harga; ?></p>
+                                    <div class="rating">
+                                        <div class="row" style="margin:0; align-items: center;">
+                                            <?php for ($j = 0; $j < 5; $j++) : ?>
+                                                <i id="star<?= $i; ?><?= $j; ?>" class='bx bx-star' style='color:#3fff2a; font-size:18px;'></i>
+                                            <?php endfor; ?>
+                                            <div>(<?= $kendaraan[$i]->review; ?>)</div>
+                                        </div>
+                                        <script>
+                                            <?php for ($j = 0; $j < $kendaraan[$i]->rating; $j++) : ?>
+                                                $("#star<?= $i; ?><?= $j; ?>").removeClass("bx-star");
+                                                $("#star<?= $i; ?><?= $j; ?>").addClass("bxs-star");
+                                            <?php endfor; ?>
+                                        </script>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </td>
                 <?php endfor; ?>
