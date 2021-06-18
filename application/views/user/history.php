@@ -153,42 +153,32 @@
         </div>
         <script>
             function formOpen(data) {
-                console.log(data);
                 var invoice = document.getElementById("invoice" + data).value;
-                console.log(invoice);
                 document.getElementById("receive-invoice").innerHTML = invoice;
 
                 var status = document.getElementById("status" + data).value;
-                console.log(status);
                 document.getElementById("receive-status").innerHTML = status;
 
                 var kendaraan = document.getElementById("kendaraan" + data).value;
-                console.log(kendaraan);
                 document.getElementById("receive-kendaraan").innerHTML = kendaraan;
 
                 var tanggal = document.getElementById("tanggal" + data).value;
-                console.log(tanggal);
                 document.getElementById("receive-tanggal").innerHTML = tanggal + " WIB ";
 
                 var durasi = document.getElementById("durasi" + data).value;
-                console.log(durasi);
                 document.getElementById("receive-durasi").innerHTML = durasi + " Hari";
 
                 var sopir = document.getElementById("sopir" + data).value;
-                console.log(sopir);
                 document.getElementById("receive-sopir").innerHTML = "Rp " + sopir;
 
                 var harga = document.getElementById("harga" + data).value;
-                console.log(harga);
                 document.getElementById("receive-harga").innerHTML = "Rp " + harga;
 
                 var total = document.getElementById("total" + data).value;
-                console.log(total);
                 document.getElementById("receive-total").innerHTML = "Rp " + total;
 
                 var icon = document.getElementById("icon" + data).value;
                 document.getElementById("receive-icon").src = icon;
-                console.log(icon);
             }
         </script>
     <?php endforeach; ?>

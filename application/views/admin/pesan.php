@@ -67,7 +67,7 @@
                 <?php $data++ ?>
                 <script>
                     function formOpen(data) {
-                        console.log(data);
+                        // console.log(data);
                         var id = document.getElementById("id" + data).value;
                         var nama = document.getElementById("nama" + data).value;
                         var pesan = document.getElementById("pesan" + data).value;
@@ -79,8 +79,8 @@
                             var jawaban = "";
                             document.getElementById("answer-text").removeAttribute("readonly", 0);
                         }
-                        console.log(id);
-                        console.log(pesan);
+                        // console.log(id);
+                        // console.log(pesan);
                         document.getElementById("id-pesan").value = id;
                         document.getElementById("recipient-name").value = nama;
                         document.getElementById("message-text").value = pesan;

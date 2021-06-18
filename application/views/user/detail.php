@@ -73,7 +73,7 @@
                                                     $(function() {
                                                         $('select[name=durasi]').on('change', function() {
                                                             durasi = $(this).children("option:selected").val();
-                                                            console.log(durasi);
+                                                            // console.log(durasi);
                                                             var harga = "Rp " + <?= $d->harga; ?> * durasi;
                                                             var total = <?= $d->harga; ?> * durasi;
                                                             document.getElementById("harga").value = harga;

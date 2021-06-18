@@ -141,16 +141,13 @@
                 harga_supir += supir[i];
             }
             harga_supir = Number(harga_supir) * durasi;
-            console.log(harga_supir);
             document.getElementById('harga_supir_kirim').value = harga_supir;
             test = document.getElementById('harga_supir_kirim').value;
-            console.log("Test" + test);
             total = harga_kendaraan + harga_supir;
         } else {
             total = harga_kendaraan;
         }
         document.getElementById('total_kirim').value = total;
-        console.log(total);
 
         var angka = total;
         var reverse = angka.toString().split('').reverse().join(''),
@@ -178,10 +175,8 @@
                     document.getElementsByClassName("btn-number")[0].setAttribute('disabled', true);
                 }
                 akhir = document.getElementById('tgl_kmbl').value;
-                console.log("Tanggal akhir : " + akhir);
                 nilai = $("input[name='" + fieldName + "']");
                 nilai = nilai.val();
-                console.log(nilai);
                 returnDate(nilai);
                 // hargaTotal();
             } else if (type == 'plus') {
@@ -194,10 +189,8 @@
                     document.getElementsByClassName("btn-number")[1].setAttribute('disabled', true);
                 }
                 akhir = document.getElementById('tgl_kmbl').value;
-                console.log("Tanggal akhir : " + akhir);
                 nilai = $("input[name='" + fieldName + "']");
                 nilai = nilai.val();
-                console.log(nilai);
                 returnDate(nilai);
                 // hargaTotal();
             }
@@ -217,9 +210,7 @@
 
         Day = nilai * 24 * 60 * 60 * 1000;
         var diffDays = secondDate.getTime() + Day;
-        console.log(diffDays);
         diffDays = new Date(diffDays);
-        console.log(diffDays);
 
         var days = new Date(diffDays);
 
@@ -261,14 +252,12 @@
 
     function cekData() {
         Cswitch = document.getElementById("customSwitch1").value;
-        console.log(Cswitch);
         if (Cswitch == 1) {
             document.getElementById("customSwitch1").value = 0;
         } else {
             document.getElementById("customSwitch1").value = 1;
         }
         Cswitch = document.getElementById("customSwitch1").value;
-        console.log(Cswitch);
         if (Cswitch == '1') {
             <?php $supir = "100000" ?>
 

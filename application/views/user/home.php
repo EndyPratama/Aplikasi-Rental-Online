@@ -48,39 +48,6 @@
     </div>
     <div class="invoice mt-5">
         <h1 class="mb-3">Cek Invoice Kendaraan : </h1>
-        <!-- <form method="POST" onsubmit="return sendData()">
-            <p>
-                <label>Title</label>
-                <input type="text" id="title" placeholder="judul artikel">
-            </p>
-            <p>
-                <label>Isi Artikel</label><br>
-                <textarea id="body" placeholder="isi artikel..." cols="50" rows="10"></textarea>
-            </p>
-            <input type="submit" value="Kirim" />
-        </form> -->
-
-        <!-- <script>
-        $(document).
-            function sendData() {
-                var xhr = new XMLHttpRequest();
-                var url = "<?= base_url('User/Home/cekinvoice'); ?>";
-
-                var data = JSON.stringify({
-                    title: document.getElementById("title").value,
-                    body: document.getElementById("body").value
-                });
-
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xhr.onload = function() {
-                    console.log(this.responseText);
-                };
-
-                xhr.send(data);
-                return false;
-            }
-        </script> -->
         <form id="cek_invoice">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
@@ -100,10 +67,10 @@
                         data: $(this).serialize(),
                         success: function(data) {
                             // alert(data);
-                            console.log(data);
+                            // console.log(data);
                             data = JSON.parse(data)
-                            console.log(data);
-                            console.log(data[0]["peminjam"]);
+                            // console.log(data);
+                            // console.log(data[0]["peminjam"]);
                             total = new Intl.NumberFormat('de-DE').format(data[0]["total"]);
                             input = ``;
                             $('#invoice').empty(input);

@@ -65,10 +65,10 @@
                                 type: 'POST',
                                 data: $(this).serialize(),
                                 success: function(data) {
-                                    console.log(data);
+                                    // console.log(data);
                                     data = JSON.parse(data)
-                                    console.log(data);
-                                    console.log(data[0]["terpinjam"]);
+                                    // console.log(data);
+                                    // console.log(data[0]["terpinjam"]);
                                     $('[name=nama]').val("");
                                     $('.kontent').append('berhasil');
                                 },

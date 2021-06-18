@@ -121,13 +121,6 @@
 
                         var tanggal = document.getElementById("tanggal" + data).value;
                         document.getElementById("tamplate-tanggal").innerHTML = tanggal;
-
-                        console.log(nama);
-                        console.log(invoice);
-                        console.log(gambar);
-                        console.log(rating);
-                        console.log(ulasan);
-                        console.log(tanggal);
                     }
                 </script>
             <?php
