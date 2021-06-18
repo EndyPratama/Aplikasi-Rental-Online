@@ -12,7 +12,7 @@ btncari.addEventListener('click', function() {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Ajax Siap digunakan");
+            // console.log("Ajax Siap digunakan");
             //     }else{
             //         console.log("Ajax error");
         }

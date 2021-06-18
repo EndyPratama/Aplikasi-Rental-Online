@@ -28,7 +28,7 @@
         //     document.getElementById("#notification_message").style.display = "none";
         //     x = 0;
         // }
-        console.log("Hai");
+        // console.log("Hai");
 
     }
     searchBTN.onclick = function() {

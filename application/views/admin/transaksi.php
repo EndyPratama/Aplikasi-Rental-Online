@@ -210,7 +210,7 @@
 
                             var rating = document.getElementById("rating_kendaraan" + data).value;
                             // document.getElementById("tamplate-rating").value = rating;
-                            console.log(rating);
+                            // console.log(rating);
                             for (var i = 0; i < 5; i++) {
                                 $("#star" + i).removeClass("bxs-star");
                                 $("#star" + i).addClass("bx-star");
