@@ -1,0 +1,28 @@
+.carousel-contain{
+    background-color: #24252a;
+}
+
+.col-3{
+    text-align:right;
+    margin: 0 10px;
+}
+.col-1{
+    text-align:right;
+}
+
+.table td{
+    width: 300px;
+}
+
+a{
+    text-decoration: none;
+    list-style: none;
+    color: #000;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.desc{
+    text-align: center;
+}
