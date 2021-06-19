@@ -59,8 +59,8 @@
                     <div class="form-group">
                         <label for="gambar"><b>Upload Gambar</b></label>
                         <div class="file-upload-wrapper">
-                        <input type="file" class="form-control" id="gambar" name="gambar" value="<?= set_value('gambar'); ?>">
-                        <?= form_error('gambar', '<small class="text-danger" pl-1>', '</small>'); ?>
+                            <input type="file" class="form-control" id="gambar" name="gambar" value="<?= set_value('gambar'); ?>">
+                            <?= form_error('gambar', '<small class="text-danger" pl-1>', '</small>'); ?>
                         </div>
                     </div>
                 </div>

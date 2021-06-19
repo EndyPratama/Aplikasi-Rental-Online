@@ -19,9 +19,9 @@ class Booking extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/booking', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/booking', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function terima($id)
     {
@@ -80,7 +80,7 @@ class Booking extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect(Base_url('/admin/booking'));
+        redirect(Base_url('/Admin/booking'));
     }
 
     public function tolak($id)
@@ -92,6 +92,6 @@ class Booking extends CI_Controller
         $this->db->set('action', $action);
         $this->db->where('id', $id);
         $this->db->update('booking');
-        redirect(Base_url('/admin/booking'));
+        redirect(Base_url('/Admin/booking'));
     }
 }

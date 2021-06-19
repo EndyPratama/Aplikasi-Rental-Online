@@ -72,9 +72,9 @@ class Dashboard extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/admin', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/admin', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     // }
 }

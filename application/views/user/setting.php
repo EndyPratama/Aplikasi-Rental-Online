@@ -43,7 +43,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form action="<?= base_url('/user/profile/update/' . $p->userid); ?>" method="POST">
+                        <form action="<?= base_url('/User/Profile/update/' . $p->userid); ?>" method="POST">
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-2 text-primary">Personal Details</h6>

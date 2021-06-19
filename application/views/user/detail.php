@@ -19,7 +19,7 @@
                                 // echo $user;
                                 if ($user != 0) :
                                 ?>
-                                    <a href="<?= base_url('/user/kendaraan/whislist/' . $d->id_kendaraan); ?>">
+                                    <a href="<?= base_url('/User/Kendaraan/whislist/' . $d->id_kendaraan); ?>">
                                         <img src="<?php echo base_url('vendor/public/img/' . $whislist) ?>" style="width: 50px; height:50px; float:right">
                                     </a>
                                 <?php endif ?>
@@ -37,7 +37,7 @@
                                     <button class="btn btn-success btn-block" onclick="formOpen()" id="order">Order now</button>
                                     <!-- JS untuk merubah form pemesanan -->
                                     <div id="formOrder" style="visibility: hidden;">
-                                        <form action="<?= base_url('user/kendaraan/booking'); ?>" method="post" enctype="multipart/form-data">
+                                        <form action="<?= base_url('User/Kendaraan/booking'); ?>" method="post" enctype="multipart/form-data">
                                             <div class="form-row">
                                                 <input type="hidden" value="<?= $d->gambar; ?>" name="gambar">
                                                 <input type="hidden" value="<?= $d->harga; ?>" name="harga">
@@ -313,7 +313,7 @@
             <div class="iklan-terkait">
                 <?php foreach ($iklan as $i) : ?>
                     <div class="card">
-                        <a href="<?= base_url('/user/kendaraan/mobil/' . $i->id_kendaraan); ?>" style="text-decoration: none; color:#000">
+                        <a href="<?= base_url('/User/Kendaraan/mobil/' . $i->id_kendaraan); ?>" style="text-decoration: none; color:#000">
                             <div class="card-head">
                                 <img src="<?= base_url('vendor/public/img/' . $i->gambar); ?>" alt="<?= $i->nama; ?>" style="max-width: 100%;height: 150px;display: flex;margin: 0 auto;">
                             </div>

@@ -8,7 +8,7 @@
 								<img src="<?= base_url('vendor/public/img/' . $gambar_profile); ?>" alt="">
 								<div class="user_role">
 									<div class="username">
-										<a href="<?= base_url('/user/profile/setting'); ?>">
+										<a href="<?= base_url('/User/Profile/setting'); ?>">
 											<?= $user; ?>
 										</a>
 									</div>
@@ -23,7 +23,7 @@
 						<div class="row">
 							<div class="col">
 								<div class="submenu transaksi">
-									<a href="<?= base_url('user/profile/transaksi'); ?>">
+									<a href="<?= base_url('User/Profile/transaksi'); ?>">
 										<i class='bx bx-cart'></i>
 										<div class="deskripsi"><small>Transaksi</small></div>
 									</a>
@@ -31,7 +31,7 @@
 							</div>
 							<div class="col">
 								<div class="submenu history">
-									<a href="<?= base_url('user/profile/history'); ?>">
+									<a href="<?= base_url('User/Profile/history'); ?>">
 										<i class='bx bx-history'></i>
 										<div class="deskripsi"><small>History Peminjaman</small></div>
 									</a>
@@ -41,7 +41,7 @@
 						<div class="row">
 							<div class="col">
 								<div class="submenu ulasan">
-									<a href="<?= base_url('user/profile/menunggu_ulasan'); ?>">
+									<a href="<?= base_url('User/Profile/menunggu_ulasan'); ?>">
 										<i class='bx bxs-message-square-edit'></i>
 										<div class="deskripsi"><small>Ulasan Anda</small></div>
 									</a>
@@ -67,7 +67,7 @@
 						<tr>
 							<th scope="col" colspan="5">Pesanan Saya</th>
 							<th scope="col">
-								<a href="<?= base_url('user/profile/history'); ?>">
+								<a href="<?= base_url('User/Profile/history'); ?>">
 									Semua Order
 								</a>
 							</th>
@@ -223,8 +223,6 @@
 													<p id="receive-durasi"></p>
 													<p id="receive-total"></p>
 													<img id="receive-icon" src="">
-													<!-- <div class="metode_pembayaran">
-													</div> -->
 												</div>
 											</div>
 										</div>
@@ -251,7 +249,7 @@
 					if ($i < 5) :
 						$i++;
 				?>
-						<a href="<?= base_url('user/kendaraan/mobil/' . $w->id_kendaraan); ?>">
+						<a href="<?= base_url('User/Kendaraan/mobil/' . $w->id_kendaraan); ?>">
 							<div class="pesanan_detail">
 								<div class="pesanan_head">
 									<img src="<?= base_url('vendor/public/img/' . $w->gambar); ?>" alt="">

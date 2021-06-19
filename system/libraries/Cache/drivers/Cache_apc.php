@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -35,7 +36,7 @@
  * @since	Version 2.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * CodeIgniter APC Caching Class
@@ -46,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link
  */
-class CI_Cache_apc extends CI_Driver {
+class CI_Cache_apc extends CI_Driver
+{
 
 	/**
 	 * Class constructor
@@ -58,8 +60,7 @@ class CI_Cache_apc extends CI_Driver {
 	 */
 	public function __construct()
 	{
-		if ( ! $this->is_supported())
-		{
+		if (!$this->is_supported()) {
 			log_message('error', 'Cache: Failed to initialize APC; extension not loaded/enabled?');
 		}
 	}
@@ -157,13 +158,13 @@ class CI_Cache_apc extends CI_Driver {
 	/**
 	 * Cache Info
 	 *
-	 * @param	string	user/filehits
+	 * @param	string	User/filehits
 	 * @return	mixed	array on success, false on failure
 	 */
-	 public function cache_info($type = NULL)
-	 {
-		 return apc_cache_info($type);
-	 }
+	public function cache_info($type = NULL)
+	{
+		return apc_cache_info($type);
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -176,15 +177,12 @@ class CI_Cache_apc extends CI_Driver {
 	public function get_metadata($id)
 	{
 		$cache_info = apc_cache_info('user', FALSE);
-		if (empty($cache_info) OR empty($cache_info['cache_list']))
-		{
+		if (empty($cache_info) or empty($cache_info['cache_list'])) {
 			return FALSE;
 		}
 
-		foreach ($cache_info['cache_list'] as &$entry)
-		{
-			if ($entry['info'] !== $id)
-			{
+		foreach ($cache_info['cache_list'] as &$entry) {
+			if ($entry['info'] !== $id) {
 				continue;
 			}
 

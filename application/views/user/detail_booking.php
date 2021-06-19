@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="<?= base_url('/user/kendaraan/pesan'); ?>" method="POST">
+    <form action="<?= base_url('/User/Kendaraan/pesan'); ?>" method="POST">
         <div class="row">
             <div class="col">
                 <h3 class="my-3">Kendaraan yang dipesan : </h3>

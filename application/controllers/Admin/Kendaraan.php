@@ -20,9 +20,9 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/kendaraan', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/kendaraan', $data);
+        $this->load->view('/Admin/layout/footer');
     }
 
     // CRUD
@@ -51,9 +51,9 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/tambah', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/tambah', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     // Pengolahan Insert Data
     public function insert()
@@ -101,9 +101,9 @@ class Kendaraan extends CI_Controller
             'css' => 'kendaraan.css'
         );
 
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/ubah', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/ubah', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     // Pengolahan Edit Data
     public function edit()
@@ -191,9 +191,9 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/kendaraan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/kendaraan', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Detail Kendaraan
     public function detail($id)
@@ -208,8 +208,8 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/detail', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/detail', $data);
+        $this->load->view('/Admin/layout/footer');
     }
 }

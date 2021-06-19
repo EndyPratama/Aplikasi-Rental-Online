@@ -28,9 +28,9 @@ class Pesan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/pesan', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/pesan', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function pesan()
     {

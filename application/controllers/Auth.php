@@ -49,10 +49,10 @@ class Auth extends CI_Controller
 					$this->session->set_userdata('id', $id);
 					if ($user['role_id'] == 1) {
 						//$this->session->set_data('id', $id);
-						redirect(base_url('/admin/dashboard/'));
+						redirect(base_url('/Admin/dashboard/'));
 					} else {
 						// $this->session->set_userdata('id', $id);
-						redirect(base_url('/user/home/'));
+						redirect(base_url('/User/Home/'));
 					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
@@ -116,10 +116,14 @@ class Auth extends CI_Controller
 	private function _sendEmail($token, $type)
 	{
 		$config = [
-			'protocol'  => 'mail',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
+			// 'protocol'  => 'mail',
+			'protocol'  => 'smtp',
+			// 'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_host' => 'smtp.gmail.com',
 			'smtp_user' => 'k.08.framework.par.c@gmail.com',
-			'smtp_pass' => 'framework123',
+			'smtp_pass' => 'framework-123',
+			'smtp_crypto' => 'ssl',
+			// 'smtp_port' => '587',
 			'smtp_port' => '465',
 			'mailtype'  => 'html',
 			'starttls'  => true,
@@ -248,6 +252,6 @@ class Auth extends CI_Controller
 
 		$this->session->set_userdata('id', 0);
 		// echo $this->session->userdata('id');
-		redirect(base_url('/user/home/'));
+		redirect(base_url('/User/Home/'));
 	}
 }

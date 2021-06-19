@@ -40,9 +40,9 @@ class Contact extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/contact', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/contact', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function save()
     {
@@ -71,6 +71,6 @@ class Contact extends CI_Controller
         // echo "</pre>";
         $this->M_Contact->insertPesan($data);
 
-        redirect(base_url('user/contact'));
+        redirect(base_url('User/contact'));
     }
 }

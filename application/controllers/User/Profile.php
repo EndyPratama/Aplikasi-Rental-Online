@@ -64,9 +64,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/profile', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/profile', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function history($data = NULL)
     {
@@ -91,9 +91,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/history', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/history', $data);
+        $this->load->view('/User/layout/footer');
     }
 
     public function menunggu_ulasan()
@@ -118,9 +118,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/menunggu_ulasan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/menunggu_ulasan', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function ulasan_saya()
     {
@@ -141,9 +141,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/ulasan_saya', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/ulasan_saya', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function ulasan_kendaraan($transaksiID)
     {
@@ -166,9 +166,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/ulasan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/ulasan', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function kirim_ulasan()
     {
@@ -199,7 +199,7 @@ class Profile extends CI_Controller
         $this->db->set('ulasan', "1");
         $this->db->where('id_transaksi', $transaksi);
         $this->db->update('transaction');
-        redirect(base_url('/user/profile/ulasan_saya'));
+        redirect(base_url('/User/Profile/ulasan_saya'));
     }
     public function setting()
     {
@@ -228,9 +228,9 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/setting', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/setting', $data);
+        $this->load->view('/User/layout/footer');
     }
     public function update($user)
     {
@@ -272,7 +272,7 @@ class Profile extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        redirect(base_url('/user/profile/setting'));
+        redirect(base_url('/User/Profile/setting'));
     }
     public function transaksi()
     {
@@ -296,9 +296,9 @@ class Profile extends CI_Controller
             // echo "<pre>";
             // print_r($data);
             // echo "</pre>";
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/transaksi', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/transaksi', $data);
+            $this->load->view('/User/layout/footer');
         } else {
             $pembayaran = json_decode(json_encode($getBooking), true);
             $pembayaran = $pembayaran["0"];
@@ -327,9 +327,9 @@ class Profile extends CI_Controller
             // echo "<pre>";
             // print_r($data);
             // echo "</pre>";
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/transaksi', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/transaksi', $data);
+            $this->load->view('/User/layout/footer');
         }
     }
     public function uploadbukti($id)
@@ -388,6 +388,6 @@ class Profile extends CI_Controller
             </button>
         </div>'
         );
-        redirect(base_url('user/profile'));
+        redirect(base_url('User/profile'));
     }
 }

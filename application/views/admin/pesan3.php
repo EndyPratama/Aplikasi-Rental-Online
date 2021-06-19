@@ -50,7 +50,7 @@
                                                     <td>` + d + `</td>
                                                     <td>
                                                     <a href="" class="btn btn-success" onclick="` + formOpen(no) + `" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                                        <a href="http://localhost/fp_uts_framework/pesan/delete/` + data.pesan[i].id_pesan + `" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                                        <a href="http://localhost/fp_uts_framework/Pesan/delete/` + data.pesan[i].id_pesan + `" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                                     </td>
                                                 </tr>
                                                 `
@@ -74,7 +74,7 @@
                                                 <td>` + d + `</td>
                                                 <td>
                                                     <a href="" class="btn btn-success" onclick="` + formOpen(no) + `" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                                    <a href="http://localhost/fp_uts_framework/pesan/delete/` + data.pesan[i].id_pesan + `" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                                    <a href="http://localhost/fp_uts_framework/Pesan/delete/` + data.pesan[i].id_pesan + `" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                                 </td>
                                         </tr>
                                         `

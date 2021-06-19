@@ -19,9 +19,9 @@ class Transaksi extends CI_Controller
         echo "<pre>";
         print_r($data);
         echo "</pre>";
-        // $this->load->view('/admin/layout/sidebar', $data);
-        // $this->load->view('/admin/transaksi', $data);
-        // $this->load->view('/admin/layout/footer');
+        // $this->load->view('/Admin/layout/sidebar', $data);
+        // $this->load->view('/Admin/transaksi', $data);
+        // $this->load->view('/Admin/layout/footer');
     }
     public function selesai($kendaraan_id, $user_id, $transaksi_id)
     {

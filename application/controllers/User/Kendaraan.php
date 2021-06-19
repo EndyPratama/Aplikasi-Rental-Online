@@ -76,9 +76,9 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/kendaraan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/kendaraan', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Detail Kendaraan View User
     public function mobil($id)
@@ -138,9 +138,9 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/detail', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/detail', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Booking Kendaraan
     public function booking()
@@ -176,9 +176,9 @@ class Kendaraan extends CI_Controller
         // print_r($data);
         // echo "</pre>";
 
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/detail_booking', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/detail_booking', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Pesan kendaraan
     public function pesan()
@@ -192,9 +192,9 @@ class Kendaraan extends CI_Controller
                 'title' => 'Laporan Booking',
                 'css' => 'laporan.css'
             );
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/laporan', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/laporan', $data);
+            $this->load->view('/User/layout/footer');
         } else {
 
             // 
@@ -263,9 +263,9 @@ class Kendaraan extends CI_Controller
                 'profile' => $profile,
                 'css' => 'laporan.css'
             );
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/laporan', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/laporan', $data);
+            $this->load->view('/User/layout/footer');
         }
     }
     // Cek Filter Kendaraan
@@ -303,14 +303,14 @@ class Kendaraan extends CI_Controller
             'mesin' => $mesin,
             'warna' => $warna,
             'foto_profile' => $profile,
-            'css' => 'list.css'
+            'css' => 'list2.css'
         );
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/kendaraan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/kendaraan', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Tampilkan Whislist Kendaraan User
     public function whislist($id)
@@ -334,7 +334,7 @@ class Kendaraan extends CI_Controller
             // echo "</pre>";
             $this->M_Kendaraan->deleteWhislist($whislist);
         }
-        redirect(base_url('/user/kendaraan/mobil/' . $id));
+        redirect(base_url('/User/Kendaraan/mobil/' . $id));
     }
     public function kendaraan_user($id)
     {
@@ -353,8 +353,8 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/kendaraan_user', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/kendaraan_user', $data);
+        $this->load->view('/User/layout/footer');
     }
 }

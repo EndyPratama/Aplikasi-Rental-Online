@@ -58,14 +58,14 @@
                         </div>
                     </a>
                     <ul class="nav__links">
-                        <li><a href="<?= base_url('user/home'); ?>">Home</a></li>
-                        <!-- <li><a href="<?= base_url('user/kendaraan'); ?>">Home</a></li> -->
-                        <li><a href="<?= base_url('user/kendaraan'); ?>">Kendaraan</a></li>
+                        <li><a href="<?= base_url('User/Home'); ?>">Home</a></li>
+                        <!-- <li><a href="<?= base_url('User/Kendaraan'); ?>">Home</a></li> -->
+                        <li><a href="<?= base_url('User/Kendaraan'); ?>">Kendaraan</a></li>
                         <?php
                         $user = $this->session->userdata('id');
                         if ($user != 0) {
                         ?>
-                            <li><a href="<?= base_url('user/contact'); ?>">Contact</a></li>
+                            <li><a href="<?= base_url('User/Contact'); ?>">Contact</a></li>
                             <!-- <li><a href="<?= base_url('profile'); ?>">Profile</a></li> -->
                         <?php
                         } ?>
@@ -81,7 +81,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 300px;">
-                    <a class="dropdown-item text-wrap" href="<?= base_url('user/profile'); ?>">
+                    <a class="dropdown-item text-wrap" href="<?= base_url('User/profile'); ?>">
                         <i class='bx bx-money' style='color:#0bff00'></i>
                         Pembayaran Selesai
                         <hr>
@@ -121,8 +121,8 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
-                        <a class="dropdown-item" href="<?= base_url('/user/profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
+                        <a class="dropdown-item" href="<?= base_url('/User/profile'); ?>"><i class='bx bx-user'>Profile</i></a>
+                        <a class="dropdown-item" href="<?= base_url('/User/Profile/setting'); ?>"><i class='bx bx-wrench'>Setting</i></a>
                         <a class="dropdown-item" href="<?= base_url('/auth/logout'); ?>"><i class='bx bx-log-out'>Logout</i></a>
                     </div>
                 </div>
@@ -135,13 +135,13 @@
         <a class="close">&times;</a>
         <div class="overlay__content">
             <a href="<?= base_url('/home'); ?>">Home</a>
-            <a href="<?= base_url('user/kendaraan/list'); ?>">Kendaraan</a>
+            <a href="<?= base_url('User/Kendaraan/list'); ?>">Kendaraan</a>
 
             <?php
             $user = $this->session->userdata('id');
             if ($user != 0) {
             ?>
-                <a href="<?= base_url('user/contact'); ?>">Contact</a>
+                <a href="<?= base_url('User/contact'); ?>">Contact</a>
                 <a href="<?= base_url('/auth/logout'); ?>">Logout</a>
             <?php
             } else {

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-2" id="sidebar">
-            <form action="<?= base_url('/user/kendaraan/'); ?>" method="POST">
+            <form action="<?= base_url('/User/Kendaraan/'); ?>" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
                     <div class="input-group-append">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </form>
-            <form action="<?= base_url('/user/kendaraan/filter'); ?>" method="post">
+            <form action="<?= base_url('/User/Kendaraan/filter'); ?>" method="post">
                 <button type="reset" class="reset btn btn-outline-dark">Reset Filter</button>
                 <!-- <a type="reset">Reset Filter</a> -->
                 <a href="#submenu1" class="sub" data-toggle="collapse">
@@ -128,7 +128,7 @@
                         $i++;
                 ?>
                         <div class="card" style="width: 15rem; display:flex;">
-                            <a href="<?= base_url('user/kendaraan/mobil/' . $k->id_kendaraan); ?>">
+                            <a href="<?= base_url('User/Kendaraan/mobil/' . $k->id_kendaraan); ?>">
                                 <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="img-fluid" alt="...">
                                 <div class="card-body" style="flex-grow:1;">
                                     <h5 class="card-title" style="margin-bottom: .75rem;max-height: 25px;overflow: hidden;"><?= $k->nama; ?></h5>

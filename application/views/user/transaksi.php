@@ -118,7 +118,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <!-- <form action="<?= base_url('user/profile/uploadbukti/' . $b->id_user); ?>" method="POST" enctype="multipart/form-data">
+                                        <!-- <form action="<?= base_url('User/Profile/uploadbukti/' . $b->id_user); ?>" method="POST" enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <input type="file" class="form-control" id="bukti_transaksi" name="bukti_transaksi" value="<?= set_value('bukti_transaksi'); ?>">
                                                 <?= form_error('bukti_transaksi', '<small class="text-danger" pl-1>', '</small>'); ?>
@@ -128,7 +128,7 @@
                                                 <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form> -->
-                                        <form action="<?= base_url('user/profile/uploadbukti/' . $b->id); ?>" method="POST" enctype="multipart/form-data">
+                                        <form action="<?= base_url('User/Profile/uploadbukti/' . $b->id); ?>" method="POST" enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <input type="file" class="form-control" id="bukti_transaksi" name="bukti_transaksi" value="<?= set_value('bukti_transaksi'); ?>">
                                                 <?= form_error('bukti_transaksi', '<small class="text-danger" pl-1>', '</small>'); ?>

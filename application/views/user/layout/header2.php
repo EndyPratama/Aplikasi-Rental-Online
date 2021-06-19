@@ -50,7 +50,7 @@
                     <a class="nav-link" href="<?= base_url('/home'); ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('/kendaraan/list'); ?>">Kendaraan</a>
+                    <a class="nav-link" href="<?= base_url('/Kendaraan/list'); ?>">Kendaraan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('/contact'); ?>">Contact</a>
@@ -86,7 +86,7 @@
         <nav>
             <ul class="nav__links">
                 <li><a href="<?= base_url('/home'); ?>">Home</a></li>
-                <li><a href="<?= base_url('/kendaraan/list'); ?>">Kendaraan</a></li>
+                <li><a href="<?= base_url('/Kendaraan/list'); ?>">Kendaraan</a></li>
                 <?php
                 $user = $this->session->userdata('id');
                 if ($user != 0) {
@@ -113,7 +113,7 @@
         <a class="close">&times;</a>
         <div class="overlay__content">
             <a href="<?= base_url('/home'); ?>">Home</a>
-            <a href="<?= base_url('/kendaraan/list'); ?>">Kendaraan</a>
+            <a href="<?= base_url('/Kendaraan/list'); ?>">Kendaraan</a>
             <a href="<?= base_url('/contact'); ?>">Contact</a>
             <a href="<?= base_url('profile'); ?>">Profile</a>
             <?php

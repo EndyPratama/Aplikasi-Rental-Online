@@ -4,7 +4,7 @@
         <div class="col-6">
             <h1>Contact Us : </h1>
             <hr>
-            <form action="<?= base_url('user/contact/save'); ?>" method="POST">
+            <form action="<?= base_url('User/Contact/save'); ?>" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nama">Nama : </label>

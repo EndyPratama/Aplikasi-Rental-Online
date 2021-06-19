@@ -37,9 +37,9 @@ class Home extends CI_Controller
                 'foto_profile' => 'default.jpg',
                 'css' => 'home3.css'
             );
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/home', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/home', $data);
+            $this->load->view('/User/layout/footer');
         } else {
             $user = $this->session->userdata('id');
 
@@ -72,9 +72,9 @@ class Home extends CI_Controller
             // print_r($data);
             // echo "</pre>";
 
-            $this->load->view('/user/layout/header', $data);
-            $this->load->view('/user/home', $data);
-            $this->load->view('/user/layout/footer');
+            $this->load->view('/User/layout/header', $data);
+            $this->load->view('/User/home', $data);
+            $this->load->view('/User/layout/footer');
         }
     }
     public function cekinvoice()

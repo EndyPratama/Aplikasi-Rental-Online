@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="search">
         <h1 class="mb-3">Pencarian Kendaraan : </h1>
-        <form action="<?= base_url('/user/kendaraan/'); ?>" method="POST">
+        <form action="<?= base_url('/User/Kendaraan/'); ?>" method="POST">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Masukkan yang anda cari" name="keyword">
                 <div class="input-group-append">
@@ -10,7 +10,7 @@
             </div>
         </form>
         <br>
-        <form action="<?= base_url('/user/kendaraan/filter'); ?>" method="POST">
+        <form action="<?= base_url('/User/Kendaraan/filter'); ?>" method="POST">
             <div class="row" style="margin:0;padding:0;">
                 <div class="col">
                     <h3>Filter : </h3>
@@ -60,17 +60,12 @@
         <script>
             $(document).ready(function(e) {
                 $('#cek_invoice').submit(function() {
-                    // console.log("Masuk script");
                     e.ajax({
                         url: '<?= base_url('User/Home/cekinvoice'); ?>',
                         type: 'POST',
                         data: $(this).serialize(),
                         success: function(data) {
-                            // alert(data);
-                            // console.log(data);
                             data = JSON.parse(data)
-                            // console.log(data);
-                            // console.log(data[0]["peminjam"]);
                             total = new Intl.NumberFormat('de-DE').format(data[0]["total"]);
                             input = ``;
                             $('#invoice').empty(input);
@@ -98,7 +93,6 @@
                             </tbody>
                         </table>
                             `;
-                            // document.getElementById("invoice").innerHTML = input;
                             $('#invoice').append(input);
                         },
                         error: function() {
@@ -117,7 +111,7 @@
                 <?php for ($i = 0; $i < 5; $i++) : ?>
                     <td>
                         <div class="card">
-                            <a href="<?= base_url('user/kendaraan/mobil/' . $kendaraan[$i]->id_kendaraan); ?>">
+                            <a href="<?= base_url('User/Kendaraan/mobil/' . $kendaraan[$i]->id_kendaraan); ?>">
                                 <div class="image" style="width: 100%;height:180px;background-color:pink;">
                                     <img src="<?= base_url('vendor/public/img/' . $kendaraan[$i]->gambar); ?>" class="card-img-top" alt="..." style="width: inherit;height:100%;">
                                 </div>
@@ -203,61 +197,3 @@
 
     </div>
 </div>
-
-<!-- <div class="container-fluid jumbotron">
-    <h2>
-        RENO <br>
-    </h2>
-    RENO adalah penyedia jasa rental kendaraan online yang menggunakan website
-    sebagai platform transaksi. <br>
-    RENO mengedepankan kecepatan, kemudahan dan kepercayaan pengguna terhadap layanan yang digunakan
-</div>
-<div class="container-fluid carousel-contain">
-    <div class="container bordered">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<?= base_url('/vendor/public/img/jpg1.jpg') ?>" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('/vendor/public/img/jpg7.jpg') ?>" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('/vendor/public/img/jpg3.jpg') ?>" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('/vendor/public/img/jpg4.jpg') ?>" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="<?= base_url('/vendor/public/img/jpg6.jpg') ?>" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-
-
-</div>
-
-<div class="desc py-5">
-    <h2>
-        RENO <br>
-    </h2>
-    RENO adalah penyedia jasa rental kendaraan online yang menggunakan website
-    sebagai platform transaksi. <br>
-    RENO mengedepankan kecepatan, kemudahan dan kepercayaan pengguna terhadap layanan yang digunakan
-</div> -->

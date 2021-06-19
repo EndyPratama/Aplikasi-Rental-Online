@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -35,7 +36,7 @@
  * @since	Version 2.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * CodeIgniter File Caching Class
@@ -46,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link
  */
-class CI_Cache_file extends CI_Driver {
+class CI_Cache_file extends CI_Driver
+{
 
 	/**
 	 * Directory in which to save cache files
@@ -62,10 +64,10 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function __construct()
 	{
-		$CI =& get_instance();
+		$CI = &get_instance();
 		$CI->load->helper('file');
 		$path = $CI->config->item('cache_path');
-		$this->_cache_path = ($path === '') ? APPPATH.'cache/' : $path;
+		$this->_cache_path = ($path === '') ? APPPATH . 'cache/' : $path;
 	}
 
 	// ------------------------------------------------------------------------
@@ -101,9 +103,8 @@ class CI_Cache_file extends CI_Driver {
 			'data'		=> $data
 		);
 
-		if (write_file($this->_cache_path.$id, serialize($contents)))
-		{
-			chmod($this->_cache_path.$id, 0640);
+		if (write_file($this->_cache_path . $id, serialize($contents))) {
+			chmod($this->_cache_path . $id, 0640);
 			return TRUE;
 		}
 
@@ -120,7 +121,7 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function delete($id)
 	{
-		return is_file($this->_cache_path.$id) ? unlink($this->_cache_path.$id) : FALSE;
+		return is_file($this->_cache_path . $id) ? unlink($this->_cache_path . $id) : FALSE;
 	}
 
 	// ------------------------------------------------------------------------
@@ -136,12 +137,9 @@ class CI_Cache_file extends CI_Driver {
 	{
 		$data = $this->_get($id);
 
-		if ($data === FALSE)
-		{
+		if ($data === FALSE) {
 			$data = array('data' => 0, 'ttl' => 60);
-		}
-		elseif ( ! is_int($data['data']))
-		{
+		} elseif (!is_int($data['data'])) {
 			return FALSE;
 		}
 
@@ -164,12 +162,9 @@ class CI_Cache_file extends CI_Driver {
 	{
 		$data = $this->_get($id);
 
-		if ($data === FALSE)
-		{
+		if ($data === FALSE) {
 			$data = array('data' => 0, 'ttl' => 60);
-		}
-		elseif ( ! is_int($data['data']))
-		{
+		} elseif (!is_int($data['data'])) {
 			return FALSE;
 		}
 
@@ -198,7 +193,7 @@ class CI_Cache_file extends CI_Driver {
 	 *
 	 * Not supported by file-based caching
 	 *
-	 * @param	string	user/filehits
+	 * @param	string	User/filehits
 	 * @return	mixed	FALSE
 	 */
 	public function cache_info($type = NULL)
@@ -216,19 +211,16 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
-		{
+		if (!is_file($this->_cache_path . $id)) {
 			return FALSE;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = unserialize(file_get_contents($this->_cache_path . $id));
 
-		if (is_array($data))
-		{
-			$mtime = filemtime($this->_cache_path.$id);
+		if (is_array($data)) {
+			$mtime = filemtime($this->_cache_path . $id);
 
-			if ( ! isset($data['ttl'], $data['time']))
-			{
+			if (!isset($data['ttl'], $data['time'])) {
 				return FALSE;
 			}
 
@@ -267,20 +259,17 @@ class CI_Cache_file extends CI_Driver {
 	 */
 	protected function _get($id)
 	{
-		if ( ! is_file($this->_cache_path.$id))
-		{
+		if (!is_file($this->_cache_path . $id)) {
 			return FALSE;
 		}
 
-		$data = unserialize(file_get_contents($this->_cache_path.$id));
+		$data = unserialize(file_get_contents($this->_cache_path . $id));
 
-		if ($data['ttl'] > 0 && time() > $data['time'] + $data['ttl'])
-		{
-			file_exists($this->_cache_path.$id) && unlink($this->_cache_path.$id);
+		if ($data['ttl'] > 0 && time() > $data['time'] + $data['ttl']) {
+			file_exists($this->_cache_path . $id) && unlink($this->_cache_path . $id);
 			return FALSE;
 		}
 
 		return $data;
 	}
-
 }

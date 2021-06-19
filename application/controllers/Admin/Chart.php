@@ -42,9 +42,9 @@ class Chart extends CI_Controller
 
         // $this->load->view('chart', $data);
 
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/chart', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/chart', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function Graphdata()
     {

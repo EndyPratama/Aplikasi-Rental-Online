@@ -32,14 +32,10 @@
     <div class="status">
         <div class="row">
             <h5><b>Status</b></h5>
-            <!-- <a href="<?= base_url('/user/profile/history'); ?>" class="btn btn-outline-success">Semua</a> -->
-            <a href="<?= base_url('/user/profile/history/Selesai'); ?>" class="btn btn-outline-success">Selesai</a>
-            <a href="<?= base_url('/user/profile/history/Berlangsung'); ?>" class="btn btn-outline-warning">Berlangsung</a>
-            <a href="<?= base_url('/user/profile/history/Dibatalkan'); ?>" class="btn btn-outline-danger">Dibatalkan</a>
-            <!-- <button class="btn btn-outline-success active">Semua</button>
-            <button class="btn btn-outline-success">Selesai</button>
-            <button class="btn btn-outline-success">Dibatalkan</button>
-            <button class="btn btn-outline-success">Berlangsung</button> -->
+            <!-- <a href="<?= base_url('/User/Profile/history'); ?>" class="btn btn-outline-success">Semua</a> -->
+            <a href="<?= base_url('/User/Profile/history/Selesai'); ?>" class="btn btn-outline-success">Selesai</a>
+            <a href="<?= base_url('/User/Profile/history/Berlangsung'); ?>" class="btn btn-outline-warning">Berlangsung</a>
+            <a href="<?= base_url('/User/Profile/history/Dibatalkan'); ?>" class="btn btn-outline-danger">Dibatalkan</a>
         </div>
     </div>
     <?php
@@ -132,10 +128,10 @@
                         </div>
                         <div class="ulasan">
                             <?php if ($k->ulasan == '1') : ?>
-                                <a href="<?= base_url('/user/profile/ulasan_saya'); ?>" class="btn btn-success">Lihat ulasan</a>
+                                <a href="<?= base_url('/User/Profile/ulasan_saya'); ?>" class="btn btn-success">Lihat ulasan</a>
                             <?php endif; ?>
                             <?php if ($k->ulasan == '0') : ?>
-                                <a href="<?= base_url('/user/profile/menunggu_ulasan'); ?>" class="btn btn-success">Beri ulasan</a>
+                                <a href="<?= base_url('/User/Profile/menunggu_ulasan'); ?>" class="btn btn-success">Beri ulasan</a>
                             <?php endif; ?>
                         </div>
                         <div class="dropdown">
@@ -143,8 +139,8 @@
                                 <i class='bx bx-dots-horizontal-rounded'></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="<?= base_url('/user/kendaraan/mobil/' . $k->id_kendaraan); ?>">Sewa lagi</a>
-                                <a class="dropdown-item" href="<?= base_url('/user/contact'); ?>">Tanyakan ketersediaan</a>
+                                <a class="dropdown-item" href="<?= base_url('/User/Kendaraan/mobil/' . $k->id_kendaraan); ?>">Sewa lagi</a>
+                                <a class="dropdown-item" href="<?= base_url('/User/contact'); ?>">Tanyakan ketersediaan</a>
                             </div>
                         </div>
                     </div>
@@ -207,13 +203,6 @@
                                         <p id="receive-tanggal"></p>
                                     </div>
                                 </div>
-                                <!-- <div class="col-5">
-                                    <div class="right-detail">
-                                        <a href="#" class="btn btn-success">Beri ulasan</a>
-                                        <a href="#" class="btn btn-warning">Sewa Lagi</a>
-                                        <a href="#" class="btn btn-secondary">Tanya Penjual</a>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         <div class="content-body">

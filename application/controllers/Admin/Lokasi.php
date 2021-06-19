@@ -23,9 +23,9 @@ class Lokasi extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/lokasi', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/lokasi', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function cari($id)
     {
@@ -45,9 +45,9 @@ class Lokasi extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/lokasi', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/lokasi', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function keyword($text)
     {

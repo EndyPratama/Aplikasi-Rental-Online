@@ -20,7 +20,7 @@
                 </div>
             </div>
             <?php foreach ($ulasan as $u) : ?>
-                <form action="<?= base_url('/user/profile/kirim_ulasan'); ?>" method="post">
+                <form action="<?= base_url('/User/Profile/kirim_ulasan'); ?>" method="post">
                     <div class="card mt-3">
                         <div class="card-header">
                             <div class="row">

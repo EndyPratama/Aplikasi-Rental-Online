@@ -20,9 +20,9 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/kendaraan', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/kendaraan', $data);
+        $this->load->view('/Admin/layout/footer');
     }
 
     // CRUD
@@ -51,26 +51,28 @@ class Kendaraan extends CI_Controller
             'title' => 'List Kendaraan',
             'css' => 'kendaraan.css'
         );
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/tambah', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/tambah', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     // Pengolahan Insert Data
     public function insert()
     {
         $gambar = $_FILES['gambar'];
-        if ($gambar=''){}else{
+        if ($gambar = '') {
+        } else {
             $config['upload_path'] = './vendor/public/img';
             $config['allowed_types'] = 'jpg|png|jfif';
-            
+
             $this->load->library('upload', $config);
-            if(!$this->upload->do_upload('gambar')){
-                echo "Upload gagal"; die();
-            }else{
+            if (!$this->upload->do_upload('gambar')) {
+                echo "Upload gagal";
+                die();
+            } else {
                 $gambar = $this->upload->data('file_name');
             }
         }
-        
+
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama', true)),
             'mesin' => htmlspecialchars($this->input->post('mesin', true)),
@@ -99,14 +101,14 @@ class Kendaraan extends CI_Controller
             'css' => 'kendaraan.css'
         );
 
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/ubah', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/ubah', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     // Pengolahan Edit Data
     public function edit()
     {
-      
+
         $data['kendaraans'] = $this->db->get('kendaraan')->result_array();
         $id = $this->input->post('id_kendaraan');
         $nama = $this->input->post('nama');
@@ -120,18 +122,20 @@ class Kendaraan extends CI_Controller
         $harga = $this->input->post('harga');
         $ketersediaan = $this->input->post('ketersediaan');
         $gambar = $_FILES['gambar'];
-        if ($gambar=''){}else{
+        if ($gambar = '') {
+        } else {
             $config['upload_path'] = './vendor/public/img';
             $config['allowed_types'] = 'jpg|png|jfif';
-            
+
             $this->load->library('upload', $config);
-            if(!$this->upload->do_upload('gambar')){
-                echo "Upload gagal"; die();
-            }else{
+            if (!$this->upload->do_upload('gambar')) {
+                echo "Upload gagal";
+                die();
+            } else {
                 $gambar = $this->upload->data('file_name');
             }
         }
-        
+
         $this->db->set('nama', $nama);
         $this->db->set('mesin', $mesin);
         $this->db->set('bahan_bakar', $bahan_bakar);
@@ -200,9 +204,9 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/user/layout/header', $data);
-        $this->load->view('/user/kendaraan', $data);
-        $this->load->view('/user/layout/footer');
+        $this->load->view('/User/layout/header', $data);
+        $this->load->view('/User/kendaraan', $data);
+        $this->load->view('/User/layout/footer');
     }
     // Detail Kendaraan
     public function detail($id)
@@ -217,8 +221,8 @@ class Kendaraan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/detail', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/detail', $data);
+        $this->load->view('/Admin/layout/footer');
     }
 }

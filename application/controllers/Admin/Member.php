@@ -22,9 +22,9 @@ class Member extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/member', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/member', $data);
+        $this->load->view('/Admin/layout/footer');
     }
     public function detail($id)
     {
@@ -37,8 +37,8 @@ class Member extends CI_Controller
             'profile' => $profile,
             'css' => 'user.css'
         );
-        $this->load->view('/admin/layout/sidebar', $data);
-        $this->load->view('/admin/member', $data);
-        $this->load->view('/admin/layout/footer');
+        $this->load->view('/Admin/layout/sidebar', $data);
+        $this->load->view('/Admin/member', $data);
+        $this->load->view('/Admin/layout/footer');
     }
 }

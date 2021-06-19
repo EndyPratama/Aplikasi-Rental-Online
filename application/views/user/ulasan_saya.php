@@ -4,10 +4,10 @@
         <div class="card-header">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('/user/profile/menunggu_ulasan'); ?>">Menunggu Ulasan</a>
+                    <a class="nav-link" href="<?= base_url('/User/Profile/menunggu_ulasan'); ?>">Menunggu Ulasan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="<?= base_url('/user/profile/ulasan_saya'); ?>">Ulasan Saya</a>
+                    <a class="nav-link active" href="<?= base_url('/User/Profile/ulasan_saya'); ?>">Ulasan Saya</a>
                 </li>
             </ul>
         </div>
@@ -76,8 +76,8 @@
                             <div class="col-4">
                                 <div class="action" style="display: flex; flex-direction:column;">
                                     <a href="" class="btn btn-success" onclick="formOpen(<?= $i; ?>)" data-toggle="modal" data-target="#exampleModal"><i class='bx bxl-telegram'>Lihat Ulasan</i></a>
-                                    <a href="<?= base_url('/user/kendaraan/mobil/' . $u->id_kendaraan); ?>" class="btn btn-outline-success"><i class='bx bx-notepad'>Sewa Lagi</i></a>
-                                    <a href="<?= base_url('/user/contact'); ?>" class="btn btn-outline-warning"><i class='bx bx-message-square-detail'>Hubungi Admin</i></a>
+                                    <a href="<?= base_url('/User/Kendaraan/mobil/' . $u->id_kendaraan); ?>" class="btn btn-outline-success"><i class='bx bx-notepad'>Sewa Lagi</i></a>
+                                    <a href="<?= base_url('/User/contact'); ?>" class="btn btn-outline-warning"><i class='bx bx-message-square-detail'>Hubungi Admin</i></a>
                                 </div>
                             </div>
                         </div>
