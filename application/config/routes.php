@@ -55,7 +55,7 @@ $route['default_controller'] = 'Auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// $route['member'] = 'admin/member';
-// $route['statistik'] = 'admin/statistik';
-// $route['contact'] = 'admin/contact';
-// $route['pesan/(:num)'] = 'admin/pesanAdmin/$1';
+// $route['member'] = 'Admin/member';
+// $route['statistik'] = 'Admin/statistik';
+// $route['contact'] = 'Admin/contact';
+// $route['pesan/(:num)'] = 'Admin/pesanAdmin/$1';

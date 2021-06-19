@@ -106,6 +106,6 @@ class Pesan extends CI_Controller
         // echo $id;
         $this->db->delete("jawaban", array("id_pesan" => $id));
         $this->db->delete("pesan", array("id_pesan" => $id));
-        redirect('admin/pesan');
+        redirect('Admin/pesan');
     }
 }

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-3">
             <div class="list-group">
-                <a href="<?= base_url('admin/Kendaraan/tambah'); ?>" class="btn btn-success"><i class="fa fa-plus"> Tambah Kendaraan</i></a>
+                <a href="<?= base_url('Admin/Kendaraan/tambah'); ?>" class="btn btn-success"><i class="fa fa-plus"> Tambah Kendaraan</i></a>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
                 $harga = number_format($k->harga, 0, ',', '.');
             ?>
                 <div class="card mb-3" style="max-width: 540px;">
-                    <a href="<?= base_url('admin/Kendaraan/detail/' . $k->id_kendaraan); ?>">
+                    <a href="<?= base_url('Admin/Kendaraan/detail/' . $k->id_kendaraan); ?>">
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <img src="<?php echo base_url('vendor/public/img/' . $k->gambar) ?>" class="card-img" alt="<?= $k->nama; ?>" style="height: 150px;">

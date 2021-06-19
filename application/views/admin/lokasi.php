@@ -47,7 +47,7 @@
                                 <td id="nama"><?= $u->username; ?></td>
                                 <td>Mobil</td>
                                 <td>Pare</td>
-                                <td><a href="<?= base_url('admin/Lokasi/cari/' . $u->id); ?>" class="btn btn-success"><i class='bx bx-target-lock'></i></a></td>
+                                <td><a href="<?= base_url('Admin/Lokasi/cari/' . $u->id); ?>" class="btn btn-success"><i class='bx bx-target-lock'></i></a></td>
                             </tr>
                             <script>
 

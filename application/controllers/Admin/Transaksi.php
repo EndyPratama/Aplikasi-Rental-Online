@@ -87,7 +87,7 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect(base_url('admin/transaksi'));
+        redirect(base_url('Admin/transaksi'));
     }
 
     public function lunas($kendaraan_id, $user_id, $transaksi_id)
@@ -110,7 +110,7 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect(base_url('admin/transaksi'));
+        redirect(base_url('Admin/transaksi'));
     }
 
     public function batal($kendaraan_id, $user_id, $transaksi_id)
@@ -155,7 +155,7 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect(base_url('admin/transaksi'));
+        redirect(base_url('Admin/transaksi'));
     }
 
 
@@ -173,7 +173,7 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . 'Edit data kendaraan berhasil' . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-        redirect(base_url('admin/transaksi'));
+        redirect(base_url('Admin/transaksi'));
     }
 
     public function review($kendaraan_id, $user_id, $transaksi_id)
@@ -199,6 +199,6 @@ class Transaksi extends CI_Controller
         echo "</pre>";
         $this->db->insert('review', $data);
 
-        redirect(base_url('admin/transaksi'));
+        redirect(base_url('Admin/transaksi'));
     }
 }

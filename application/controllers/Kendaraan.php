@@ -87,7 +87,7 @@ class Kendaraan extends CI_Controller
             'gambar' => $gambar
         ];
         $this->db->insert('kendaraan', $data);
-        redirect(base_url('admin/kendaraan'));
+        redirect(base_url('Admin/kendaraan'));
     }
 
     // Page Edit Data
@@ -159,7 +159,7 @@ class Kendaraan extends CI_Controller
             </button>
         </div>'
         );
-        redirect(base_url('admin/kendaraan'));
+        redirect(base_url('Admin/kendaraan'));
     }
     // Hapus Data
     public function hapus($id_kendaraan)
@@ -168,7 +168,7 @@ class Kendaraan extends CI_Controller
         <span aria-hidden="true">&times;</span>
     </button></div>');
         $this->db->delete("kendaraan", array("id_kendaraan" => $id_kendaraan));
-        redirect(base_url('admin/kendaraan'));
+        redirect(base_url('Admin/kendaraan'));
     }
     // Read Data
     public function list()

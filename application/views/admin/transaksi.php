@@ -46,7 +46,7 @@
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
                                     <a class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"> Lihat</i></a>
-                                    <!-- <a href="<?= base_url('admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a> -->
+                                    <!-- <a href="<?= base_url('Admin/transaksi/batal/' . $t->id_kendaraan); ?>" class="btn btn-danger"><i class="fa fa-remove"> Batal</i></a> -->
                                 </td>
                             </tr>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,7 +70,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <?php if ($t->bukti_transaksi != NULL) { ?>
-                                                <a href="<?= base_url('admin/transaksi/lunas/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Lunas</i></a>
+                                                <a href="<?= base_url('Admin/transaksi/lunas/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Lunas</i></a>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/diterima/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Kendaraan Diterima</i></a>
+                                    <a href="<?= base_url('Admin/transaksi/diterima/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Kendaraan Diterima</i></a>
 
                                 </td>
                             </tr>
@@ -110,7 +110,7 @@
                                 <td>Rp <?= $harga; ?></td>
                                 <td><?= $t->status; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/transaksi/selesai/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
+                                    <a href="<?= base_url('Admin/transaksi/selesai/' . $t->id_kendaraan . '/' . $t->id . '/' . $t->id_transaksi); ?>" class="btn btn-success"><i class="fa fa-check"> Selesai</i></a>
 
                                 </td>
                             </tr>

@@ -42,8 +42,8 @@
                                 <td><?= $b->durasi; ?> Hari</td>
                                 <td>Rp <?= $total; ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/booking/terima/' . $b->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
-                                    <a href="<?= base_url('admin/booking/tolak/' . $b->id); ?>" class="btn btn-danger"><i class="fa fa-remove"> Tolak</i></a>
+                                    <a href="<?= base_url('Admin/booking/terima/' . $b->id); ?>" class="btn btn-success"><i class="fa fa-check"> Terima</i></a>
+                                    <a href="<?= base_url('Admin/booking/tolak/' . $b->id); ?>" class="btn btn-danger"><i class="fa fa-remove"> Tolak</i></a>
                                 </td>
                             </tr>
                         <?php

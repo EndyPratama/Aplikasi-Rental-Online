@@ -3,7 +3,7 @@
     <hr>
     <div class="container">
         <div class="row">
-            <form action="<?= base_url('admin/Kendaraan/edit'); ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('Admin/Kendaraan/edit'); ?>" method="POST" enctype="multipart/form-data">
                 <?php
                 foreach ($kendaraan as $k) :
                 ?>
